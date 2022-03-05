@@ -12,7 +12,7 @@ const App = () => {
       <Text style={{
         color: '#4965B0',
         fontSize: 48
-      }}>Hello World</Text>
+      }}>Hello World !!!</Text>
     </View>
   )
 }

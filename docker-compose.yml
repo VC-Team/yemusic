@@ -1,0 +1,19 @@
+version: "2.3"
+
+networks:
+  corp:
+    driver: bridge
+
+services:
+  web-app:
+    container_name: yemusic-webapp
+    build:
+      context: ./
+      dockerfile: ./apps/web/Dockerfile
+      cache_from:
+        - nginx:alpine
+    networks:
+      - corp
+    ports:
+      - 4900:80
+

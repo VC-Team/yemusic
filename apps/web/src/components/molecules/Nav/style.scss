@@ -15,7 +15,7 @@
     transition: 300ms;
   }
 
-  &--vertical {
+  &.-vertical {
     flex-direction: column;
 
     &::before {
@@ -45,7 +45,7 @@
     justify-content: center;
     padding: pxToRem(16);
 
-    &--full {
+    &.-full {
       align-items: center;
       justify-content: initial;
       height: 40px;
@@ -68,7 +68,7 @@
       }
     }
 
-    &--active {
+    &.-active {
       .m-nav__item__name {
         color: $ACCENT-TEXT;
       }

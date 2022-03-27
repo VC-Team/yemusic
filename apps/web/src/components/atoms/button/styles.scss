@@ -1,40 +1,45 @@
-// Mixins 
-
-@mixin button-size($font-size, $padding) {
-  padding: $padding;
-  padding-left: 0;
-  padding-right: 0;
-
-  font-size: $font-size;
-}
-
 .a-button-group {
   position: relative;
   display: inline-flex;
-  align-items: center;
-  line-height: 1;
+  align-items: center; 
   text-align: center;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.1s;
+  color: white;
   
   cursor: pointer;
   user-select: none;
   text-transform: uppercase;
 
   font-family: inherit;
-  background-color: $COLOR-TRANSPARENT;
+  background-color: $INTERACTIVE-BACKGROUND;
   border: 0;
   outline: 0;
 
-  &.-size-sm {
-    @include button-size(0.8rem, 1rem );
+  &:active {
+    margin: 1px;
+    padding: 7px 15px;
   }
 
-  &.-size-lg {
-    @include button-size(1rem, 1.2rem )
+  &:hover {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: $HOVER-OVERLAY;
+      border-radius: inherit;
+    }
+
+    .a-input-group__addon,
+    .a-input-group__input {
+      color: $PRIMARY-TEXT;
+    }
   }
 
-
-  &.is-fluid{
-    display: block;
+  &.-full-width{
+    justify-content: center;
     width: 100%;
   }
 
@@ -47,5 +52,14 @@
     width: 24px;
     height: 24px;
     overflow: hidden;
+  }
+
+  &__text {
+    margin: 0 8px;
+  }
+
+  &.-circle {
+    padding: 8px;
+    border-radius: 999px;
   }
 }

@@ -6,38 +6,32 @@ import './styles.scss';
 export interface ButtonProps {
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
-  fluid?: boolean;
-  round?: boolean;
-  outline?: boolean;
+  fullWidth?: boolean;
   disabled?: boolean;
-  uppercase?: boolean;
-  size: 'sm' | 'lg';
+  shape: 'default' | 'circle';
   type: 'submit' | 'button';
   text: string;
 }
 
 export const Button: FC<ButtonProps> = ({
+  shape = 'default',
   disabled,
-  size,
-  fluid,
-  uppercase,
-  text,
-  type,
+  fullWidth,
+  text = '',
+  type = 'button',
   prefix,
   suffix,
   ...otherProps
 }) => {
-  const classnames = classNames('a-button-group', {
-    uppercase: uppercase,
-    'is-fluid': fluid,
-    [`-size-${size}`]: size,
-    // '-disabled': disabled,
+  const classnames = classNames('a-button-group', shape === 'default' ? 'default' : '-circle', {
+    '-full-width': fullWidth,
+    '-disabled': disabled,
   });
 
   return (
     <button className={classnames}>
       {prefix && <span className="a-button-group__addon">{prefix}</span>}
-      {text}
+      {text && <span className="a-button-group__text">{text}</span>}
       {suffix && <span className="a-button-group__addon">{suffix}</span>}
     </button>
   );

@@ -93,6 +93,7 @@
     "vc-cz-emoji": "^0.0.2"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "classnames": "^2.3.1",
     "core-js": "^3.6.5",
     "env-cmd": "^10.1.0",
@@ -102,7 +103,8 @@
     "react-native": "0.67.2",
     "regenerator-runtime": "0.13.7",
     "tslib": "^2.0.0",
-    "winston": "^3.6.0"
+    "winston": "^3.6.0",
+    "ytdl-core": "^4.11.0"
   },
   "config": {
     "commitizen": {

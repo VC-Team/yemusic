@@ -1,11 +1,12 @@
 import { Video, SearchResult } from '../../../interface';
+import { FormatVideo } from '../../../interface';
 import findVal from './helpers/findVal';
 import formatVideo from './helpers/formatVideo';
 import getData from './helpers/getData';
 
 export default async function searchVideo(terms: string, token?: string, apikey?: string): Promise<SearchResult> {
   try {
-    let items = [];
+    let items: FormatVideo[] = [];
     const songs: Video[] = [];
 
     // initial songs search

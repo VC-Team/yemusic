@@ -1,57 +1,13 @@
-import { FormatVideo, FormatDraftVideo } from '../../../../interface';
+import { Video, DataVideo, ResVideo } from '../../../interface/youtube';
 import getVideoDate from '../getVideoDate';
 import getDateFromText from './getDateFromText';
 
-export default async function formatVideo(video: FormatVideo, speedDate = false) {
+export default async function formatVideo(video: Video, speedDate = false): Promise<ResVideo> {
   try {
-    const draftVideo: FormatDraftVideo =
+    const dataVideo: DataVideo =
       video.compactVideoRenderer || video.gridVideoRenderer || video.videoRenderer || video.playlistVideoRenderer;
 
-    if (draftVideo) {
-      // Get id
-      const youtubeId: string = draftVideo.videoId;
-
-      // Get thumbnail
-      const lastThumbnailIdx: number = draftVideo.thumbnail?.thumbnails?.length - 1 || 0;
-      const thumbnail: object = draftVideo.thumbnail?.thumbnails[lastThumbnailIdx] || {};
-
-      // Get duration
-      const duration: string = draftVideo.lengthText?.simpleText || draftVideo.lengthText?.runs[0].text;
-
-      // Get title
-      const title: string = draftVideo.title.simpleText || draftVideo.title.runs[0].text;
-
-      // Get channel
-      const channel = draftVideo.longBylineText?.runs[0].text || draftVideo.shortBylineText?.runs[0].text;
-
-      // Get view
-      const view = draftVideo.viewCountText.simpleText || draftVideo.viewCountText.runs[0].text;
-
-      // publishedAt formatting
-
-      let publishedAt: Date = new Date(Date.now());
-      if (speedDate && draftVideo.publishedTimeText) {
-        if (draftVideo.publishedTimeText.simpleText) {
-          publishedAt = getDateFromText(draftVideo.publishedTimeText.simpleText);
-        } else if (draftVideo.publishedTimeText.runs) {
-          publishedAt = getDateFromText(draftVideo.publishedTimeText.runs[0].text);
-        }
-      } else {
-        publishedAt = await getVideoDate(youtubeId);
-      }
-
-      return {
-        youtubeId,
-        title: title.trim(),
-        duration,
-        publishedAt,
-        thumbnail,
-        channel,
-        view,
-      };
-    }
-
-    return {
+    let resVideo: ResVideo = {
       youtubeId: 'didyoumean',
       title: '',
       artist: '',
@@ -62,6 +18,38 @@ export default async function formatVideo(video: FormatVideo, speedDate = false)
       channel: '',
       view: '',
     };
+
+    if (dataVideo) {
+      const lastThumbnailIdx: number = dataVideo.thumbnail?.thumbnails?.length - 1 || 0;
+
+      resVideo = {
+        youtubeId: dataVideo.videoId,
+        thumbnail: dataVideo.thumbnail?.thumbnails?.[lastThumbnailIdx] || {},
+        duration: dataVideo.lengthText?.simpleText || dataVideo.lengthText?.runs[0]?.text || '',
+        title: dataVideo.title?.simpleText || dataVideo.title?.runs?.[0]?.text || '',
+        channel: dataVideo.longBylineText?.runs?.[0]?.text || dataVideo.shortBylineText?.runs?.[0]?.text || '',
+        view: dataVideo.viewCountText?.simpleText || dataVideo.viewCountText?.runs?.[0]?.text || '',
+      };
+
+      // publishedAt formatting
+      let publishedAt: Date = new Date(Date.now());
+      if (speedDate && dataVideo.publishedTimeText) {
+        if (dataVideo.publishedTimeText?.simpleText) {
+          publishedAt = getDateFromText(dataVideo.publishedTimeText.simpleText);
+        } else if (dataVideo.publishedTimeText?.runs) {
+          publishedAt = getDateFromText(dataVideo.publishedTimeText.runs?.[0]?.text);
+        }
+      } else {
+        publishedAt = await getVideoDate(resVideo?.youtubeId);
+      }
+
+      return {
+        ...resVideo,
+        publishedAt,
+      };
+    }
+
+    return resVideo;
   } catch (e) {
     console.log('format video failed');
   }

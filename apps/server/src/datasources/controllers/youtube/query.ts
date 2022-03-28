@@ -4,9 +4,9 @@ import { ytb } from '../../utils/controllers';
 
 export const listSong = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
   try {
-    const { search, token, apikey } = req.body;
+    const { search, token, apiKey } = req.body;
 
-    const results = await ytb.searchVideo(search, token, apikey);
+    const results = await ytb.searchVideo(search, token, apiKey);
 
     return res.status(200).json({
       isSuccess: true,

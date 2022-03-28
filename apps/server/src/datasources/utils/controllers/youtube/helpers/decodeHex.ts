@@ -1,4 +1,4 @@
-export default function decodeHex(hex) {
+export default function decodeHex(hex: string): string {
   return hex
     .replace(/\\x22/g, '"')
     .replace(/\\x7b/g, '{')

@@ -1,4 +1,4 @@
-export default function findVal(object, key) {
+export default function findVal(object: object, key: string) {
   let value;
   Object.keys(object).some(function (k) {
     if (k === key) {

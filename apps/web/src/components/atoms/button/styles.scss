@@ -4,11 +4,11 @@
   align-items: center; 
   text-align: center;
   width: fit-content;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: pxToRem(8) pxToRem(16);
+  border-radius: pxToRem(4);
   transition: all 0.1s;
-  color: white;
-  
+  color: $PRIMARY-TEXT;
+
   cursor: pointer;
   user-select: none;
   text-transform: uppercase;
@@ -19,8 +19,8 @@
   outline: 0;
 
   &:active {
-    margin: 1px;
-    padding: 7px 15px;
+    margin: pxToRem(1);
+    padding: pxToRem(7) pxToRem(15);
   }
 
   &:hover {
@@ -55,11 +55,11 @@
   }
 
   &__text {
-    margin: 0 8px;
+    margin: 0 pxToRem(8);
   }
 
   &.-circle {
-    padding: 8px;
+    padding: pxToRem(8);
     border-radius: 999px;
   }
 }

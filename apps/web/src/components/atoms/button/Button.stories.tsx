@@ -15,7 +15,5 @@ export const Preview = Template.bind({});
 Preview.args = {
   disabled: false,
   fullWidth: false,
-  text: 'Button',
-  type: 'button',
-  shape: 'default',
+  children: 'Button',
 };

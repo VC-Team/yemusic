@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 import axios from 'axios';
 
-import config from '../../../../../config/root.config';
+import { youtube } from '../../../../../config';
 import decodeHex from './decodeHex';
 import findVal from './findVal';
 
@@ -36,7 +36,7 @@ export default async function getData(urlString: string) {
     return { items: findVal(body, 'continuationItems'), token: findVal(body, 'token') };
   } else {
     headers = {
-      headers: { ...config.headers },
+      headers: youtube.headers,
     };
     body = (await axios(urlString, headers)).data;
     if (isDate) {

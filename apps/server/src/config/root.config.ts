@@ -1,11 +1,14 @@
-import { HttpServerConfig } from './type.config';
+import { HttpServerConfig, Youtube, MongoDB } from './type.config';
 
-const config: HttpServerConfig = {
+export const container: HttpServerConfig = {
   hostName: process.env.API_HOSTNAME || 'http://localhost',
   port: Number(process.env.API_PORT || 3000),
   logger: {
     level: process.env.LOGGING_LEVEL || 'debug',
   },
+};
+
+export const youtube: Youtube = {
   headers: {
     'Access-Control-Allow-Origin': '*',
     'x-youtube-client-name': 1,
@@ -15,4 +18,8 @@ const config: HttpServerConfig = {
   },
 };
 
-export default config;
+export const mongoDB: MongoDB = {
+  database_test: 'mongodb://localhost/db_yemusic_test',
+  database: process.env.YEMUSIC_DB_CONNECTION_STRING || 'mongodb://localhost/db_yemusic_test',
+  mongoOptions: {},
+};

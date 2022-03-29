@@ -13,5 +13,14 @@ export type HttpServerConfig = {
   hostName: string;
   port: number;
   logger: Logger;
+};
+
+export type Youtube = {
   headers: Headers;
+};
+
+export type MongoDB = {
+  database_test: string;
+  database: string;
+  mongoOptions: object;
 };

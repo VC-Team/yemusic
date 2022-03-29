@@ -98,6 +98,7 @@
     "core-js": "^3.6.5",
     "env-cmd": "^10.1.0",
     "express": "4.17.2",
+    "mongoose": "^6.2.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.67.3",

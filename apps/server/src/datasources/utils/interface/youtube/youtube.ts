@@ -20,9 +20,8 @@ export type AudioResponse = {
   audioUrl: string;
 };
 
-export type GetData = {
+export type TParamsData = {
   urlString: string;
   method?: string;
   reqBody?: object;
-  reqHeaders?: object;
 };

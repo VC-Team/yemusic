@@ -2,7 +2,9 @@ import getData from './helpers/getData';
 
 export default async function getVideoDate(youtubeId: string): Promise<Date> {
   try {
-    let publishText: string = await getData('https://m.youtube.com/watch?v=' + youtubeId + '&type=date');
+    let publishText: string = await getData({
+      urlString: 'https://m.youtube.com/watch?v=' + youtubeId + '&type=date',
+    });
     publishText.replace('-', '/');
     publishText +=
       ' ' +

@@ -12,3 +12,18 @@ export default function findVal(object: object, key: string) {
   });
   return value;
 }
+
+export function findValByKey(obj: object, key: string) {
+  let objValue = { ...obj };
+  const keys = key.split('.');
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i];
+    if (objValue[k]) {
+      objValue = objValue[k];
+    } else {
+      break;
+    }
+  }
+
+  return objValue;
+}

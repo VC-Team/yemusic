@@ -10,16 +10,19 @@ export default async function searchVideo(terms: string, token?: string, apiKey?
 
     // initial songs search
     if (!token) {
-      const data = await getData('https://m.youtube.com/results?videoEmbeddable=true&search_query=' + encodeURI(terms));
-
+      const data = await getData({
+        urlString: 'https://m.youtube.com/results?videoEmbeddable=true&search_query=' + encodeURI(terms),
+      });
       token = findVal(data, 'token');
       items = findVal(data, 'itemSectionRenderer')?.contents;
     }
     // more songs
     else {
-      const data = await getData('https://www.youtube.com/youtubei/v1/search?key=' + apiKey + '&token=' + token);
-      items = findVal(data.items, 'contents');
-      token = data.token;
+      const data = await getData({
+        urlString: 'https://www.youtube.com/youtubei/v1/search?key=' + apiKey + '&token=' + token,
+      });
+      token = findVal(data, 'token');
+      items = findVal(data, 'itemSectionRenderer')?.contents;
     }
 
     for (let i = 0; i < items.length; i++) {

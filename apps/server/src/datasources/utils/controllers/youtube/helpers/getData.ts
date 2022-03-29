@@ -1,11 +1,11 @@
 /* eslint-disable no-useless-escape */
 import axios from 'axios';
 
-import config from '../../../../../config/root.config';
-import { GetData } from '../../../interface/youtube';
+import { youtube } from '../../../../../config/root.config';
+import { TParamsData } from '../../../interface/youtube';
 import decodeHex from './decodeHex';
 
-export default async function getData({ urlString, method = '', reqBody = {}, reqHeaders = {} }: GetData) {
+export default async function getData({ urlString, method = '', reqBody = {} }: TParamsData) {
   const dataRegex = /var\ ytInitialData\ \=\ \'(.*)\'\;<\/script>/;
   // const playerRegex = /var\ ytInitialPlayerResponse\ \=\ (.*)id\=\"player\"/s;
 
@@ -30,29 +30,24 @@ export default async function getData({ urlString, method = '', reqBody = {}, re
     isAjax = true;
   }
 
-  let headers;
+  const headers = youtube.headers;
   if (isAjax) {
     const data = {
       context: { client: { clientName: 'WEB', clientVersion: '2.20210401.08.00' } },
       continuation: url.searchParams.get('token'),
       ...reqBody,
     };
-    headers = {
-      headers: {
-        ...reqHeaders,
-      },
-    };
-
-    body = (await axios({ method: 'post', url: urlString, data: data, headers })).data;
+    body = (
+      await axios({
+        method: 'post',
+        url: urlString,
+        data: data,
+        headers,
+      })
+    ).data;
 
     return body;
   } else {
-    headers = {
-      headers: {
-        ...config.headers,
-        ...reqHeaders,
-      },
-    };
     body = (await axios({ url: urlString, headers })).data;
     if (isDate) {
       const raw = dateRegex.exec(body)?.[1] || '{}';

@@ -12,11 +12,7 @@ export default async function getVideoTrending(): Promise<Array<Song>> {
       method: 'POST',
       reqBody: {
         browseId: 'FEtrending',
-        params: '4gINGgt5dG1hX2NoYXJ0cw%3D%3D',
-      },
-      reqHeaders: {
-        'x-youtube-client-name': 1,
-        'x-youtube-client-version': '2.20220325.00.00',
+        params: process.env.PARAMS_YOUTUBE,
       },
     });
 

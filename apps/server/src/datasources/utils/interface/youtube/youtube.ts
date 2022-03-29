@@ -19,3 +19,10 @@ export type AudioResponse = {
   message?: string;
   audioUrl: string;
 };
+
+export type GetData = {
+  urlString: string;
+  method?: string;
+  reqBody?: object;
+  reqHeaders?: object;
+};

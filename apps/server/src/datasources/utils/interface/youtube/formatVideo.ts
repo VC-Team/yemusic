@@ -23,10 +23,10 @@ export type DataVideo = {
 };
 
 export type Video = {
-  compactVideoRenderer: DataVideo;
-  gridVideoRenderer: DataVideo;
-  videoRenderer: DataVideo;
-  playlistVideoRenderer: DataVideo;
+  compactVideoRenderer?: DataVideo;
+  gridVideoRenderer?: DataVideo;
+  videoRenderer?: DataVideo;
+  playlistVideoRenderer?: DataVideo;
 };
 
 export type ResVideo = {

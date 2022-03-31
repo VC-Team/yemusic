@@ -18,3 +18,9 @@ export type HttpServerConfig = {
 export type Youtube = {
   headers: Headers;
 };
+
+export type MongoDB = {
+  database_test: string;
+  database: string;
+  mongoOptions: object;
+};

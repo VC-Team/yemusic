@@ -1,6 +1,6 @@
 import { createLogger, format, transports } from 'winston';
 
-import config from '../config';
+import { container } from '../config';
 
 const { combine, printf, errors } = format;
 
@@ -26,7 +26,7 @@ export const logger = createLogger({
   format: combine(myFormat, errors({ stack: true })),
   transports: [
     new transports.Console({
-      level: config.logger.level,
+      level: container.logger.level,
       handleExceptions: true,
       stderrLevels: ['error', 'warning'],
     }),

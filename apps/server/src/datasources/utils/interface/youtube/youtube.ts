@@ -19,3 +19,9 @@ export type AudioResponse = {
   message?: string;
   audioUrl: string;
 };
+
+export type TParamsData = {
+  urlString: string;
+  method?: string;
+  reqBody?: object;
+};

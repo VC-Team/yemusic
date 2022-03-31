@@ -28,3 +28,13 @@ export const song = async (req: Request, res: Response, next: NextFunction): Pro
     next(error);
   }
 };
+
+export const listSongTrending = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+  try {
+    const result = await ytb.getVideoTrending();
+
+    return res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};

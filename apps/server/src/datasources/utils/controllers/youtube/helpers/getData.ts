@@ -1,11 +1,11 @@
 /* eslint-disable no-useless-escape */
 import axios from 'axios';
 
-import config from '../../../../../config/root.config';
+import { youtube } from '../../../../../config/root.config';
+import { TParamsData } from '../../../interface/youtube';
 import decodeHex from './decodeHex';
-import findVal from './findVal';
 
-export default async function getData(urlString: string) {
+export default async function getData({ urlString, method = '', reqBody = {} }: TParamsData) {
   const dataRegex = /var\ ytInitialData\ \=\ \'(.*)\'\;<\/script>/;
   // const playerRegex = /var\ ytInitialPlayerResponse\ \=\ (.*)id\=\"player\"/s;
 
@@ -25,20 +25,30 @@ export default async function getData(urlString: string) {
   if (url.searchParams.get('type') === 'subtitles') {
     // isSubtitles = true;
   }
-  let headers;
+
+  if (method === 'POST') {
+    isAjax = true;
+  }
+
+  const headers = youtube.headers;
   if (isAjax) {
     const data = {
       context: { client: { clientName: 'WEB', clientVersion: '2.20210401.08.00' } },
       continuation: url.searchParams.get('token'),
+      ...reqBody,
     };
-    body = (await axios({ method: 'post', url: urlString, data: data })).data;
+    body = (
+      await axios({
+        method: 'post',
+        url: urlString,
+        data: data,
+        headers,
+      })
+    ).data;
 
-    return { items: findVal(body, 'continuationItems'), token: findVal(body, 'token') };
+    return body;
   } else {
-    headers = {
-      headers: { ...config.headers },
-    };
-    body = (await axios(urlString, headers)).data;
+    body = (await axios({ url: urlString, headers })).data;
     if (isDate) {
       const raw = dateRegex.exec(body)?.[1] || '{}';
       return raw;

@@ -13,5 +13,8 @@ export type HttpServerConfig = {
   hostName: string;
   port: number;
   logger: Logger;
+};
+
+export type Youtube = {
   headers: Headers;
 };

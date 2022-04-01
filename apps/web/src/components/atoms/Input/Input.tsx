@@ -6,16 +6,25 @@ import './styles.scss';
 export interface InputProps
   extends Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'prefix'> {
   prefix?: React.ReactNode;
+  shape?: 'default' | 'round';
   suffix?: React.ReactNode;
   fullWidth?: boolean;
 }
 
-export const Input: FC<InputProps> = ({ className, disabled, fullWidth, prefix, suffix, ...otherProps }) => {
+export const Input: FC<InputProps> = ({
+  className,
+  disabled,
+  fullWidth,
+  prefix,
+  shape = 'default',
+  suffix,
+  ...otherProps
+}) => {
   return (
-    <label className={classNames('a-input-group', disabled && '-disabled', fullWidth && '-full-width')}>
-      {prefix && <span className="a-input-group__addon">{prefix}</span>}
+    <label className={classNames('a-input-group', disabled && '-disabled', fullWidth && '-full-width', `-${shape}`)}>
+      {prefix && <span className="a-input-group__addon -prefix">{prefix}</span>}
       <input className="a-input-group__input" disabled={disabled} {...otherProps} />
-      {suffix && <span className="a-input-group__addon">{suffix}</span>}
+      {suffix && <span className="a-input-group__addon -suffix">{suffix}</span>}
     </label>
   );
 };

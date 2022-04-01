@@ -21,6 +21,7 @@ $root: a-input-group;
     .#{$root}__addon,
     .#{$root}__input {
       color: $PRIMARY-TEXT;
+      background-color: $HOVER-OVERLAY;
     }
   }
 
@@ -33,10 +34,23 @@ $root: a-input-group;
     width: 100%;
   }
 
+  &.-round {
+    border-radius: 999px;
+  }
+
   &__addon {
-    width: 24px;
-    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
     overflow: hidden;
+
+    &.-prefix {
+      padding: 0 0 0 pxtorem(8);
+    }
+
+    &.-suffix {
+      padding: 0 pxtorem(8) 0 0;
+    }
   }
 
   &__input {

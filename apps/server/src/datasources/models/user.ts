@@ -1,29 +1,37 @@
-export type User = {
-  userId: string;
-  userName: string;
-  userPhone: string;
-  userEmail: string;
-  userAvatarPath: string;
-  isNotiStatus: boolean;
-  isPremium: boolean;
-  sourceRegister: 0 | 1 | 2; // 0: IOS, 1: Android, 2: Web
-  userFacebookId?: string;
-  userGoogleId?: string;
-  userGender?: 0 | 1 | 2; // 0: Male, 1: Female, 2: Other;
-  userRegion?: string;
-  language?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-};
+import * as mongoose from 'mongoose';
 
-export enum SourceRegister {
-  IOS,
-  Android,
-  Web,
-}
+const { Schema } = mongoose;
 
-export enum UserGender {
-  Male,
-  Female,
-  Other,
-}
+const UserInfo = new Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    displayName: String,
+    avatarUrl: String,
+    gender: {
+      type: String,
+      enum: ['Male', 'Female', 'Other'],
+    },
+  },
+  { _id: false, id: false }
+);
+
+export const UserSchema = new Schema(
+  {
+    username: { type: String, unique: true },
+    password: String,
+    email: { type: String, unique: true },
+    phone: { type: String, unique: true },
+    desc: String,
+    info: UserInfo,
+    isValidEmail: Boolean,
+    isBlocked: Boolean,
+  },
+  { timestamps: true }
+);

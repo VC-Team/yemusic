@@ -8,4 +8,6 @@ WORKDIR /app/builder
 COPY . .
 
 RUN npm set-script prepare ""
-RUN npm i
+RUN npm i --silent
+
+COPY . .

@@ -2,7 +2,7 @@ FROM vc-yemusic:base as builder
 
 WORKDIR /app/builder
 
-COPY ../ .
+COPY . .
 
 RUN npx nx build-storybook web
 

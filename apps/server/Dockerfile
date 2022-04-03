@@ -6,12 +6,12 @@ COPY . .
 
 RUN npx nx build server
 
-FROM vc-yemusic:base
+RUN npm prune --production
+
+FROM node:16-alpine
 
 WORKDIR /app
 
 COPY --from=builder /app/builder ./
 
 CMD ["node", "./dist/apps/server/main.js"]
-
-

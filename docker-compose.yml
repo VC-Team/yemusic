@@ -7,7 +7,6 @@ networks:
 services:
   web-app:
     container_name: yemusic-webapp
-    image: vc-yemusic:web-app
     build:
       context: ./
       dockerfile: ./apps/web/Dockerfile
@@ -17,7 +16,6 @@ services:
       - 4900:80
   web-storybook:
     container_name: yemusic-storybook
-    image: vc-yemusic:web-storybook
     build:
       context: ./
       dockerfile: ./apps/web/.storybook/Dockerfile
@@ -41,7 +39,6 @@ services:
       - yemusic
   server-api:
     container_name: yemusic-server-api
-    image: vc-yemusic:server-api
     build:
       context: ./
       dockerfile: ./apps/server/Dockerfile

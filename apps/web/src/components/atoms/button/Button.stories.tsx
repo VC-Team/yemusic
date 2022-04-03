@@ -8,12 +8,21 @@ export default {
   title: 'Button',
 } as Meta;
 
-const Template: Story<ButtonProps> = args => <Button prefix={<HomeIcon />} suffix={<HomeIcon />} {...args} />;
+const Template: Story<ButtonProps> = args => <Button {...args} />;
 
 export const Preview = Template.bind({});
+export const PreviewIconOnly = Template.bind({});
 
 Preview.args = {
   disabled: false,
   fullWidth: false,
+  prefix: <HomeIcon />,
+  suffix: <HomeIcon />,
   children: 'Button',
+};
+
+PreviewIconOnly.args = {
+  disabled: false,
+  fullWidth: false,
+  children: <HomeIcon />,
 };

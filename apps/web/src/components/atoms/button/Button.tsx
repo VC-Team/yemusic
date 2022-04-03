@@ -9,7 +9,6 @@ export interface ButtonProps
   suffix?: React.ReactNode;
   fullWidth?: boolean;
   shape?: 'default' | 'circle';
-  children: string;
 }
 
 export const Button: FC<ButtonProps> = ({

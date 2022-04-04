@@ -21,17 +21,11 @@ jobs:
       #     key: ${{ runner.os }}-buildx-${{ github.sha }}
       #     restore-keys: |
       #       ${{ runner.os }}-buildx-
-
-      - name: Login DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+ 
       - name: Create env file
         run: |
           touch .env
-          echo YEMUSIC_API_SERVER_PORT=${{ secrets.YEMUSIC_API_SERVER_PORT }} >> .env
+          echo YEMUSIC_API_SERVER_PORT=3000 >> .env
       - name: Caching Layer
         uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
@@ -42,27 +36,23 @@ jobs:
       - name: Build the app images
         run: docker compose -f docker-compose.yml build
 
-      - name: List images
-        run: docker image ls
+      - name: Login DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }} 
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Build and push
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: .
-      #     load: true
-      #     tags: vc-yemusic:base
-      #     cache-from: type=local,src=/tmp/.buildx-cache
-      #     cache-to: type=local,dest=/tmp/.buildx-cache-new
+      - name: Push Docker Images
+        run: | 
+          docker tag vc-yemusic:base ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:base
+          docker tag vc-yemusic:server-api ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:server-api
+          docker tag vc-yemusic:web-app ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:web-app
+          docker tag vc-yemusic:web-storybook ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:web-storybook
 
-      # - name: Build app images
-      #   run: docker compose -f docker-compose.yml build
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:base
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:server-api
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:web-app
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:web-storybook
 
-      # - name: Push Docker Images
-      #   run: | 
-      #     docker compose -f docker-compose.yml push
-      #     docker push vc-yemusic:base
-
-      # - name: Move cache
-      #   run: |
-      #     rm -rf /tmp/.buildx-cache
-      #     mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      - name: Remove Dangling Images
+        run: docker rmi $(docker images -f dangling=true -q)

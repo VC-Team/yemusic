@@ -24,7 +24,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          image_name: vc-yemusic:base
+          image_name: vc-yemusic
+          image_tag: base,latest 
 
       - name: Build app images
         uses: whoan/docker-build-with-cache-action@v5

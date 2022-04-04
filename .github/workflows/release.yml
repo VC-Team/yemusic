@@ -80,4 +80,6 @@ jobs:
           env: YEMUSIC_API_SERVER_PORT,DOCKERHUB_USERNAME
           script: |
             cd ~/apps/vc-yemusic
-            YEMUSIC_API_SERVER_PORT=$YEMUSIC_API_SERVER_PORT DOCKERHUB_USERNAME=$DOCKERHUB_USERNAME docker-compose -f docker-compose.prod.yml up -d --no-deps
+            export YEMUSIC_API_SERVER_PORT=${{ secrets.YEMUSIC_API_SERVER_PORT }}
+            export DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+            docker-compose -f docker-compose.prod.yml up -d --no-deps

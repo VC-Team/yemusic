@@ -4,9 +4,9 @@ on:
   push:
     branches: [feat/docker-setup]
 
-  env:
-    DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-    YEMUSIC_API_SERVER_PORT: ${{ secrets.YEMUSIC_API_SERVER_PORT }}
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  YEMUSIC_API_SERVER_PORT: ${{ secrets.YEMUSIC_API_SERVER_PORT }}
 
 jobs:
   build-docker:

@@ -8,6 +8,4 @@ WORKDIR /app/builder
 COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
 
-ENV NODE_ENV production
-
-RUN npm i --silent
+RUN npm ci --ignore-scripts --loglevel=error

@@ -1,0 +1,65 @@
+.a-button-group {
+  position: relative;
+  display: inline-flex;
+  align-items: center; 
+  text-align: center;
+  width: fit-content;
+  padding: pxToRem(8) pxToRem(16);
+  border-radius: pxToRem(4);
+  transition: all 0.1s;
+  color: $PRIMARY-TEXT;
+
+  cursor: pointer;
+  user-select: none;
+  text-transform: uppercase;
+
+  font-family: inherit;
+  background-color: $INTERACTIVE-BACKGROUND;
+  border: 0;
+  outline: 0;
+
+  &:active {
+    margin: pxToRem(1);
+    padding: pxToRem(7) pxToRem(15);
+  }
+
+  &:hover {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: $HOVER-OVERLAY;
+      border-radius: inherit;
+    }
+
+    .a-input-group__addon,
+    .a-input-group__input {
+      color: $PRIMARY-TEXT;
+    }
+  }
+
+  &.-full-width{
+    justify-content: center;
+    width: 100%;
+  }
+
+  &.-disabled {
+    pointer-events: none;
+    opacity: 0.32;
+  }
+
+  &__addon {
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+  }
+
+  &__text {
+    margin: 0 pxToRem(8);
+  }
+
+  &.-circle {
+    padding: pxToRem(8);
+    border-radius: 999px;
+  }
+}

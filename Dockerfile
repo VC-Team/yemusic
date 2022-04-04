@@ -5,9 +5,9 @@ RUN apk update \
 
 WORKDIR /app/builder
 
-COPY . .
+COPY package.json ./package.json
+COPY package-lock.json ./package-lock.json
 
-RUN npm set-script prepare ""
+ENV NODE_ENV production
+
 RUN npm i --silent
-
-COPY . .

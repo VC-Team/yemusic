@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
-    "server-dev:local": "env-cmd -e local nx run server:serve ",
-    "server-dev": "env-cmd -e development nx run server:serve ",
+    "prepare": "[ \"$NODE_ENV\" != production ] && exit 0; husky install",
+    "server-dev:local": "env-cmd -e local nx run server:serve",
+    "server-dev": "env-cmd -e development nx run server:serve",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",

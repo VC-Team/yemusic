@@ -14,22 +14,41 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      
       - name: Create env file
         run: |
           touch .env
           echo YEMUSIC_API_SERVER_PORT=${{ secrets.YEMUSIC_API_SERVER_PORT }} >> .env
 
-      - name: Build base image
-        uses: whoan/docker-build-with-cache-action@v5
+      - name: Build and push
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          image_name: vc-yemusic
-          image_tag: base,latest 
+          context: .
+          push: false
+          tags: vc-yemusic:base
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
 
       - name: Build app images
-        uses: whoan/docker-build-with-cache-action@v5
+        run: docker compose -f docker-compose.yml build
+
+      - name: Login DockerHub
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          compose_file: docker-compose.yml
+
+      - name: Push Docker Images
+        run: docker compose -f docker-compose.yml push
+
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache

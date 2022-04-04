@@ -37,7 +37,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: true
           load: true
           tags: vc-yemusic:base
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -47,7 +46,9 @@ jobs:
         run: docker compose -f docker-compose.yml build
 
       - name: Push Docker Images
-        run: docker compose -f docker-compose.yml push
+        run: | 
+          docker compose -f docker-compose.yml push
+          docker push vc-yemusic:base
 
       - name: Move cache
         run: |

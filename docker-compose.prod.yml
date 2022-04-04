@@ -1,0 +1,44 @@
+version: "2.3"
+
+networks:
+  yemusic:
+    driver: bridge
+
+services:
+  web-app:
+    container_name: yemusic-webapp
+    image: $DOCKERHUB_USERNAME/vc-yemusic:web-app
+    ports:
+      - 4900:80
+  web-storybook:
+    container_name: yemusic-storybook
+    image: $DOCKERHUB_USERNAME/vc-yemusic:web-storybook
+    ports:
+      - 4901:80
+  mongodb:
+    image: mongo:4.2-bionic
+    container_name: yemusic-mongodb
+    ports:
+      - 4800:27017
+    environment:
+      - MONGO_INITDB_DATABASE=yemusic
+      - MONGO_INITDB_ROOT_USERNAME=vcteam
+      - MONGO_INITDB_ROOT_PASSWORD=vcteam1122
+    volumes:
+      - /var/vcteam/yemusic/db/mongodb/data:/data/db
+      - /var/vcteam/yemusic/db/mongodb/config:/data/configdb
+    networks:
+      - yemusic
+  server-api:
+    container_name: yemusic-server-api
+    image: $DOCKERHUB_USERNAME/vc-yemusic:server-api
+    environment:
+      - API_PORT=$YEMUSIC_API_SERVER_PORT
+    ports:
+      - 4902:$YEMUSIC_API_SERVER_PORT
+    networks:
+      - yemusic
+    depends_on:
+      - mongodb
+
+

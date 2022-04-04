@@ -22,7 +22,7 @@ module.exports = (config, context) => {
     },
     devServer: {
       ...config.devServer,
-      port: process.env.NX_DEV_WEB_PORT || config.devServer.port,
+      port: process.env.NX_DEV_WEB_PORT || config.devServer?.port,
     },
   };
 };

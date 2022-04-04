@@ -29,4 +29,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker Images
-        uses: docker compose -f docker-compose.yml push
+        run: docker compose -f docker-compose.yml push

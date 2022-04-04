@@ -4,10 +4,6 @@ on:
   push:
     branches: [feat/docker-setup]
 
-env:
-  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-  YEMUSIC_API_SERVER_PORT: ${{ secrets.YEMUSIC_API_SERVER_PORT }}
-
 jobs:
   build-docker:
     runs-on: ubuntu-latest
@@ -35,18 +31,18 @@ jobs:
       - name: Login DockerHub
         uses: docker/login-action@v1
         with:
-          username: $DOCKERHUB_USERNAME
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker Images
         run: | 
-          docker tag vc-yemusic:server-api $DOCKERHUB_USERNAME/vc-yemusic:server-api
-          docker tag vc-yemusic:web-app $DOCKERHUB_USERNAME/vc-yemusic:web-app
-          docker tag vc-yemusic:web-storybook $DOCKERHUB_USERNAME/vc-yemusic:web-storybook
+          docker tag vc-yemusic:server-api ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:server-api
+          docker tag vc-yemusic:web-app ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:web-app
+          docker tag vc-yemusic:web-storybook ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:web-storybook
 
-          docker push $DOCKERHUB_USERNAME/vc-yemusic:server-api
-          docker push $DOCKERHUB_USERNAME/vc-yemusic:web-app
-          docker push $DOCKERHUB_USERNAME/vc-yemusic:web-storybook
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:server-api
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:web-app
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/vc-yemusic:web-storybook
 
       - name: Remove Dangling Images
         run: docker rmi $(docker images -f dangling=true -q)
@@ -71,6 +67,9 @@ jobs:
 
       - name: SSH and deploy node app
         uses: appleboy/ssh-action@master
+        env:
+          YEMUSIC_API_SERVER_PORT: ${{ secrets.YEMUSIC_API_SERVER_PORT }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         with:
           host: '${{ secrets.SSH_HOST }}'
           username: '${{ secrets.SSH_USERNAME }}'

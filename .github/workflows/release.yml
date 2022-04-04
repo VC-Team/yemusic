@@ -17,7 +17,7 @@ jobs:
       - name: Create env file
         run: |
           touch .env
-          echo YEMUSIC_API_SERVER_PORT=$YEMUSIC_API_SERVER_PORT >> .env
+          echo YEMUSIC_API_SERVER_PORT=${{ secrets.YEMUSIC_API_SERVER_PORT }} >> .env
       - name: Caching Layer
         uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true

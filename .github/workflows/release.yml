@@ -61,6 +61,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: ${{ secrets.SSH_PORT }}
           source: "docker-compose.prod.yml"
           target: "~/apps/vc-yemusic"
@@ -74,6 +75,7 @@ jobs:
           host: '${{ secrets.SSH_HOST }}'
           username: '${{ secrets.SSH_USERNAME }}'
           key: '${{ secrets.SSH_KEY }}'
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: '${{ secrets.SSH_PORT }}'
           script: |
             cd ~/apps/vc-yemusic

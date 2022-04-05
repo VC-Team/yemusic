@@ -21,11 +21,11 @@ export const Input: FC<InputProps> = ({
   ...otherProps
 }) => {
   return (
-    <label className={classNames('a-input-group', disabled && '-disabled', fullWidth && '-full-width', `-${shape}`)}>
+    <div className={classNames('a-input-group', disabled && '-disabled', fullWidth && '-full-width', `-${shape}`)}>
       {prefix && <span className="a-input-group__addon -prefix">{prefix}</span>}
       <input className="a-input-group__input" disabled={disabled} {...otherProps} />
       {suffix && <span className="a-input-group__addon -suffix">{suffix}</span>}
-    </label>
+    </div>
   );
 };
 

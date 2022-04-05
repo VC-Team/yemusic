@@ -1,21 +1,24 @@
-.a-button {
+$root: a-button;
+
+.#{$root} {
   position: relative;
   display: inline-flex;
+  gap: pxtorem(8);
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: pxToRem(8) pxToRem(16);
+  padding: pxtorem(8) pxtorem(16);
   color: $PRIMARY-TEXT;
   cursor: pointer;
   user-select: none;
   background-color: $INTERACTIVE-BACKGROUND;
   border: 0;
-  border-radius: pxToRem(4);
+  border-radius: pxtorem(4);
   outline: 0;
   transition: all 0.1s;
 
   &:active {
-    transform: scale(0.98);
+    transform: scale(0.99);
   }
 
   &:hover {
@@ -44,14 +47,14 @@
   }
 
   &__text {
-    margin: 0 pxToRem(8);
-    font-size: pxToRem(14);
+    font-size: pxtorem(16);
     font-weight: 600;
+    line-height: 1;
     text-transform: uppercase;
   }
 
   &.-circle {
-    padding: pxToRem(8);
+    padding: pxtorem(8);
     border-radius: 999px;
   }
 }

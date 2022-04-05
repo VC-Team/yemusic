@@ -1,4 +1,4 @@
-@function pxToRem($pixel) {
+@function pxtorem($pixel) {
   @if not $pixel {
     @error "Missing argument $pixel";
   }

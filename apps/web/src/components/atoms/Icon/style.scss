@@ -1,10 +1,19 @@
-.icon {
+$root: a-icon;
+
+.#{$root} {
   width: 24px;
   height: 24px;
-  color: $SECONDARY-TEXT;
-  fill: currentColor;
+  fill: currentcolor;
 
-  &--primary {
+  &.-inherit {
+    color: inherit;
+  }
+
+  &.-secondary {
+    color: $SECONDARY-TEXT;
+  }
+
+  &.-primary {
     color: $ACCENT-TEXT;
   }
 }

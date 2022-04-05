@@ -5,15 +5,11 @@ import classNames from 'classnames';
 import './style.scss';
 
 export interface IconProps {
-  color?: 'initial' | 'primary';
+  color?: 'inherit' | 'secondary' | 'primary';
 }
 
-export const HomeIcon: FC<IconProps> = ({ color = 'initial' }) => (
-  <svg
-    className={classNames('icon', color === 'primary' && 'icon--primary')}
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+export const HomeIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+  <svg className={classNames('a-icon', `-${color}`)} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -22,12 +18,8 @@ export const HomeIcon: FC<IconProps> = ({ color = 'initial' }) => (
   </svg>
 );
 
-export const HomeActiveIcon: FC<IconProps> = ({ color = 'initial' }) => (
-  <svg
-    className={classNames('icon', color === 'primary' && 'icon--primary')}
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+export const HomeActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+  <svg className={classNames('a-icon', `-${color}`)} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M20.8617 8.37313L13.9317 2.83313C12.8617 1.97313 11.1317 1.97313 10.0717 2.82313L3.14168 8.37313C2.36168 8.99313 1.86168 10.3031 2.03168 11.2831L3.36168 19.2431C3.60168 20.6631 4.96168 21.8131 6.40168 21.8131H17.6017C19.0317 21.8131 20.4017 20.6531 20.6417 19.2431L21.9717 11.2831C22.1317 10.3031 21.6317 8.99313 20.8617 8.37313ZM12.0017 15.5031C10.6217 15.5031 9.50168 14.3831 9.50168 13.0031C9.50168 11.6231 10.6217 10.5031 12.0017 10.5031C13.3817 10.5031 14.5017 11.6231 14.5017 13.0031C14.5017 14.3831 13.3817 15.5031 12.0017 15.5031Z" />
   </svg>
 );

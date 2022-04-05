@@ -1,24 +1,28 @@
+/* stylelint-disable scss/dollar-variable-empty-line-before */
+/* stylelint-disable scss/dollar-variable-pattern */
+
 $WIDTH-MOBILE: 600px;
 $WIDTH-TABLET: 768px;
 $WIDTH-DESKTOP: 1200px;
 
 $FONTFAMILY-BASIC: 'Inter', sans-serif;
-
 $FONT-SIZE-HTML-VALUE: 16;
 $FONT-SIZE-HTML: 16px;
 
 $COLOR-TRANSPARENT: transparent;
 
-$PRIMARY-TEXT: rgba(var(--primary-text, 219, 219, 219), 1);
-$SECONDARY-TEXT: rgba(var(--secondary-text, 176, 176, 176), 1);
-$ACCENT-TEXT: rgba(var(--accent-text, 37, 192, 174), 1);
-$CONTRACT-TEXT: rgba(var(--contract-text, 32, 32, 32), 1);
+$PRIMARY-TEXT: rgba(var(--primary-text, 219 219 219) / 100%);
+$SECONDARY-TEXT: rgba(var(--secondary-text, 176 176 176) / 100%);
+$ACCENT-TEXT: rgba(var(--accent-text, 37 192 174) / 100%);
+$CONTRAST-TEXT: rgba(var(--contrast-text, 32 32 32) / 100%);
 
-$BODY-BACKGROUND: rgba(var(--body-text, 18, 18, 18), 1);
-$SIDEBAR-BACKGROUND: rgba(var(--sidebar-text, 16, 16, 16), 1);
-$INTERACTIVE-BACKGROUND: rgba(var(--interactive-background, 24, 24, 24), 1);
-$ACCENT-BACKGROUND: rgba(var(--accent-text, 37, 192, 174), 1);
-$LOADING-BACKGROUND: rgba(var(--loading-text, 34, 34, 34), 1);
+$BODY-BACKGROUND: rgba(var(--body-background, 18 18 18) / 100%);
+$SIDEBAR-BACKGROUND: rgba(var(--sidebar-background, 16 16 16) / 100%);
+$INTERACTIVE-BACKGROUND: rgba(var(--interactive-background, 24 24 24) / 100%);
+$ACCENT-BACKGROUND: rgba(var(--accent-background, 37 192 174) / 100%);
+$LOADING-BACKGROUND: rgba(var(--loading-background, 34 34 34) / 100%);
+$MODAL-BACKGROUND: rgba(var(--modal-background, 20 20 20) / 100%);
+$CONTRAST-BACKGROUND: rgba(var(--contrast-background, 255 255 255) / 100%);
 
-$HOVER-OVERLAY: rgba(var(--hover-overlay, 255, 255, 255), 0.04);
-$MODAL-OVERLAY: rgba(var(--modal-overlay, 255, 255, 255), 0.06);
+$HOVER-OVERLAY: rgba(var(--hover-overlay, 255 255 255) / 4%);
+$MODAL-OVERLAY: rgba(var(--modal-overlay, 255 255 255) / 6%);

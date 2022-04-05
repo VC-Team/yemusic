@@ -1,11 +1,13 @@
-.a-input-group {
+$root: a-input-group;
+
+.#{$root} {
   position: relative;
   display: inline-flex;
   align-items: center;
   height: 40px;
-  padding: 0 pxToRem(8);
+  padding: 0 pxtorem(8);
   background-color: $INTERACTIVE-BACKGROUND;
-  border-radius: pxToRem(8);
+  border-radius: pxtorem(8);
 
   &:hover {
     &::before {
@@ -16,8 +18,8 @@
       border-radius: inherit;
     }
 
-    .a-input-group__addon,
-    .a-input-group__input {
+    .#{$root}__addon,
+    .#{$root}__input {
       color: $PRIMARY-TEXT;
     }
   }
@@ -39,9 +41,10 @@
 
   &__input {
     flex-grow: 1;
-    padding: 0 pxToRem(8);
+    padding: 0 pxtorem(8);
     font-family: inherit;
-    font-size: pxToRem(14);
+    font-size: pxtorem(16);
+    line-height: 1;
     color: $SECONDARY-TEXT;
     background-color: $COLOR-TRANSPARENT;
     border: 0;

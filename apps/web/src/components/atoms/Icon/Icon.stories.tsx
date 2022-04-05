@@ -10,4 +10,6 @@ export default {
 const Template: Story<IconProps> = args => <HomeActiveIcon {...args} />;
 
 export const Demo = Template.bind({});
-Demo.args = {};
+Demo.args = {
+  color: 'secondary',
+};

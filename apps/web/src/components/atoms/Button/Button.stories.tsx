@@ -15,9 +15,9 @@ Preview.args = {
   children: 'Button',
   disabled: false,
   fullWidth: false,
-  prefix: <HomeIcon />,
+  prefix: <HomeIcon color="inherit" />,
   shape: 'default',
-  suffix: <HomeIcon />,
+  suffix: <HomeIcon color="inherit" />,
 };
 
 export const Prefix = Template.bind({});
@@ -25,7 +25,7 @@ Prefix.args = {
   children: 'Button',
   disabled: false,
   fullWidth: false,
-  prefix: <HomeIcon />,
+  prefix: <HomeIcon color="inherit" />,
   shape: 'default',
 };
 
@@ -35,7 +35,7 @@ Suffix.args = {
   disabled: false,
   fullWidth: false,
   shape: 'default',
-  suffix: <HomeIcon />,
+  suffix: <HomeIcon color="inherit" />,
 };
 
 export const OnlyIcon = Template.bind({});
@@ -43,5 +43,5 @@ OnlyIcon.args = {
   disabled: false,
   fullWidth: false,
   shape: 'circle',
-  suffix: <HomeIcon />,
+  suffix: <HomeIcon color="inherit" />,
 };

@@ -1,4 +1,4 @@
-@mixin reponsive($breakpoint) {
+@mixin responsive($breakpoint) {
   @if $breakpoint == mobile {
     @media (max-width: $WIDTH-MOBILE) {
       @content;

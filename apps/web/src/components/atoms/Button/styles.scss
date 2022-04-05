@@ -1,45 +1,34 @@
-.a-button-group {
+.a-button {
   position: relative;
   display: inline-flex;
-  align-items: center; 
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   width: fit-content;
   padding: pxToRem(8) pxToRem(16);
-  border-radius: pxToRem(4);
-  transition: all 0.1s;
   color: $PRIMARY-TEXT;
-
   cursor: pointer;
   user-select: none;
-  text-transform: uppercase;
-
-  font-family: inherit;
   background-color: $INTERACTIVE-BACKGROUND;
   border: 0;
+  border-radius: pxToRem(4);
   outline: 0;
+  transition: all 0.1s;
 
   &:active {
-    margin: pxToRem(1);
-    padding: pxToRem(7) pxToRem(15);
+    transform: scale(0.98);
   }
 
   &:hover {
     &::before {
-      content: '';
       position: absolute;
       inset: 0;
+      content: '';
       background-color: $HOVER-OVERLAY;
       border-radius: inherit;
     }
-
-    .a-input-group__addon,
-    .a-input-group__input {
-      color: $PRIMARY-TEXT;
-    }
   }
 
-  &.-full-width{
-    justify-content: center;
+  &.-full-width {
     width: 100%;
   }
 
@@ -56,6 +45,9 @@
 
   &__text {
     margin: 0 pxToRem(8);
+    font-size: pxToRem(14);
+    font-weight: 600;
+    text-transform: uppercase;
   }
 
   &.-circle {

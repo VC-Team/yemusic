@@ -11,18 +11,37 @@ export default {
 const Template: Story<ButtonProps> = args => <Button {...args} />;
 
 export const Preview = Template.bind({});
-export const PreviewIconOnly = Template.bind({});
-
 Preview.args = {
+  children: 'Button',
   disabled: false,
   fullWidth: false,
   prefix: <HomeIcon />,
+  shape: 'default',
   suffix: <HomeIcon />,
-  children: 'Button',
 };
 
-PreviewIconOnly.args = {
+export const Prefix = Template.bind({});
+Prefix.args = {
+  children: 'Button',
   disabled: false,
   fullWidth: false,
-  children: <HomeIcon />,
+  prefix: <HomeIcon />,
+  shape: 'default',
+};
+
+export const Suffix = Template.bind({});
+Suffix.args = {
+  children: 'Button',
+  disabled: false,
+  fullWidth: false,
+  shape: 'default',
+  suffix: <HomeIcon />,
+};
+
+export const OnlyIcon = Template.bind({});
+OnlyIcon.args = {
+  disabled: false,
+  fullWidth: false,
+  shape: 'circle',
+  suffix: <HomeIcon />,
 };

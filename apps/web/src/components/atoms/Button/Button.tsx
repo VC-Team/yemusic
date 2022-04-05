@@ -12,24 +12,27 @@ export interface ButtonProps
 }
 
 export const Button: FC<ButtonProps> = ({
-  shape = 'default',
+  className,
+  children,
   disabled,
   fullWidth,
-  children = '',
   prefix,
+  shape = 'default',
   suffix,
   ...otherProps
 }) => {
-  const classnames = classNames('a-button-group', `-${shape}`, {
-    '-full-width': fullWidth,
-    '-disabled': disabled,
-  });
-
   return (
-    <button className={classnames} {...otherProps}>
-      {prefix && <span className="a-button-group__addon">{prefix}</span>}
-      {children && <span className="a-button-group__text">{children}</span>}
-      {suffix && <span className="a-button-group__addon">{suffix}</span>}
+    <button
+      className={classNames('a-button', `-${shape}`, {
+        '-full-width': fullWidth,
+        '-disabled': disabled,
+        className,
+      })}
+      {...otherProps}
+    >
+      {prefix && <span className="a-button__addon">{prefix}</span>}
+      {children && <span className="a-button__text">{children}</span>}
+      {suffix && <span className="a-button__addon">{suffix}</span>}
     </button>
   );
 };

@@ -5,19 +5,11 @@ $root: a-input-group;
   display: inline-flex;
   align-items: center;
   height: 40px;
-  padding: 0 pxtorem(8);
+  overflow: hidden;
   background-color: $INTERACTIVE-BACKGROUND;
   border-radius: pxtorem(8);
 
   &:hover {
-    &::before {
-      position: absolute;
-      inset: 0;
-      content: '';
-      background-color: $HOVER-OVERLAY;
-      border-radius: inherit;
-    }
-
     .#{$root}__addon,
     .#{$root}__input {
       color: $PRIMARY-TEXT;
@@ -55,7 +47,8 @@ $root: a-input-group;
 
   &__input {
     flex-grow: 1;
-    padding: 0 pxtorem(8);
+    height: 100%;
+    padding: 0 pxtorem(12);
     font-family: inherit;
     font-size: pxtorem(16);
     line-height: 1;

@@ -1,4 +1,6 @@
-.m-nav {
+$root: m-nav;
+
+.#{$root} {
   position: relative;
   display: flex;
   list-style: none;
@@ -17,6 +19,7 @@
 
   &.-vertical {
     flex-direction: column;
+    gap: pxtorem(8);
 
     &::before {
       top: var(--nav-item-active-top);
@@ -26,9 +29,9 @@
       height: 40px;
     }
 
-    .m-nav__divider {
+    .#{$root}__divider {
       width: 100%;
-      padding: pxToRem(16);
+      padding: pxtorem(8) pxtorem(16);
 
       span {
         display: block;
@@ -43,33 +46,28 @@
     display: flex;
     flex-grow: 1;
     justify-content: center;
-    padding: pxToRem(16);
+    padding: pxtorem(16);
 
     &.-full {
       align-items: center;
       justify-content: initial;
       height: 40px;
-      padding: 0 0 0 pxToRem(16);
-      margin: pxToRem(8) 0 0 0;
+      padding: 0 0 0 pxtorem(16);
+      color: $SECONDARY-TEXT;
 
-      &:first-child {
-        margin: 0;
+      &:hover {
+        color: $PRIMARY-TEXT;
       }
 
-      .m-nav__item__name {
+      .#{$root}__item__name {
         display: initial;
-        margin: 0 0 0 pxToRem(8);
-        font-size: pxToRem(14);
-        color: $SECONDARY-TEXT;
-
-        &:hover {
-          color: $PRIMARY-TEXT;
-        }
+        margin: 0 0 0 pxtorem(8);
+        font-size: pxtorem(14);
       }
     }
 
     &.-active {
-      .m-nav__item__name {
+      .#{$root}__item__name {
         color: $ACCENT-TEXT;
       }
     }

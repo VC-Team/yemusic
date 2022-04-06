@@ -1,0 +1,89 @@
+$root: m-nav;
+
+.#{$root} {
+  position: relative;
+  display: flex;
+  list-style: none;
+
+  &::before {
+    position: absolute;
+    top: calc(50% + 16px);
+    left: calc(var(--nav-item-active-left) + var(--nav-item-active-width) / 2 - 12px);
+    width: 24px;
+    height: 3px;
+    content: '';
+    background-color: $ACCENT-BACKGROUND;
+    border-radius: 999px;
+    transition: 300ms;
+  }
+
+  &.-vertical {
+    flex-direction: column;
+    gap: pxtorem(8);
+
+    &::before {
+      top: var(--nav-item-active-top);
+      right: 0;
+      left: initial;
+      width: 3px;
+      height: 40px;
+    }
+
+    .#{$root}__divider {
+      width: 100%;
+      padding: pxtorem(8) pxtorem(16);
+
+      span {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: $DIVIDER;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    padding: pxtorem(16);
+
+    &.-full {
+      align-items: center;
+      justify-content: initial;
+      height: 40px;
+      padding: 0 0 0 pxtorem(16);
+      color: $SECONDARY-TEXT;
+
+      &:hover {
+        color: $PRIMARY-TEXT;
+      }
+
+      .#{$root}__item__name {
+        display: initial;
+        margin: 0 0 0 pxtorem(8);
+        font-size: pxtorem(14);
+      }
+    }
+
+    &.-active {
+      .#{$root}__item__name {
+        color: $ACCENT-TEXT;
+      }
+    }
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+    }
+
+    &__name {
+      display: none;
+    }
+
+    &__divider {
+      display: none;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import React, { Children, cloneElement, FC, isValidElement, useEffect, useMemo, 
 
 import classNames from 'classnames';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import './style.scss';
 
 export interface NavProps {
@@ -11,6 +12,20 @@ export interface NavProps {
 
 type INavState = {
   navItemSelect: number;
+};
+
+const handleUpdateNavItemActive = (navRef: React.RefObject<HTMLUListElement>, navItemSelect: number) => {
+  if (navRef.current) {
+    const navItemActiveElement = navRef.current.children[navItemSelect] as HTMLElement;
+
+    if (navItemActiveElement) {
+      const { offsetTop, offsetLeft, offsetWidth } = navItemActiveElement;
+
+      navRef.current.style.setProperty('--nav-item-active-top', offsetTop + 'px');
+      navRef.current.style.setProperty('--nav-item-active-left', offsetLeft + 'px');
+      navRef.current.style.setProperty('--nav-item-active-width', offsetWidth + 'px');
+    }
+  }
 };
 
 export const Nav: FC<NavProps> = ({ children, mode = 'horizontal' }) => {
@@ -46,40 +61,20 @@ export const Nav: FC<NavProps> = ({ children, mode = 'horizontal' }) => {
             ...prevState,
             navItemSelect: index,
           }));
-
-          break;
         }
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [routes]);
+  }, [routes, location]);
 
   useEffect(() => {
-    handleUpdateNavItemActive();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    handleUpdateNavItemActive(navRef, state.navItemSelect);
   }, [state.navItemSelect, mode]);
 
   useEffect(() => {
-    window.addEventListener('resize', handleUpdateNavItemActive);
+    window.addEventListener('resize', () => handleUpdateNavItemActive(navRef, state.navItemSelect));
 
-    return () => window.removeEventListener('resize', handleUpdateNavItemActive);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => window.removeEventListener('resize', () => handleUpdateNavItemActive(navRef, state.navItemSelect));
   }, [state.navItemSelect]);
-
-  const handleUpdateNavItemActive = () => {
-    if (navRef.current) {
-      const navItemActiveElement = navRef.current.children[state.navItemSelect] as HTMLElement;
-
-      if (navItemActiveElement) {
-        const { offsetTop, offsetLeft, offsetWidth } = navItemActiveElement;
-
-        navRef.current.style.setProperty('--nav-item-active-top', offsetTop + 'px');
-        navRef.current.style.setProperty('--nav-item-active-left', offsetLeft + 'px');
-        navRef.current.style.setProperty('--nav-item-active-width', offsetWidth + 'px');
-      }
-    }
-  };
 
   const handleChangeNavItemActive = (navItemSelect: number) => {
     setState(prevState => ({
@@ -97,7 +92,7 @@ export const Nav: FC<NavProps> = ({ children, mode = 'horizontal' }) => {
       {Children.map(children, (child, childIndex) => {
         if (isValidElement(child) && (child.type as any).name === 'NavItem') {
           return cloneElement(child, {
-            mode: mode === 'horizontal' ? 'collapse' : 'full',
+            mode: mode === 'horizontal' ? 'mini' : 'full',
             _isActive: childIndex === state.navItemSelect,
             _onClick: () => handleChangeNavItemActive(childIndex),
           });

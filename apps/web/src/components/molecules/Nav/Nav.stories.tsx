@@ -12,20 +12,35 @@ export default {
 const Template: Story<NavProps> = args => (
   <BrowserRouter>
     <Nav {...args}>
-      <NavItem to="/nav-item-1" icon={<HomeIcon />} iconActive={<HomeActiveIcon color="primary" />} name="NavItem 1" />
-      <NavItem to="/nav-item-2" icon={<HomeIcon />} iconActive={<HomeActiveIcon color="primary" />} name="NavItem 2" />
+      <NavItem
+        to="/nav-item-1"
+        icon={<HomeIcon color="inherit" />}
+        iconActive={<HomeActiveIcon color="primary" />}
+        name="NavItem 1"
+      />
+      <NavItem
+        to="/nav-item-2"
+        icon={<HomeIcon color="inherit" />}
+        iconActive={<HomeActiveIcon color="primary" />}
+        name="NavItem 2"
+      />
       <NavDivider />
       <NavItem
         to="/nav-item-3"
-        icon={<HomeIcon />}
+        icon={<HomeIcon color="inherit" />}
         iconActive={<HomeActiveIcon color="primary" />}
         name="NavItem 3"
         onClick={next => {
-          alert('Run an action before redirecting');
+          alert('Run action before redirecting');
           next();
         }}
       />
-      <NavItem to="/nav-item-4" icon={<HomeIcon />} iconActive={<HomeActiveIcon color="primary" />} name="NavItem 4" />
+      <NavItem
+        to="/nav-item-4"
+        icon={<HomeIcon color="inherit" />}
+        iconActive={<HomeActiveIcon color="primary" />}
+        name="NavItem 4"
+      />
     </Nav>
   </BrowserRouter>
 );

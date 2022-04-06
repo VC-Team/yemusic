@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 
 import classNames from 'classnames';
+
 import './style.scss';
 
 export interface NavItemProps {
   icon: React.ReactNode;
   iconActive: React.ReactNode;
-  mode?: 'collapse' | 'full';
+  mode?: 'mini' | 'full';
   name: string;
   to: string;
   onClick?: (redirect: () => void) => void;
@@ -14,15 +15,7 @@ export interface NavItemProps {
   _onClick?: () => void;
 }
 
-export const NavItem: FC<NavItemProps> = ({
-  icon,
-  iconActive,
-  mode = 'collapse',
-  name,
-  onClick,
-  _isActive,
-  _onClick,
-}) => {
+export const NavItem: FC<NavItemProps> = ({ icon, iconActive, mode = 'mini', name, onClick, _isActive, _onClick }) => {
   const handleClick = () => {
     if (_onClick) {
       if (onClick) {

@@ -21,6 +21,7 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
     /* It's creating a new user in the database. */
     const newUser = await User.create({
       email,
+      username: email,
       password: hashPassword,
     });
 

@@ -13,8 +13,13 @@ const inputMap = {
 
 export const validate = (req, res, next) => {
   const input = { ...req.body, ...req.params };
+  const validateInput = inputMap[req.originalUrl];
 
-  const { error } = inputMap[req.originalUrl].validate(input);
+  if (!validateInput) {
+    return next();
+  }
+
+  const { error } = validateInput.validate(input);
 
   return error
     ? res.status(500).json({

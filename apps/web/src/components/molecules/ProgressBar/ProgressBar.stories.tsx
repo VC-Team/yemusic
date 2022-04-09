@@ -14,7 +14,6 @@ Preview.args = {
   isInteractive: false,
   max: 308,
   value: 240,
-  step: 5,
   onChangeValue: newValue => {
     console.log(newValue);
   },

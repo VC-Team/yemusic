@@ -5,9 +5,8 @@ import classNames from 'classnames';
 import './style.scss';
 
 export interface ProgressBarProps {
-  isInteractive: boolean;
+  isInteractive?: boolean;
   max: number;
-  step: number;
   value: number;
   onChangeValue?: (newValue: number) => void;
 }
@@ -23,7 +22,7 @@ const setProgressBarTransform = (progressBarRefElement: HTMLDivElement, value: n
   }
 };
 
-export const ProgressBar: FC<ProgressBarProps> = ({ isInteractive, max, step, value, onChangeValue }) => {
+export const ProgressBar: FC<ProgressBarProps> = ({ isInteractive, max, value, onChangeValue }) => {
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const [state, setState] = useState<IProgressBarState>({
@@ -35,7 +34,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({ isInteractive, max, step, va
     if (progressBarRef.current) {
       setProgressBarTransform(progressBarRef.current, value, max);
     }
-  }, [max, step, value]);
+  }, [max, value]);
 
   useEffect(() => {
     if (state.isPressed) {
@@ -54,18 +53,13 @@ export const ProgressBar: FC<ProgressBarProps> = ({ isInteractive, max, step, va
 
   const handlePressDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (isInteractive) {
-      const { clientX } = e.nativeEvent;
-
       setState(prevState => ({
         ...prevState,
         isPressed: true,
-        positionXStart: clientX,
+        positionXStart: e.nativeEvent.clientX,
       }));
 
       if (progressBarRef.current) {
-        const { offsetLeft, offsetWidth } = progressBarRef.current;
-
-        setProgressBarTransform(progressBarRef.current, e.clientX - offsetLeft, offsetWidth);
         progressBarRef.current.classList.toggle('-is-draging');
       }
     }
@@ -80,11 +74,13 @@ export const ProgressBar: FC<ProgressBarProps> = ({ isInteractive, max, step, va
 
     if (progressBarRef.current) {
       const { offsetLeft, offsetWidth } = progressBarRef.current;
+      const { clientX } = e;
 
       progressBarRef.current.classList.toggle('-is-draging');
+      setProgressBarTransform(progressBarRef.current, clientX - offsetLeft, offsetWidth);
 
       if (onChangeValue) {
-        let newvalue = ((e.clientX - offsetLeft) / offsetWidth) * max;
+        let newvalue = ((clientX - offsetLeft) / offsetWidth) * max;
         newvalue = newvalue < 0 ? 0 : newvalue > max ? max : newvalue;
 
         onChangeValue(newvalue);

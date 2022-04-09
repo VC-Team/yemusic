@@ -9,7 +9,7 @@ import { TParamsSendMail } from '../../interface/yeEmail';
  * @returns A transporter object.
  */
 async function createTransport(isUseTestAccount = false) {
-  if (!isUseTestAccount)
+  if (isUseTestAccount)
     return nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,

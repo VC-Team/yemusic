@@ -6,7 +6,7 @@ const SignUpInput = mixed({
 });
 
 const inputMap = {
-  '/api/auth/signUp': SignUpInput,
+  '/api/auth/sign-up': SignUpInput,
 };
 
 export const validate = (req, res, next) => {

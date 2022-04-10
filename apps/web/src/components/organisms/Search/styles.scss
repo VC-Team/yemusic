@@ -1,7 +1,7 @@
 .o-search {
   width: 280px;
   padding: 0.5rem;
-  background: rgb(20, 20, 20);
+  background: $MODAL-OVERLAY;
   border-radius: 0.5rem;
 
   &--fullWidth {
@@ -68,7 +68,7 @@
           white-space: nowrap;
 
           &--loading {
-            width: 50px;
+            width: 60%;
             height: 16px;
             color: $LOADING-BACKGROUND;
             background: $LOADING-BACKGROUND;
@@ -79,7 +79,7 @@
           margin-bottom: 0.25rem;
 
           &--loading {
-            width: 80px;
+            width: 80%;
           }
         }
       }

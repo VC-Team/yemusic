@@ -5,22 +5,14 @@ import Input, { InputProps } from '@components/atoms/Input';
 
 export interface SearchInputProps extends InputProps {
   onBlur?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
-  onChange?: () => void;
   onFocus?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
-  onPressEnter?: () => void;
 }
 
-export const SearchInput: FC<SearchInputProps> = ({ onBlur, onChange, onFocus, onPressEnter, ...otherProps }) => {
-  const [state, setState] = useState({
-    isFocus: false,
-  });
+export const SearchInput: FC<SearchInputProps> = ({ onBlur, onFocus, ...otherProps }) => {
+  const [isFocus, setIsFocus] = useState(false);
 
   const _onFocus = (e: React.FocusEvent<HTMLInputElement, Element> | undefined) => {
-    setState(prev => ({
-      ...prev,
-      isFocus: true,
-    }));
-    console.log('focus');
+    setIsFocus(true);
 
     if (onFocus) {
       onFocus(e);
@@ -28,11 +20,8 @@ export const SearchInput: FC<SearchInputProps> = ({ onBlur, onChange, onFocus, o
   };
 
   const _onBlur = (e: React.FocusEvent<HTMLInputElement, Element> | undefined) => {
-    setState(prev => ({
-      ...prev,
-      isFocus: false,
-    }));
-    console.log('blur');
+    setIsFocus(false);
+
     if (onBlur) {
       onBlur(e);
     }
@@ -40,7 +29,7 @@ export const SearchInput: FC<SearchInputProps> = ({ onBlur, onChange, onFocus, o
 
   return (
     <Input
-      suffix={state.isFocus ? <HomeActiveIcon /> : <HomeIcon />}
+      suffix={isFocus ? <HomeActiveIcon /> : <HomeIcon />}
       fullWidth
       {...otherProps}
       onFocus={_onFocus}

@@ -15,8 +15,8 @@ const Template: Story<SearchProps> = args => (
       <SearchInput placeholder="Search..." />
       <SearchResultList type="recent">
         <SearchResultListItem
-          author="abc"
-          name="abc a sdasd asd asd asd asda sd asd ads"
+          author="OTD"
+          name="Bao tiền một mớ bình yên"
           thumbnailUrl="https://i.pinimg.com/564x/bb/15/6b/bb156b463b33b4922fcf0f31ccf1e838.jpg"
           songId="id1"
         />
@@ -27,8 +27,8 @@ const Template: Story<SearchProps> = args => (
       <SearchInput placeholder="Search..." />
       <SearchResultList type="loading">
         <SearchResultListItem
-          author="abc"
-          name="abc"
+          author="OTD"
+          name="Bao tiền một mớ bình yên"
           thumbnailUrl="https://i.pinimg.com/564x/bb/15/6b/bb156b463b33b4922fcf0f31ccf1e838.jpg"
           songId="id1"
         />
@@ -39,8 +39,8 @@ const Template: Story<SearchProps> = args => (
       <SearchInput placeholder="Search..." />
       <SearchResultList type="result">
         <SearchResultListItem
-          author="abc"
-          name="abc asd asd asd asd asd asd asd"
+          author="OTD"
+          name="Bao tiền một mớ bình yên"
           thumbnailUrl="https://i.pinimg.com/564x/bb/15/6b/bb156b463b33b4922fcf0f31ccf1e838.jpg"
           songId="id1"
         />

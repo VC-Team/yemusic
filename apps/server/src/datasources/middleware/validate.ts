@@ -23,8 +23,8 @@ export const validate = (req, res, next) => {
 
   return error
     ? res.status(500).json({
-        isSuccess: false,
         message: error.message,
+        errorCode: 'E-01',
       })
     : next();
 };

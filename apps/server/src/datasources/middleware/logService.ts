@@ -1,8 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 
 import * as moment from 'moment';
 
-export const logErrors = (err, req: Request, res: Response, next: NextFunction) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const logErrors = (err, req: Request, res: Response, _) => {
   const now = moment().format('MM-DD-YY HH:mm:ss');
   const { errorCode, message } = err;
 

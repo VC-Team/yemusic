@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
  */
 export default async function compareHash(str: string, hashStr: string) {
   try {
+    // TODO: missing await
     const isCompare = bcrypt.compareSync(str, hashStr);
     return isCompare;
   } catch (error) {

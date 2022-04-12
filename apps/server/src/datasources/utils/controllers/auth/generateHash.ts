@@ -9,6 +9,7 @@ import * as bcrypt from 'bcrypt';
  */
 export default async function generateHash(str: string, saltRounds: 10) {
   try {
+    // TODO: missing await
     const hashStr = bcrypt.hashSync(str, saltRounds);
     return hashStr;
   } catch (error) {

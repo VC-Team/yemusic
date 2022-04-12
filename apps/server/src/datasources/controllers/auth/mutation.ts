@@ -9,6 +9,8 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
   try {
     const { email, password }: SignUpInput = req.body;
 
+    //TODO: Check email exists
+
     /* It's creating a token and a refresh token. */
     const token = yeToken.createToken({ payload: { email } });
     const refreshToken = yeToken.createToken({
@@ -16,12 +18,14 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
       payload: { email },
     });
 
+    // TODO: defind in config
     /* It's creating a date 10 days from now. */
     const refreshTokenExpires = Date.now() + 24 * 60 * 60 * 10000;
 
     /* It's hashing the password with a salt of 10. */
     const hashPassword = await authUtils.generateHash(password, 10);
 
+    // TODO: Remove Token when create user, create user remove username
     /* It's creating a new user in the database. */
     const newUser = await User.create({
       email,
@@ -39,13 +43,19 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
       });
     }
 
-    return res.status(200).json({
+    // TODO: return data user(-password)
+    res.status(200).json({
       isSuccess: true,
       token,
       refreshToken,
     });
+
+    // TODO: Send email isValidEmail => link auto call api ValidEmail
+
+    return;
   } catch (error) {
     next(error);
+    // TODO: Remove return 500
     return res.status(500).json({
       isSuccess: false,
       message: JSON.stringify(error),

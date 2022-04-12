@@ -18,6 +18,7 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
     /* It's hashing the password with a salt of 10. */
     const hashPassword = authUtils.generateHash(password, 10);
 
+    // TODO: Remove Token when create user, create user remove username
     /* It's creating a new user in the database. */
     const newUser = await User.create({
       email,
@@ -107,10 +108,15 @@ export async function verifyEmail(req: Request, res: Response, next: NextFunctio
 
     const userResponse = await User.findOne({ email }).select('-password');
 
-    return res.status(200).json({
+    // TODO: return data user(-password)
+    res.status(200).json({
       isSuccess: true,
       data: userResponse,
     });
+
+    // TODO: Send email isValidEmail => link auto call api ValidEmail
+
+    return;
   } catch (error) {
     next(error);
   }

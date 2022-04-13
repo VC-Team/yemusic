@@ -1,9 +1,8 @@
-$root: a-icon;
-
-.#{$root} {
+.a-icon {
   width: 24px;
   height: 24px;
   fill: currentcolor;
+  stroke: currentcolor;
 
   &.-inherit {
     color: inherit;

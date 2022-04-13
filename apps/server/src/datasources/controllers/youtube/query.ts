@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { ytb } from '../../utils/controllers/youtube';
+import { ytb } from '../../utils';
 
 export const listSong = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
   try {

@@ -1,0 +1,151 @@
+.o-song-card {
+  $root: &;
+
+  gap: pxtorem(8);
+  padding: pxtorem(8);
+  border-radius: 4px;
+
+  &:hover {
+    background-color: $HOVER-OVERLAY;
+  }
+
+  &.-list {
+    display: flex;
+    align-items: center;
+
+    #{$root}__time {
+      min-width: 80px;
+      font-size: pxtorem(14);
+    }
+  }
+
+  &.-grid {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+
+    &:hover {
+      #{$root}__actionlist {
+        visibility: visible;
+      }
+    }
+
+    #{$root}__image {
+      width: 200px;
+      height: 200px;
+    }
+
+    #{$root}__time {
+      display: none;
+    }
+
+    #{$root}__actionlist {
+      position: absolute;
+      top: 178px;
+      right: 16px;
+      visibility: hidden;
+    }
+  }
+
+  &.-is-playing {
+    #{$root}__info {
+      &__author {
+        gap: pxtorem(8);
+
+        span {
+          position: relative;
+          display: flex;
+          align-items: center;
+          width: 2px;
+          height: 12px;
+          margin: 0 pxtorem(4);
+          background-color: $ACCENT-BACKGROUND;
+          border-radius: 1px;
+          animation: now-playing 1000ms infinite;
+
+          &::before,
+          &::after {
+            position: absolute;
+            display: block;
+            width: 2px;
+            height: 6px;
+            content: '';
+            background-color: $ACCENT-BACKGROUND;
+            border-radius: 1px;
+            animation: now-playing 1000ms infinite;
+            animation-delay: 500ms;
+          }
+
+          &::before {
+            left: -4px;
+          }
+
+          &::after {
+            right: -4px;
+          }
+
+          @keyframes now-playing {
+            0% {
+              height: 6px;
+            }
+
+            50% {
+              height: 12px;
+            }
+
+            100% {
+              height: 6px;
+            }
+          }
+        }
+
+        p {
+          color: $ACCENT-TEXT;
+        }
+      }
+    }
+  }
+
+  &__image {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    border: 1px solid $DIVIDER;
+    border-radius: 4px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: pxtorem(8);
+
+    &__name {
+      margin: 0;
+      font-weight: 400;
+      color: $PRIMARY-TEXT;
+    }
+
+    &__author {
+      display: flex;
+      align-items: center;
+      height: 16px;
+
+      p {
+        margin: 0;
+        font-size: pxtorem(14);
+        color: $SECONDARY-TEXT;
+      }
+    }
+  }
+
+  &__actionlist {
+    display: flex;
+    gap: pxtorem(16);
+  }
+}

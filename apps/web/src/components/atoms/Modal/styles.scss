@@ -1,6 +1,6 @@
-$root: a-modal;
+.a-modal {
+  $root: &;
 
-.#{$root} {
   position: relative;
   z-index: 100;
   display: flex;

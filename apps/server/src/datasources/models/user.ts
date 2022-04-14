@@ -16,11 +16,10 @@ const userInfo = new Schema(
   { _id: false, id: false }
 );
 
-// TODO: Remove unique username
 const userSchema = new Schema(
   {
     email: { type: String, unique: true, required: true },
-    username: { type: String, unique: true },
+    username: { type: String, default: '' },
     password: { type: String, required: true },
     phone: { type: String, unique: true },
     desc: String,

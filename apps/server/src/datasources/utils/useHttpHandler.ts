@@ -5,6 +5,6 @@ import { Request, Response, NextFunction } from 'express';
  * @param fn - (req: Request, res: Response, next: NextFunction) => Promise<Response>
  * @returns A function that takes in a request, response, and next function.
  */
-export function useHandler(fn: (req: Request, res: Response, next: NextFunction) => Promise<Response>) {
+export function useHttpHandler(fn: (req: Request, res: Response, next: NextFunction) => Promise<Response>) {
   return (req: Request, res: Response, next: NextFunction) => Promise.resolve(fn(req, res, next)).catch(next);
 }

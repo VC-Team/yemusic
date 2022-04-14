@@ -3,7 +3,14 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "types": ["node", "express"]
+    "types": ["node", "express"],
+    "baseUrl": ".",
+    "paths": {
+      "@controller/*": ["src/datasources/controller/*"],
+      "@interface/*": ["src/datasources/interface/*"],
+      "@model/*": ["src/datasources/models/*"],
+      "@utils/*": ["src/datasources/utils/*"],
+    },
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
   "include": ["**/*.ts"]

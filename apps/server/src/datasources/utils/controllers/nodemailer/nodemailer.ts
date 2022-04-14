@@ -1,6 +1,6 @@
 import * as nodemailer from 'nodemailer';
 
-import { TParamsSendMail } from '../interface/nodemailer';
+import { TParamsSendMail } from '../../interface/nodemailer';
 
 /**
  * Create a reusable transporter object using the default SMTP transport
@@ -42,7 +42,7 @@ async function createTransport(isUseTestAccount = false) {
  * @param {TParamsSendMail}  - to: The recipient's email address.
  * @returns The messageId and previewURL.
  */
-async function sendMail({ to, subject, text, html, isUseTestAccount }: TParamsSendMail) {
+export async function sendMail({ to, subject, text, html, isUseTestAccount }: TParamsSendMail) {
   try {
     const transport = await createTransport(isUseTestAccount);
 
@@ -55,10 +55,10 @@ async function sendMail({ to, subject, text, html, isUseTestAccount }: TParamsSe
       html, // html body
     });
 
+    console.log(123123, info);
+
     return { messageId: info.messageId, previewURL: nodemailer.getTestMessageUrl(info) };
   } catch (error) {
     console.error;
   }
 }
-
-export default sendMail;

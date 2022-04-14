@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
-import { useHandler } from '../../utils';
+import { useHttpHandler } from '../../utils';
 
-// Example: useHandler
-export const signUp = useHandler(async (req: Request, res: Response): Promise<Response> => {
+// Example: useHttpHandler
+export const signUp = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
   const data = [];
   if (data.length === 0) {
     throw { errorCode: 'E-04', message: 'data not found' };

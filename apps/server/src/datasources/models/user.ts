@@ -16,7 +16,6 @@ const userInfo = new Schema(
   { _id: false, id: false }
 );
 
-// TODO: Remove unique username
 const userSchema = new Schema(
   {
     email: { type: String, unique: true, required: true },

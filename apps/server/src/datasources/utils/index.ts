@@ -1,4 +1,4 @@
 import * as ytb from './controllers';
-import { useHandler } from './useHandler';
+import { useHttpHandler } from './useHttpHandler';
 
-export { useHandler, ytb };
+export { useHttpHandler, ytb };

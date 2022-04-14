@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { useHttpHandler } from '../../utils';
+import { useHttpHandler } from '@utils/useHttpHandler';
 
 // Example: useHttpHandler
 export const signUp = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {

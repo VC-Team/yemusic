@@ -1,40 +1,26 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 
-import { ytb } from '../../utils';
+import { searchVideo, getAudio, getVideoTrending } from '@utils/controllers';
+import { useHttpHandler } from '@utils/useHttpHandler';
 
-export const listSong = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
-  try {
-    const { search, token, apiKey } = req.body;
+export const listSong = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
+  const { search, token, apiKey } = req.body;
+  const results = await searchVideo(search, token, apiKey);
 
-    const results = await ytb.searchVideo(search, token, apiKey);
+  return res.status(200).json({
+    isSuccess: true,
+    results,
+  });
+});
 
-    return res.status(200).json({
-      isSuccess: true,
-      results,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+export const song = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
+  const { youtubeId } = req.params;
+  const result = await getAudio(youtubeId);
 
-export const song = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
-  try {
-    const { youtubeId } = req.params;
+  return res.status(200).json(result);
+});
 
-    const result = await ytb.getAudio(youtubeId);
-
-    return res.status(200).json(result);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const listSongTrending = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
-  try {
-    const result = await ytb.getVideoTrending();
-
-    return res.status(200).json(result);
-  } catch (error) {
-    next(error);
-  }
-};
+export const listSongTrending = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
+  const result = await getVideoTrending();
+  return res.status(200).json(result);
+});

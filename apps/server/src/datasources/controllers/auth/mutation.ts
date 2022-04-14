@@ -5,7 +5,7 @@ import { TSignUpInput } from '../../interface';
 import { User } from '../../models';
 import { authUtils } from '../../utils/controllers';
 import { yeToken } from '../../utils/controllers';
-import sendMail from '../../utils/controllers/nodemailer';
+import { nodemailer } from '../../utils/controllers/nodemailer';
 
 export async function signUp(req: Request, res: Response, next: NextFunction): Promise<Response> {
   try {
@@ -33,21 +33,37 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
       data: userResponse,
     });
 
-    const tokenVerifyEmail = yeToken.createToken({ payload: { email } });
-
-    const verifyURL = `${req.protocol}://${req.get('host')}/api/auth/verifyEmail/${tokenVerifyEmail}`;
-    sendMail({
-      to: email,
-      subject: 'Verify your email to complete sign up Yemusic',
-      html: `
-        <b>Just one more step to complete the registration 🥳</b>
-        <div>
-          <a href="${verifyURL}" target="_blank">Click this link to complete</a>
-        </div>
-        `,
-    });
+    /* It's sending an email to the user with a link to verify the email. */
+    nodemailer.sendEmailVerify(req, email);
 
     return;
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function sendEmailVerify(req: Request, res: Response, next: NextFunction): Promise<Response> {
+  const errorResponse = {
+    errorCode: 'E-04',
+    message: 'Send email failed',
+  };
+  try {
+    const { email } = req.body;
+
+    if (!email) throw errorResponse;
+
+    const user = await User.findOne({ email });
+
+    if (!user) throw errorResponse;
+
+    /* It's sending an email to the user with a link to verify the email. */
+    const info = await nodemailer.sendEmailVerify(req, email);
+
+    if (!info.messageId) throw errorResponse;
+
+    return res.status(200).json({
+      isSuccess: true,
+    });
   } catch (error) {
     next(error);
   }
@@ -88,7 +104,7 @@ export async function verifyEmail(req: Request, res: Response, next: NextFunctio
       refreshTokenExpires,
     });
 
-    const userResponse = await User.findOne({ email });
+    const userResponse = await User.findOne({ email }).select('-password');
 
     return res.status(200).json({
       isSuccess: true,

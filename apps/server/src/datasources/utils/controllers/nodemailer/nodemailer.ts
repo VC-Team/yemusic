@@ -55,8 +55,6 @@ export async function sendMail({ to, subject, text, html, isUseTestAccount }: TP
       html, // html body
     });
 
-    console.log(123123, info);
-
     return { messageId: info.messageId, previewURL: nodemailer.getTestMessageUrl(info) };
   } catch (error) {
     console.error;

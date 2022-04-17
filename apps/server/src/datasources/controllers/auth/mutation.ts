@@ -106,12 +106,10 @@ export async function verifyEmail(req: Request, res: Response, next: NextFunctio
 
     const userResponse = await User.findOne({ email }).select('-password');
 
-    res.status(200).json({
+    return res.status(200).json({
       isSuccess: true,
       data: userResponse,
     });
-
-    return;
   } catch (error) {
     next(error);
   }

@@ -1,0 +1,38 @@
+$root: m-progress-bar;
+
+.#{$root} {
+  &.-is-interactive {
+    padding: pxtorem(4) 0;
+
+    &:hover,
+    &.-is-draging {
+      .#{$root}__value {
+        &::before {
+          background-color: $ACCENT-BACKGROUND;
+        }
+      }
+    }
+
+    .#{$root}__value {
+      height: 8px;
+      border-radius: 999px;
+    }
+  }
+
+  &__value {
+    position: relative;
+    height: 4px;
+    overflow: hidden;
+    background-color: $INTERACTIVE-BACKGROUND;
+
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: inherit;
+      content: '';
+      background-color: $CONTRAST-BACKGROUND;
+      border-radius: inherit;
+      transform: translateX(calc(-100% + var(--progress-bar-transform, 0%)));
+    }
+  }
+}

@@ -15,7 +15,6 @@ export type SearchResult = {
 };
 
 export type AudioResponse = {
-  isSuccess: boolean;
   message?: string;
   audioUrl: string;
 };

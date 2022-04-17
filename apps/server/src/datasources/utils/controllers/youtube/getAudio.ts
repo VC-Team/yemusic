@@ -9,12 +9,10 @@ export default async function getAudio(youtubeId: string): Promise<AudioResponse
     const audioFormats = await ytdl.filterFormats(info.formats, 'audioonly');
     const audio = audioFormats.find(audio => mimeType.exec(audio.mimeType));
 
-    return audioFormats.length
-      ? { isSuccess: true, audioUrl: audio ? audio.url : audioFormats?.[0]?.url }
-      : { isSuccess: true, audioUrl: null };
+    const audioUrl = audio ? audio.url : audioFormats?.[0]?.url;
+    return audioFormats.length ? { audioUrl } : { audioUrl: null };
   } catch (error) {
     return {
-      isSuccess: false,
       message: error.message,
       audioUrl: null,
     };

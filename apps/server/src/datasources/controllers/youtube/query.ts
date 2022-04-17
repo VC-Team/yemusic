@@ -8,8 +8,7 @@ export const listSong = useHttpHandler(async (req: Request, res: Response): Prom
   const results = await searchVideo(search, token, apiKey);
 
   return res.status(200).json({
-    isSuccess: true,
-    results,
+    data: results,
   });
 });
 
@@ -17,10 +16,14 @@ export const song = useHttpHandler(async (req: Request, res: Response): Promise<
   const { youtubeId } = req.params;
   const result = await getAudio(youtubeId);
 
-  return res.status(200).json(result);
+  return res.status(200).json({
+    data: result,
+  });
 });
 
 export const listSongTrending = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
   const result = await getVideoTrending();
-  return res.status(200).json(result);
+  return res.status(200).json({
+    data: result,
+  });
 });

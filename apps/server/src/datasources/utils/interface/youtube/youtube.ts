@@ -16,7 +16,7 @@ export type SearchResult = {
 
 export type AudioResponse = {
   message?: string;
-  data: object;
+  audioUrl: string;
 };
 
 export type TParamsData = {

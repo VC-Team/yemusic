@@ -10,11 +10,11 @@ export default async function getAudio(youtubeId: string): Promise<AudioResponse
     const audio = audioFormats.find(audio => mimeType.exec(audio.mimeType));
 
     const audioUrl = audio ? audio.url : audioFormats?.[0]?.url;
-    return audioFormats.length ? { data: { audioUrl } } : { data: {} };
+    return audioFormats.length ? { audioUrl } : { audioUrl: null };
   } catch (error) {
     return {
       message: error.message,
-      data: {},
+      audioUrl: null,
     };
   }
 }

@@ -10,7 +10,8 @@ export default {
 const Template: Story<ModalProps> = args => <Modal {...args} />;
 
 export const Preview = Template.bind({});
+
 Preview.args = {
-  children: 'Modal',
+  children: <div style={{ width: '20rem', height: '18rem', background: 'white', textAlign: 'center' }}>Modal</div>,
   open: true,
 };

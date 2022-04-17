@@ -1,9 +1,12 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 
-export const signUp = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
-  try {
-    return res.status(200).json(req.body);
-  } catch (error) {
-    next(error);
+import { useHttpHandler } from '@utils/useHttpHandler';
+
+// Example: useHttpHandler
+export const signUp = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
+  const data = [];
+  if (data.length === 0) {
+    throw { errorCode: 'E-04', message: 'data not found' };
   }
-};
+  return res.status(200).json(req.body);
+});

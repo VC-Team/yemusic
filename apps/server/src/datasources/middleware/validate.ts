@@ -5,8 +5,13 @@ const SignUpInput = mixed({
   password: string().min(6),
 });
 
+const SendEmailVerifyInput = mixed({
+  email: string().email(),
+});
+
 const inputMap = {
   '/api/auth/signUp': SignUpInput,
+  '/api/auth/sendEmailVerify': SendEmailVerifyInput,
 };
 
 export const validate = (req, res, next) => {

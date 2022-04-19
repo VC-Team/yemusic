@@ -7,12 +7,8 @@ import * as bcrypt from 'bcrypt';
  * @returns A boolean value
  */
 export function compareHash(str: string, hashStr: string) {
-  try {
-    const isCompare = bcrypt.compareSync(str, hashStr);
-    return isCompare;
-  } catch (error) {
-    console.log(error);
-  }
+  const isCompare = bcrypt.compareSync(str, hashStr);
+  return isCompare;
 }
 
 /**
@@ -23,10 +19,6 @@ export function compareHash(str: string, hashStr: string) {
  * @returns A string
  */
 export function generateHash(str: string, saltRounds: 10) {
-  try {
-    const hashStr = bcrypt.hashSync(str, saltRounds);
-    return hashStr;
-  } catch (error) {
-    console.log(error);
-  }
+  const hashStr = bcrypt.hashSync(str, saltRounds);
+  return hashStr;
 }

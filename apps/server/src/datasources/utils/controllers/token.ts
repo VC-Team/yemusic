@@ -1,4 +1,5 @@
 import * as jwt from 'jsonwebtoken';
+import { jwtConfig } from 'src/config';
 
 type TParamsCreateToken = {
   payload: string | object | Buffer;
@@ -16,9 +17,9 @@ type TParamsVerifyToken = {
  * @returns A token
  */
 export function createToken({ expiration, payload }: TParamsCreateToken) {
-  const expiresIn = expiration || parseInt(process.env.JWT_EXPIRATION); // default 90 days token is alive
+  const expiresIn = expiration || jwtConfig.expiration; // default 90 days token is alive
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn });
+  const token = jwt.sign(payload, jwtConfig.secret_key, { expiresIn });
 
   return token;
 }
@@ -29,7 +30,7 @@ export function createToken({ expiration, payload }: TParamsCreateToken) {
  * @returns The decoded token.
  */
 export function verifyToken({ token, options }: TParamsVerifyToken): string | jwt.JwtPayload {
-  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY, options);
+  const decoded = jwt.verify(token, jwtConfig.secret_key, options);
 
   return decoded;
 }

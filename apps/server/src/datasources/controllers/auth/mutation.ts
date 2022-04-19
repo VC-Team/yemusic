@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { refreshTokenExpires } from '../../../config';
+import { refreshTokenExpires, jwtConfig } from '../../../config';
 import { TSignUpInput } from '../../interface';
 import { User } from '../../models';
 import { authUtils } from '../../utils/controllers';
@@ -13,7 +13,7 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
 
     /* It's checking if the email already exists in the database. */
     const emailExists = await User.exists({ email });
-    if (emailExists) throw { errorCode: 'E-04', message: 'Email already exists' };
+    if (emailExists) throw { errorCode: 'E-04', message: 'Email already exists.' };
 
     /* It's hashing the password with a salt of 10. */
     const hashPassword = authUtils.generateHash(password, 10);
@@ -24,14 +24,12 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
       password: hashPassword,
     });
 
-    if (!newUser) throw { errorCode: 'E-04', message: 'An error occurred while creating new user' };
+    if (!newUser) throw { errorCode: 'E-04', message: 'An error occurred while creating new user.' };
 
-    const userResponse = await User.findOne({ email }).select('-password');
+    const userResponse = JSON.parse(JSON.stringify(newUser));
+    delete userResponse.password;
 
-    res.status(200).json({
-      isSuccess: true,
-      data: userResponse,
-    });
+    res.status(200).json({ data: userResponse });
 
     /* It's sending an email to the user with a link to verify the email. */
     nodemailer.sendEmailVerify(req, email);
@@ -43,74 +41,57 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
 }
 
 export async function sendEmailVerify(req: Request, res: Response, next: NextFunction): Promise<Response> {
-  const errorResponse = {
-    errorCode: 'E-04',
-    message: 'Send email failed',
-  };
   try {
     const { email } = req.body;
 
-    if (!email) throw errorResponse;
-
     const user = await User.findOne({ email });
 
-    if (!user) throw errorResponse;
+    if (!user) throw { errorCode: 'E-04', message: 'Cannot find the user using this email.' };
 
     /* It's sending an email to the user with a link to verify the email. */
     const info = await nodemailer.sendEmailVerify(req, email);
 
-    if (!info.messageId) throw errorResponse;
+    if (!info.messageId) throw { errorCode: 'E-04', message: 'Send email failed.' };
 
     // TODO: return data user(-password)
-    return res.status(200).json({
-      isSuccess: true,
-    });
+    return res.status(200);
   } catch (error) {
     next(error);
   }
 }
 
 export async function verifyEmail(req: Request, res: Response, next: NextFunction): Promise<Response> {
-  const errorResponse = {
-    errorCode: 'E-04',
-    message: 'Verify email failed',
-  };
   try {
     const { tokenVerifyEmail } = req.params;
-
-    if (!tokenVerifyEmail) throw errorResponse;
 
     /* It's verifying the token and returning the payload. */
     const verifyInfo = yeToken.verifyToken({ token: tokenVerifyEmail });
 
-    if (!verifyInfo['email']) throw errorResponse;
+    if (!verifyInfo['email']) throw { errorCode: 'E-01', message: 'Email verification link is not correct.' };
 
-    /* It's updating the user and then finding the user again. */
-    let user = await User.findOne({ email: verifyInfo['email'] });
-    if (!user) throw { errorCode: 'E-04', message: 'An error occurred while verify email user.' };
+    const user = await User.findOne({ email: verifyInfo['email'] });
+    if (!user) throw { errorCode: 'E-04', message: 'Cannot find the user using this email.' };
 
     const email = verifyInfo['email'];
 
     /* It's creating a token and a refresh token. */
     const token = yeToken.createToken({ payload: { email } });
     const refreshToken = yeToken.createToken({
-      expiration: parseInt(process.env.JWT_REFRESH_EXPIRATION),
+      expiration: jwtConfig.refresh_expiration,
       payload: { email },
     });
 
-    user = await User.updateMany({
+    const updatedUser = await User.findOneAndUpdate({
       isValidEmail: true,
       token,
       refreshToken,
       refreshTokenExpires,
     });
 
-    const userResponse = await User.findOne({ email }).select('-password');
+    const userResponse = JSON.parse(JSON.stringify(updatedUser));
+    delete userResponse.password;
 
-    res.status(200).json({
-      isSuccess: true,
-      data: userResponse,
-    });
+    res.status(200).json({ data: userResponse });
 
     return;
   } catch (error) {

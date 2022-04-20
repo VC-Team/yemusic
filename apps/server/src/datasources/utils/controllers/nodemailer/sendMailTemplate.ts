@@ -18,5 +18,5 @@ export async function sendEmailVerify(req: Request, email) {
       `,
   });
 
-  return { messageId: info.messageId };
+  return { messageId: info.messageId || '' };
 }

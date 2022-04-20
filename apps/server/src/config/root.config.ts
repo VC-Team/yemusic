@@ -23,3 +23,12 @@ export const mongoDB: MongoDB = {
   database: process.env.YEMUSIC_DB_CONNECTION_STRING || 'mongodb://localhost/db_yemusic_test',
   mongoOptions: {},
 };
+
+/* Setting the expiration time for the refresh token (a date 10 days from now). */
+export const refreshTokenExpires: number = Date.now() + 24 * 60 * 60 * 10000;
+
+export const jwtConfig = {
+  secret_key: 'VCTeamYemusic',
+  expiration: 7776000,
+  refresh_expiration: 864000,
+};

@@ -4,5 +4,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "stylelint.validate": ["css", "scss"]
+  "stylelint.validate": [
+    "css",
+    "scss"
+  ],
+  "docwriter.style": "Auto-detect"
 }

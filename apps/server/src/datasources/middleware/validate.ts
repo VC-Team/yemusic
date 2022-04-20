@@ -3,12 +3,15 @@ import { mixed, string } from 'vcc-schema';
 const SignUpInput = mixed({
   email: string().email(),
   password: string().min(6),
-  firstName: string().nonempty(),
-  lastName: string().nonempty(),
+});
+
+const SendEmailVerifyInput = mixed({
+  email: string().email(),
 });
 
 const inputMap = {
-  '/api/signUp': SignUpInput,
+  '/api/auth/signUp': SignUpInput,
+  '/api/auth/sendEmailVerify': SendEmailVerifyInput,
 };
 
 export const validate = (req, res, next) => {

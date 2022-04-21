@@ -34,6 +34,8 @@ services:
     image: $DOCKERHUB_USERNAME/vc-yemusic:server-api
     environment:
       - API_PORT=$YEMUSIC_API_SERVER_PORT
+      - DB_HOST=mongodb
+      - DB_DEFAULT=db_yemusic
     ports:
       - 4902:$YEMUSIC_API_SERVER_PORT
     networks:

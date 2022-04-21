@@ -21,6 +21,8 @@ export type Youtube = {
 
 export type MongoDB = {
   database_test: string;
+  database_url: string;
+  database_host: string;
   database: string;
   mongoOptions: object;
 };

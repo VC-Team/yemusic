@@ -22,8 +22,9 @@ export const song = useHttpHandler(async (req: Request, res: Response): Promise<
 });
 
 export const listSongTrending = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
-  const result = await getVideoTrending();
+  const songs = await getVideoTrending();
+
   return res.status(200).json({
-    data: result,
+    data: { songs },
   });
 });

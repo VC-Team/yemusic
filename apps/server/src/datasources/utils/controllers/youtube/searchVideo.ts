@@ -7,19 +7,22 @@ export default async function searchVideo(terms: string, token?: string, apiKey?
   try {
     let items: Video[] = [];
     const songs: Song[] = [];
+    let key: string = apiKey;
 
     // initial songs search
     if (!token) {
       const data = await getData({
         urlString: 'https://m.youtube.com/results?videoEmbeddable=true&search_query=' + encodeURI(terms),
       });
+
+      key = data.apiKey;
       token = findVal(data, 'token');
       items = findVal(data, 'itemSectionRenderer')?.contents;
     }
     // more songs
     else {
       const data = await getData({
-        urlString: 'https://www.youtube.com/youtubei/v1/search?key=' + apiKey + '&token=' + token,
+        urlString: 'https://www.youtube.com/youtubei/v1/search?key=' + key + '&token=' + token,
       });
       token = findVal(data, 'token');
       items = findVal(data, 'itemSectionRenderer')?.contents;
@@ -35,7 +38,7 @@ export default async function searchVideo(terms: string, token?: string, apiKey?
     return {
       songs,
       token,
-      apiKey,
+      apiKey: key,
     };
   } catch (e) {
     console.log(e);

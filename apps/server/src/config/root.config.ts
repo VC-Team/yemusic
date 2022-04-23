@@ -39,3 +39,14 @@ export const jwtConfig = {
   refreshTokenExpiration: Number(ms('90 days') / 1000),
   emailValidateExpiration: Number(ms('15 minute') / 1000),
 };
+
+export const nodemailerConfig = {
+  host: process.env.NODEMAILER_HOST,
+  service: process.env.NODEMAILER_SERVICE,
+  url: '',
+  port: Number(process.env.NODEMAILER_PORT),
+  secure: false, // true for port 465, false for other ports
+  username: process.env.NODEMAILER_USERNAME,
+  password: process.env.NODEMAILER_PASSWORD,
+  displayName: '"Yemusic" <yemusic-vcteam>',
+};

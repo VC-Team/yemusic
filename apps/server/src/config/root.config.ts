@@ -19,7 +19,7 @@ export const youtube: Youtube = {
 };
 
 export const mongoDB: MongoDB = {
-  database_test: 'mongodb://localhost/db_yemusic_test',
+  database_test: process.env.YEMUSIC_DB_TEST || 'mongodb://localhost/db_yemusic_test',
   database_host: process.env.DB_HOST || 'localhost',
   database: process.env.DB_DEFAULT || 'db_yemusic',
   database_url: process.env.YEMUSIC_DB_CONNECTION_STRING,

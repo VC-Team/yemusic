@@ -18,10 +18,10 @@ const userInfo = new Schema(
 
 const userSchema = new Schema(
   {
-    email: { type: String, unique: true, required: true },
-    username: { type: String, default: '' },
-    password: { type: String, required: true },
-    phone: { type: String, unique: true },
+    email: { type: String },
+    username: { type: String },
+    password: { type: String },
+    phone: { type: String },
     desc: String,
     info: userInfo,
     token: String,

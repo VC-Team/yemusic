@@ -12,5 +12,5 @@
       "@utils/*": ["src/datasources/utils/*"],
     },
   },
-  "include": ["**/*.test.ts", "**/*.spec.ts", "**/*.d.ts", "**/setup.ts"]
+  "include": ["**/*.test.ts", "**/*.spec.ts", "**/*.d.ts", "**/test_helper.ts"]
 }

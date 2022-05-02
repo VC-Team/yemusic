@@ -6,7 +6,7 @@
     "prepare": "husky install",
     "server-dev:local": "env-cmd -e local nx run server:serve",
     "server-dev": "env-cmd -e development nx run server:serve",
-    "server-test": "nx run server:test --verbose",
+    "server-test": "env-cmd -e test nx run server:test --verbose",
     "server-test:watch": "nx run server:test --verbose --watchAll",
     "start": "nx serve",
     "build": "nx build",

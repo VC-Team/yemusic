@@ -1,4 +1,4 @@
-import { httpServer } from './common.test';
+import { httpServer } from './setup';
 
 const originalUrlMap = {
   songDetail: {

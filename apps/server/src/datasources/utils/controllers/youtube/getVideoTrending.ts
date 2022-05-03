@@ -23,7 +23,7 @@ export default async function getVideoTrending(): Promise<Array<Song>> {
 
     for (let i = 0; i < dataRes.length; i++) {
       const formatted: Song = await formatVideo(dataRes[i], true);
-      if (formatted?.youtubeId !== 'didyoumean') {
+      if (formatted?.yId !== 'didyoumean') {
         songs.push(formatted);
       }
     }

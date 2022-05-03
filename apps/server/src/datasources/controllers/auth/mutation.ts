@@ -10,7 +10,7 @@ import { yeToken } from '../../utils/controllers';
 import { nodemailer } from '../../utils/controllers/nodemailer';
 
 export const signUp = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
-  const { email, password }: TSignUpInput = req.body;
+  const { email, password, displayName }: TSignUpInput = req.body;
 
   /* It's checking if the email already exists in the database. */
   const emailExists = await User.exists({ email });
@@ -22,6 +22,7 @@ export const signUp = useHttpHandler(async (req: Request, res: Response): Promis
   /* It's creating a new user in the database. */
   const newUser = await User.create({
     email,
+    'info.displayName': displayName,
     password: hashPassword,
   });
 

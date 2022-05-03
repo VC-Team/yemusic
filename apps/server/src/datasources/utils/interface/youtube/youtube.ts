@@ -1,5 +1,5 @@
 export type Song = {
-  youtubeId: string;
+  yId: string;
   title: string;
   duration: string;
   publishedAt?: Date;

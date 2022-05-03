@@ -30,7 +30,7 @@ export default async function searchVideo(terms: string, token?: string, apiKey?
 
     for (let i = 0; i < items.length; i++) {
       const formatted: Song = await formatVideo(items[i], true);
-      if (formatted?.youtubeId !== 'didyoumean') {
+      if (formatted?.yId !== 'didyoumean') {
         songs.push(formatted);
       }
     }

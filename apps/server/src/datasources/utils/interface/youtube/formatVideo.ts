@@ -30,7 +30,7 @@ export type Video = {
 };
 
 export type ResVideo = {
-  youtubeId: string;
+  yId: string;
   title: string;
   artist?: string;
   duration: string;

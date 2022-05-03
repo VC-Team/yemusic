@@ -13,8 +13,8 @@ export const listSong = useHttpHandler(async (req: Request, res: Response): Prom
 });
 
 export const song = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
-  const { youtubeId } = req.params;
-  const result = await getAudio(youtubeId);
+  const { yId } = req.params;
+  const result = await getAudio(yId);
 
   return res.status(200).json({
     data: result,

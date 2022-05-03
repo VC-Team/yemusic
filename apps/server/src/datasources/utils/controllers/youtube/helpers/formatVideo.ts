@@ -8,7 +8,7 @@ export default async function formatVideo(video: Video, speedDate = false): Prom
       video.compactVideoRenderer || video.gridVideoRenderer || video.videoRenderer || video.playlistVideoRenderer;
 
     let resVideo: ResVideo = {
-      youtubeId: 'didyoumean',
+      yId: 'didyoumean',
       title: '',
       artist: '',
       duration: '',
@@ -23,7 +23,7 @@ export default async function formatVideo(video: Video, speedDate = false): Prom
       const lastThumbnailIdx: number = dataVideo.thumbnail?.thumbnails?.length - 1 || 0;
 
       resVideo = {
-        youtubeId: dataVideo.videoId,
+        yId: dataVideo.videoId,
         thumbnail: dataVideo.thumbnail?.thumbnails?.[lastThumbnailIdx] || {},
         duration: dataVideo.lengthText?.simpleText || dataVideo.lengthText?.runs[0]?.text || '',
         title: dataVideo.title?.simpleText || dataVideo.title?.runs?.[0]?.text || '',
@@ -40,7 +40,7 @@ export default async function formatVideo(video: Video, speedDate = false): Prom
           publishedAt = getDateFromText(dataVideo.publishedTimeText.runs?.[0]?.text);
         }
       } else {
-        publishedAt = await getVideoDate(resVideo?.youtubeId);
+        publishedAt = await getVideoDate(resVideo?.yId);
       }
 
       return {

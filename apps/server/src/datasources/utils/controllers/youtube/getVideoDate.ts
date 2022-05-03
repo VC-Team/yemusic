@@ -1,9 +1,9 @@
 import getData from './helpers/getData';
 
-export default async function getVideoDate(youtubeId: string): Promise<Date> {
+export default async function getVideoDate(yId: string): Promise<Date> {
   try {
     let publishText: string = await getData({
-      urlString: 'https://m.youtube.com/watch?v=' + youtubeId + '&type=date',
+      urlString: 'https://m.youtube.com/watch?v=' + yId + '&type=date',
     });
     publishText.replace('-', '/');
     publishText +=
@@ -15,6 +15,6 @@ export default async function getVideoDate(youtubeId: string): Promise<Date> {
       Math.floor(Math.random() * 60);
     return new Date(Date.parse(publishText));
   } catch (e) {
-    console.log('cannot get date for ' + youtubeId + ', try again');
+    console.log('cannot get date for ' + yId + ', try again');
   }
 }

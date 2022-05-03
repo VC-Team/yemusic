@@ -3,6 +3,7 @@ import { mixed, string } from 'vcc-schema';
 const SignUpInput = mixed({
   email: string().email(),
   password: string().min(6),
+  displayName: string().min(1),
 });
 
 const SendEmailVerifyInput = mixed({

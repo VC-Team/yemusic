@@ -13,5 +13,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/apps/server',
-  setupFilesAfterEnv: ['<rootDir>/__tests__/test_helper.ts'],
+  modulePathIgnorePatterns: ['<rootDir>/__tests__/test_helper.spec.ts', '<rootDir>/__tests__/httpServer.spec.ts'],
 };

@@ -1,5 +1,5 @@
 import { user1, user2 } from '../../datasets/user/signUp';
-import request from '../../httpServer';
+import request from '../../httpServer.spec';
 
 const requestSignUp = request('signUp');
 

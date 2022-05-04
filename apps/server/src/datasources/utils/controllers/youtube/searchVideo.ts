@@ -1,12 +1,13 @@
-import { Song, SearchResult, Video } from '../../interface/youtube';
+import { TSong, TSearchResult, TVideo } from '@utils/interface';
+
 import findVal from './helpers/findVal';
 import formatVideo from './helpers/formatVideo';
 import getData from './helpers/getData';
 
-export default async function searchVideo(terms: string, token?: string, apiKey?: string): Promise<SearchResult> {
+export default async function searchVideo(terms: string, token?: string, apiKey?: string): Promise<TSearchResult> {
   try {
-    let items: Video[] = [];
-    const songs: Song[] = [];
+    let items: TVideo[] = [];
+    const songs: TSong[] = [];
     let key: string = apiKey;
 
     // initial songs search
@@ -29,7 +30,7 @@ export default async function searchVideo(terms: string, token?: string, apiKey?
     }
 
     for (let i = 0; i < items.length; i++) {
-      const formatted: Song = await formatVideo(items[i], true);
+      const formatted: TSong = await formatVideo(items[i], true);
       if (formatted?.yId !== 'didyoumean') {
         songs.push(formatted);
       }

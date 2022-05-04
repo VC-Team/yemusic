@@ -1,11 +1,12 @@
-import { Song } from '../../interface/youtube';
+import { TSong } from '@utils/interface';
+
 import { findValByKey } from './helpers/findVal';
 import formatVideo from './helpers/formatVideo';
 import getData from './helpers/getData';
 
-export default async function getVideoTrending(): Promise<Array<Song>> {
+export default async function getVideoTrending(): Promise<Array<TSong>> {
   try {
-    const songs: Song[] = [];
+    const songs: TSong[] = [];
 
     const data = await getData({
       urlString: 'https://www.youtube.com/youtubei/v1/browse',
@@ -22,7 +23,7 @@ export default async function getVideoTrending(): Promise<Array<Song>> {
     ) as Array<object>;
 
     for (let i = 0; i < dataRes.length; i++) {
-      const formatted: Song = await formatVideo(dataRes[i], true);
+      const formatted: TSong = await formatVideo(dataRes[i], true);
       if (formatted?.yId !== 'didyoumean') {
         songs.push(formatted);
       }

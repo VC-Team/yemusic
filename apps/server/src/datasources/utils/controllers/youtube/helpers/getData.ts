@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 import { youtube } from '../../../../../config';
-import { TParamsData } from '../../../interface/youtube';
+import { TParamsData } from '../../../interface';
 import decodeHex from './decodeHex';
 
 export default async function getData({ urlString, method = '', reqBody = {} }: TParamsData) {

@@ -1,13 +1,13 @@
-import { Video, DataVideo, ResVideo } from '../../../interface/youtube';
+import { TVideo, TDataVideo, TResVideo } from '../../../interface';
 import getVideoDate from '../getVideoDate';
 import getDateFromText from './getDateFromText';
 
-export default async function formatVideo(video: Video, speedDate = false): Promise<ResVideo> {
+export default async function formatVideo(video: TVideo, speedDate = false): Promise<TResVideo> {
   try {
-    const dataVideo: DataVideo =
+    const dataVideo: TDataVideo =
       video.compactVideoRenderer || video.gridVideoRenderer || video.videoRenderer || video.playlistVideoRenderer;
 
-    let resVideo: ResVideo = {
+    let resVideo: TResVideo = {
       yId: 'didyoumean',
       title: '',
       artist: '',

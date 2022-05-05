@@ -4,36 +4,45 @@ import { HomeActiveIcon, HomeIcon } from '@components/atoms/Icon';
 import Input, { InputProps } from '@components/atoms/Input';
 
 export interface SearchInputProps extends InputProps {
-  onBlur?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
-  onFocus?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
+  _onChange?: (value: string) => void;
+  _onBlur?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
+  _onFocus?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
 }
 
-export const SearchInput: FC<SearchInputProps> = ({ onBlur, onFocus, ...otherProps }) => {
+export const SearchInput: FC<SearchInputProps> = ({ _onChange, _onBlur, _onFocus, ...otherProps }) => {
   const [isFocus, setIsFocus] = useState(false);
 
-  const _onFocus = (e: React.FocusEvent<HTMLInputElement, Element> | undefined) => {
-    setIsFocus(true);
-
-    if (onFocus) {
-      onFocus(e);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (_onChange) {
+      _onChange(e?.target?.value);
     }
   };
 
-  const _onBlur = (e: React.FocusEvent<HTMLInputElement, Element> | undefined) => {
+  const onFocus = () => {
+    setIsFocus(true);
+
+    if (_onFocus) {
+      _onFocus();
+    }
+  };
+
+  const onBlur = () => {
     setIsFocus(false);
 
-    if (onBlur) {
-      onBlur(e);
+    if (_onBlur) {
+      _onBlur();
     }
   };
 
   return (
     <Input
-      suffix={isFocus ? <HomeActiveIcon /> : <HomeIcon />}
+      prefix={isFocus ? <HomeActiveIcon /> : <HomeIcon />}
       fullWidth
+      shape="round"
+      onChange={onChange}
+      onFocus={onFocus}
+      onBlur={onBlur}
       {...otherProps}
-      onFocus={_onFocus}
-      onBlur={_onBlur}
     />
   );
 };

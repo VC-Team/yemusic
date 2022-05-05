@@ -1,25 +1,26 @@
 .o-search {
-  width: 280px;
-  padding: 0.5rem;
-  background: $MODAL-OVERLAY;
-  border-radius: 0.5rem;
+  $root: &;
 
-  &--fullWidth {
+  padding: pxtorem(8);
+  background: $MODAL-BACKGROUND;
+  border-radius: pxtorem(8);
+
+  .-fullWidth {
     width: 100%;
   }
 
-  .result-list {
+  &__result-list {
     &__title {
-      padding: 0 0.5rem;
+      padding: 0 pxtorem(8);
       font-weight: 600;
     }
 
-    .result-list-item {
+    &__item {
       display: flex;
       align-items: center;
-      padding: 0.5rem;
+      padding: pxtorem(8);
       cursor: default;
-      border-radius: 0.5rem;
+      border-radius: pxtorem(8);
 
       &:hover {
         background: $HOVER-OVERLAY;
@@ -29,7 +30,7 @@
         width: 40px;
         min-width: 40px;
         height: 40px;
-        border-radius: 0.25rem;
+        border-radius: pxtorem(4);
 
         &--recent {
           display: flex;
@@ -43,7 +44,7 @@
         }
 
         &__image {
-          border-radius: 0.25rem;
+          border-radius: pxtorem(4);
         }
       }
 
@@ -53,7 +54,7 @@
         flex-grow: 1;
         justify-content: space-between;
         max-width: calc(100% - 40px);
-        padding: 0 1rem;
+        padding: 0 pxtorem(16);
         margin: 0;
 
         &--recent {
@@ -69,15 +70,15 @@
 
           &--loading {
             width: 60%;
-            height: 16px;
+            height: pxtorem(16);
             color: $LOADING-BACKGROUND;
             background: $LOADING-BACKGROUND;
-            border-radius: 0.25rem;
+            border-radius: pxtorem(4);
           }
         }
 
         &__name {
-          margin-bottom: 0.25rem;
+          margin-bottom: pxtorem(4);
 
           &--loading {
             width: 80%;
@@ -86,7 +87,7 @@
       }
 
       .icon {
-        width: 20px;
+        width: pxtorem(20);
         height: 100%;
         cursor: pointer;
       }

@@ -1,6 +1,5 @@
+import { container } from '@config';
 import { createLogger, format, transports } from 'winston';
-
-import { container } from '../config';
 
 const { combine, printf, errors } = format;
 

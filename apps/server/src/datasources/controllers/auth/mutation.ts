@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
+import { refreshTokenExpires, jwtConfig } from '@config';
 import { TSignUpInput } from '@interface/user';
 import { yeToken, auth, nodemailer } from '@utils/controllers';
 import { useHttpHandler } from '@utils/useHttpHandler';
-import { refreshTokenExpires, jwtConfig } from 'src/config';
 
 import { User } from '../../models';
 

@@ -1,8 +1,8 @@
-import { TVideo, TDataVideo, TResVideo } from '../../../interface';
-import getVideoDate from '../getVideoDate';
-import getDateFromText from './getDateFromText';
+import { TVideo, TDataVideo, TResVideo } from '@utils/interface';
 
-export default async function formatVideo(video: TVideo, speedDate = false): Promise<TResVideo> {
+import { getDateFromText, getVideoDate } from '../helpers';
+
+export async function formatVideo(video: TVideo, speedDate = false): Promise<TResVideo> {
   try {
     const dataVideo: TDataVideo =
       video.compactVideoRenderer || video.gridVideoRenderer || video.videoRenderer || video.playlistVideoRenderer;

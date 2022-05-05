@@ -1,8 +1,6 @@
 import { TSong, TSearchResult, TVideo } from '@utils/interface';
 
-import findVal from './helpers/findVal';
-import formatVideo from './helpers/formatVideo';
-import getData from './helpers/getData';
+import { getData, findVal, formatVideo } from './helpers';
 
 export default async function searchVideo(terms: string, token?: string, apiKey?: string): Promise<TSearchResult> {
   try {

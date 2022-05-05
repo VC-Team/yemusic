@@ -1,6 +1,6 @@
+import { jwtConfig } from '@config';
 import { TParamsCreateToken, TParamsVerifyToken } from '@utils/interface';
 import * as jwt from 'jsonwebtoken';
-import { jwtConfig } from 'src/config';
 /**
  * It creates a token using the payload and expiration passed in as parameters
  * @param {TParamsCreateToken}  - TParamsCreateToken

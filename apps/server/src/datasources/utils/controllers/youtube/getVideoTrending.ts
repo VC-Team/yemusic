@@ -1,8 +1,6 @@
 import { TSong } from '@utils/interface';
 
-import { findValByKey } from './helpers/findVal';
-import formatVideo from './helpers/formatVideo';
-import getData from './helpers/getData';
+import { findValByKey, formatVideo, getData } from './helpers';
 
 export default async function getVideoTrending(): Promise<Array<TSong>> {
   try {

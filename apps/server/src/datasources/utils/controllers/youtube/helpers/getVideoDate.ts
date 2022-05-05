@@ -1,6 +1,6 @@
-import getData from './helpers/getData';
+import { getData } from '.';
 
-export default async function getVideoDate(yId: string): Promise<Date> {
+export async function getVideoDate(yId: string): Promise<Date> {
   try {
     let publishText: string = await getData({
       urlString: 'https://m.youtube.com/watch?v=' + yId + '&type=date',

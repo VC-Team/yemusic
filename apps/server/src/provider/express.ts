@@ -1,6 +1,7 @@
 import * as express from 'express';
 
-import { container } from '../config';
+import { container } from '@config';
+
 import { validate, logErrors } from '../datasources/middleware';
 import routers from '../routers';
 

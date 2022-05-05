@@ -10,6 +10,7 @@
       "@interface/*": ["src/datasources/interface/*"],
       "@model/*": ["src/datasources/models/*"],
       "@utils/*": ["src/datasources/utils/*"],
+      "@config": ["src/config/index.ts"],
     },
   },
   "include": ["**/*.test.ts", "**/*.spec.ts", "**/*.d.ts"]

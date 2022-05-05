@@ -1,8 +1,9 @@
+import { mongoDB } from '@config';
 import * as mongoose from 'mongoose';
 import supertest = require('supertest');
 
 import '../src/global';
-import { mongoDB } from '../src/config';
+
 import { createServer } from '../src/provider';
 
 export const httpServer = supertest(createServer());

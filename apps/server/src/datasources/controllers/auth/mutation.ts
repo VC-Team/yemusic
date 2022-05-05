@@ -1,13 +1,11 @@
 import { Request, Response } from 'express';
 
+import { refreshTokenExpires, jwtConfig } from '@config';
 import { TSignUpInput } from '@interface/user';
+import { yeToken, auth, nodemailer } from '@utils/controllers';
 import { useHttpHandler } from '@utils/useHttpHandler';
 
-import { refreshTokenExpires, jwtConfig } from '../../../config';
 import { User } from '../../models';
-import { authUtils } from '../../utils/controllers';
-import { yeToken } from '../../utils/controllers';
-import { nodemailer } from '../../utils/controllers/nodemailer';
 
 export const signUp = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
   const { email, password, displayName }: TSignUpInput = req.body;
@@ -17,7 +15,7 @@ export const signUp = useHttpHandler(async (req: Request, res: Response): Promis
   if (emailExists) throw { errorCode: 'E-04', message: 'Email already exists.' };
 
   /* It's hashing the password with a salt of 10. */
-  const hashPassword = authUtils.generateHash(password, 10);
+  const hashPassword = auth.generateHash(password, 10);
 
   /* It's creating a new user in the database. */
   const newUser = await User.create({

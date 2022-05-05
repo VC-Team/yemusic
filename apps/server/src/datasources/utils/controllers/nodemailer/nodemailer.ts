@@ -1,6 +1,5 @@
+import { TParamsSendMail } from '@utils/interface';
 import * as nodemailer from 'nodemailer';
-
-import { TParamsSendMail } from '../../interface/nodemailer';
 
 /**
  * Create a reusable transporter object using the default SMTP transport

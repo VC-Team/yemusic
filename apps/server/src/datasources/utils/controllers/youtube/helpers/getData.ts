@@ -1,11 +1,11 @@
 /* eslint-disable no-useless-escape */
+import { youtube } from '@config';
+import { TParamsData } from '@utils/interface';
 import axios from 'axios';
 
-import { youtube } from '../../../../../config';
-import { TParamsData } from '../../../interface/youtube';
 import decodeHex from './decodeHex';
 
-export default async function getData({ urlString, method = '', reqBody = {} }: TParamsData) {
+export async function getData({ urlString, method = '', reqBody = {} }: TParamsData) {
   const dataRegex = /var\ ytInitialData\ \=\ \'(.*)\'\;<\/script>/;
   // const playerRegex = /var\ ytInitialPlayerResponse\ \=\ (.*)id\=\"player\"/s;
 

@@ -20,7 +20,7 @@ export const SearchResultListItem: FC<SearchResultListItemProps> = ({
   ...otherProps
 }) => {
   return (
-    <div className="result-list-item" {...otherProps}>
+    <div className="o-search__result-list__item" {...otherProps}>
       <div className={classNames('thumbnail', type && `thumbnail--${type}`)}>
         {type === 'result' && <img src={thumbnailUrl} alt="thumbnail" className="thumbnail__image" />}
         {type === 'recent' && <HomeIcon />}

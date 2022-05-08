@@ -8,6 +8,7 @@ import { sendMail } from './nodemailer';
 export async function sendEmailVerify(req: Request, user) {
   const tokenVerifyEmail = yeToken.createToken({
     payload: user,
+    secretKey: jwtConfig.secretAccessToken,
     expiration: jwtConfig.emailValidateExpiration,
   });
 

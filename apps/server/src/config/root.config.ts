@@ -1,5 +1,6 @@
-import { HttpServerConfig, Youtube, MongoDB } from './type.config';
+import * as ms from 'ms';
 
+import { HttpServerConfig, Youtube, MongoDB } from './type.config';
 export const container: HttpServerConfig = {
   hostName: process.env.API_HOSTNAME || 'http://localhost',
   port: Number(process.env.API_PORT || 3000),
@@ -28,11 +29,13 @@ export const mongoDB: MongoDB = {
   mongoOptions: {},
 };
 
-/* Setting the expiration time for the refresh token (a date 10 days from now). */
 export const refreshTokenExpires: number = Date.now() + 24 * 60 * 60 * 10000;
 
 export const jwtConfig = {
-  secret_key: 'VCTeamYemusic',
-  expiration: 7776000,
-  refresh_expiration: 864000,
+  secretAccessToken: process.env.SECRET_ACCESS_TOKEN || 'VC-Access-Team',
+  secretRefreshToken: process.env.SECRET_REFRESH_TOKEN || 'VC-Refresh-Team',
+
+  acessTokenExpiration: Number(ms('1 days') / 1000),
+  refreshTokenExpiration: Number(ms('90 days') / 1000),
+  emailValidateExpiration: Number(ms('15 minute') / 1000),
 };

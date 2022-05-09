@@ -1,30 +1,62 @@
 import { Meta, Story } from '@storybook/react';
 
-import SongCard, { SongCardProps } from '.';
+import SongCard, { SongCardList, SongCardProps, SongCardListProps } from '.';
 
 export default {
   component: SongCard,
   title: 'SongCard',
 } as Meta;
 
-const Template: Story<SongCardProps> = args => <SongCard {...args} />;
+const SongCardListTemplate: Story<SongCardListProps> = args => (
+  <SongCardList {...args}>
+    {Array(9)
+      .fill('')
+      .map((value, index: number) => (
+        <SongCard
+          key={index}
+          title="Khoảng cách"
+          author="The Cassette"
+          imageSrc="https://i.scdn.co/image/ab67616d00001e02afb5dbb4ef5e1d30ff07b248"
+          isLiked={false}
+          isPlaying={false}
+          onClick={() => {
+            alert('onClick');
+          }}
+          onClickLike={() => {
+            alert('onClickLike');
+          }}
+          onClickDownload={() => {
+            alert('onClickDownload');
+          }}
+        />
+      ))}
+  </SongCardList>
+);
 
-export const Preview = Template.bind({});
-Preview.args = {
-  _type: 'list',
+const SongCardTemplate: Story<SongCardProps> = args => <SongCard {...args} />;
+
+export const SongCardListPreview = SongCardListTemplate.bind({});
+SongCardListPreview.args = {
+  isLoading: false,
+  viewMode: 'list',
+  title: 'Song List',
+};
+
+export const SongCardPreview = SongCardTemplate.bind({});
+SongCardPreview.args = {
+  direction: 'horizontal',
+  title: 'Khoảng cách',
   author: 'The Cassette',
-  imagelUrl: 'https://i.scdn.co/image/ab67616d00001e02afb5dbb4ef5e1d30ff07b248',
-  isPlaying: false,
+  imageSrc: 'https://i.scdn.co/image/ab67616d00001e02afb5dbb4ef5e1d30ff07b248',
   isLiked: false,
-  name: 'Khoảng cách',
-  time: '5:08',
+  isPlaying: false,
   onClick: () => {
-    console.log('onClick');
+    alert('onClick');
   },
-  onDownload: () => {
-    console.log('onDownload');
+  onClickLike: () => {
+    alert('onClickLike');
   },
-  onLike: () => {
-    console.log('onLike');
+  onClickDownload: () => {
+    alert('onClickDownload');
   },
 };

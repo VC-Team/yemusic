@@ -1,98 +1,85 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
-import { DownloadIcon, HeartActiveIcon, HeartIcon, MoreIcon } from '@components/atoms/Icon';
+import { DownloadIcon, HeartActiveIcon, HeartIcon } from '@components/atoms/Icon';
 import classNames from 'classnames';
 
 import './style.scss';
-import { SongCardListProps } from '.';
 
 export interface SongCardProps {
-  _type?: SongCardListProps['mode'];
   author: string;
-  imagelUrl: string;
-  isPlaying: boolean;
+  direction?: 'horizontal' | 'vertical';
+  title: string;
+  imageSrc: string;
   isLiked: boolean;
-  name: string;
-  time: string;
+  isLoading?: boolean;
+  isPlaying: boolean;
   onClick: () => void;
-  onDownload: () => void;
-  onLike: () => void;
+  onClickLike: () => void;
+  onClickDownload: () => void;
 }
 
+export const SONGCARD_DISPLAY_NAME = 'SongCard';
+
 export const SongCard: FC<SongCardProps> = ({
-  _type = 'list',
   author,
-  imagelUrl,
+  direction,
+  title,
+  imageSrc,
   isLiked,
+  isLoading,
   isPlaying,
-  name,
-  time,
   onClick,
-  onDownload,
-  onLike,
+  onClickLike,
+  onClickDownload,
 }) => {
-  const [state, setState] = useState({
-    isLiked,
-  });
-
-  const handleClickSongCard = () => {
-    console.log('handleClickSongCard');
-
-    if (onClick) {
-      onClick();
-    }
-  };
-
-  const handleClickLike = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation();
-
-    if (onLike) {
-      onLike();
-    }
-
-    setState(prevState => ({
-      ...prevState,
-      isLiked: !prevState.isLiked,
-    }));
-  };
-
-  const handleClickDownload = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation();
-
-    if (onDownload) {
-      onDownload();
-    }
-  };
-
   return (
     <div
-      className={classNames('o-song-card', _type && `-${_type}`, isPlaying && '-is-playing')}
-      onClick={handleClickSongCard}
+      className={classNames('o-song-card', direction && `-${direction}`, isPlaying && '-is-playing')}
+      data-loading={isLoading}
     >
-      <div className="o-song-card__image">
-        <img src={imagelUrl} alt={name} />
+      <div className="o-song-card__image" data-loading="inherit" role="button" onClick={onClick}>
+        <img src={imageSrc} alt="" />
       </div>
       <div className="o-song-card__info">
-        <h4 className="o-song-card__info__name">{name}</h4>
-        <div className="o-song-card__info__author">
-          {isPlaying && <span />}
-          <p>{isPlaying ? 'Now playing' : author}</p>
+        <div className="o-song-card__info__title" data-loading="inherit">
+          <h4 title={title}>{title}</h4>
+        </div>
+        <div className="o-song-card__info__author" data-loading="inherit">
+          <span />
+          {isPlaying ? <p>Now playing</p> : <p title={author}>{author}</p>}
         </div>
       </div>
-      <span className="o-song-card__time">{time}</span>
+      <div className="o-song-card__time" data-loading="inherit">
+        <time>5:08</time>
+      </div>
       <div className="o-song-card__actionlist">
-        <div className="o-song-card__actionlist__item" role="button" onClick={handleClickLike}>
-          {state.isLiked ? <HeartActiveIcon color="primary" /> : <HeartIcon />}
-        </div>
-        <div className="o-song-card__actionlist__item" role="button" onClick={handleClickDownload}>
+        <span
+          className="o-song-card__actionlist__item"
+          data-loading="inherit"
+          role="button"
+          onClick={e => {
+            e.stopPropagation();
+            onClickLike();
+          }}
+        >
+          {isLiked ? <HeartActiveIcon color="primary" /> : <HeartIcon />}
+        </span>
+        <span
+          className="o-song-card__actionlist__item"
+          data-loading="inherit"
+          role="button"
+          onClick={e => {
+            e.stopPropagation();
+            onClickDownload();
+          }}
+        >
           <DownloadIcon />
-        </div>
-        <div className="o-song-card__actionlist__item" role="button">
-          <MoreIcon />
-        </div>
+        </span>
       </div>
     </div>
   );
 };
+
+SongCard.displayName = SONGCARD_DISPLAY_NAME;
 
 export default SongCard;

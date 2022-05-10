@@ -3,3 +3,8 @@ export type TSignUpInput = {
   password: string;
   displayName: string;
 };
+
+export type TSignInInput = {
+  account: string;
+  password: string;
+};

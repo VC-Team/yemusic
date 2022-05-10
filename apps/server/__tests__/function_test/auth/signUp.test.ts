@@ -15,6 +15,6 @@ describe('Testing SignUp API', () => {
     const { body } = await requestSignUp(user2);
 
     expect(body.data);
-    expect(user2.email).toEqual(body.data.email);
+    expect(user2.email).toEqual(body.data.me.email);
   });
 });

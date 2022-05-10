@@ -1,6 +1,7 @@
 import * as express from 'express';
 
 import { container } from '@config';
+import * as cookieParser from 'cookie-parser';
 
 import { validate, logErrors } from '../datasources/middleware';
 import routers from '../routers';
@@ -9,6 +10,7 @@ export const createServer = () => {
   const server = express();
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
+  server.use(cookieParser());
   server.use(validate);
   routers(server);
   server.use(logErrors);

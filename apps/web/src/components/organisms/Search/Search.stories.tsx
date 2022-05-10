@@ -11,8 +11,15 @@ export default {
   title: 'Search',
 } as Meta;
 
+interface listSearchResultsItem {
+  id?: string;
+  name?: string;
+  thumbnailUrl?: string;
+  author?: string;
+}
+
 interface ISimpleSearch {
-  listSearchResults: any[];
+  listSearchResults: listSearchResultsItem[];
   type: 'recent' | 'loading' | 'result';
 }
 

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { DownloadIcon, HeartActiveIcon, HeartIcon } from '@components/atoms/Icon';
-import classNames from 'classnames';
+import abemClasses from '@utils/abemClasses';
 
 import './style.scss';
 
@@ -33,12 +33,9 @@ export const SongCard: FC<SongCardProps> = ({
   onClickDownload,
 }) => {
   return (
-    <div
-      className={classNames('o-song-card', direction && `-${direction}`, isPlaying && '-is-playing')}
-      data-loading={isLoading}
-    >
+    <div className={abemClasses('o-song-card', direction, isPlaying && 'is-playing')} data-loading={isLoading}>
       <div className="o-song-card__image" data-loading="inherit" role="button" onClick={onClick}>
-        <img src={imageSrc} alt="" />
+        <img src={imageSrc} alt={title} />
       </div>
       <div className="o-song-card__info">
         <div className="o-song-card__info__title" data-loading="inherit">

@@ -1,6 +1,7 @@
 import React, { Children, cloneElement, FC, isValidElement, useCallback, useMemo, useRef } from 'react';
 
-import classNames from 'classnames';
+import abemClasses from '@utils/abemClasses';
+import getComponentName from '@utils/getComponentName';
 
 import { SONGCARD_DISPLAY_NAME } from '.';
 import './style.scss';
@@ -21,7 +22,7 @@ export const SongCardList: FC<SongCardListProps> = ({ children, isLoading, viewM
   const songCardListChildren = useMemo(() => {
     return Children.map(children, child => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (isValidElement(child) && (child.type as any).name === SONGCARD_DISPLAY_NAME) {
+      if (isValidElement(child) && getComponentName(child) === SONGCARD_DISPLAY_NAME) {
         return cloneElement(child, {
           direction: viewMode === 'list' ? 'horizontal' : 'vertical',
         });
@@ -88,7 +89,7 @@ export const SongCardList: FC<SongCardListProps> = ({ children, isLoading, viewM
   );
 
   return (
-    <div className={classNames('o-song-card-list', `-${viewMode}`)} data-loading={isLoading}>
+    <div className={abemClasses('o-song-card-list', viewMode)} data-loading={isLoading}>
       <div className="o-song-card-list__title" data-loading="inherit">
         <h2>{title}</h2>
       </div>

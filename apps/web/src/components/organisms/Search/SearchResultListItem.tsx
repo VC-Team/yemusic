@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { HomeIcon } from '@components/atoms/Icon';
+import { CloseIcon, RecentIcon } from '@components/atoms/Icon';
 import classNames from 'classnames';
 
 export interface SearchResultListItemProps {
@@ -23,7 +23,7 @@ export const SearchResultListItem: FC<SearchResultListItemProps> = ({
     <div className="o-search__result-list__item" {...otherProps}>
       <div className={classNames('thumbnail', type && `thumbnail--${type}`)}>
         {type === 'result' && <img src={thumbnailUrl} alt="thumbnail" className="thumbnail__image" />}
-        {type === 'recent' && <HomeIcon />}
+        {type === 'recent' && <RecentIcon />}
       </div>
       <div className={classNames('content', type === 'recent' && `content--${type}`)}>
         <p className={classNames('content__name', type === 'loading' && `content__name--${type}`)}>{name}</p>
@@ -31,7 +31,7 @@ export const SearchResultListItem: FC<SearchResultListItemProps> = ({
       </div>
       {type === 'recent' && (
         <span className="icon">
-          <HomeIcon />
+          <CloseIcon />
         </span>
       )}
     </div>

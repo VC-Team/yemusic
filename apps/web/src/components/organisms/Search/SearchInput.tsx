@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { HomeActiveIcon, HomeIcon } from '@components/atoms/Icon';
+import { ArrowLeftIcon, SearchIcon } from '@components/atoms/Icon';
 import Input, { InputProps } from '@components/atoms/Input';
 
 export interface SearchInputProps extends InputProps {
@@ -36,7 +36,7 @@ export const SearchInput: FC<SearchInputProps> = ({ _onChange, _onBlur, _onFocus
 
   return (
     <Input
-      prefix={isFocus ? <HomeActiveIcon /> : <HomeIcon />}
+      prefix={isFocus ? <ArrowLeftIcon /> : <SearchIcon />}
       fullWidth
       shape="round"
       onChange={onChange}

@@ -56,19 +56,21 @@ export const Search: FC<SearchProps> = ({ children, onSearch, fullWidth, timer =
     <div className={classNames('o-search', fullWidth && '-fullWidth')}>
       {Children.map(children, child => {
         if (isValidElement(child)) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           if ((child.type as any).name === 'SearchInput') {
             return cloneElement(child, {
               _onChange: onChangeSearchInput,
               _onFocus: onFocusSearChInput,
               _onBlur: onBlurSearChInput,
             });
-          }
-          if ((child.type as any).name === 'SearchResultList') {
+          } else {
             return cloneElement(child, {
               isFocus: state.isFocus,
             });
           }
         }
+
+        return null;
       })}
     </div>
   );

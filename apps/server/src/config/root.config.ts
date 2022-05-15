@@ -35,7 +35,7 @@ export const jwtConfig = {
   secretAccessToken: process.env.SECRET_ACCESS_TOKEN || 'VC-Access-Team',
   secretRefreshToken: process.env.SECRET_REFRESH_TOKEN || 'VC-Refresh-Team',
 
-  acessTokenExpiration: Number(ms('1 days') / 1000),
+  accessTokenExpiration: Number(ms('1 days') / 1000),
   refreshTokenExpiration: Number(ms('90 days') / 1000),
   emailValidateExpiration: Number(ms('15 minute') / 1000),
 };

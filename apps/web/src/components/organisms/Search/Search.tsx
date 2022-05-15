@@ -1,71 +1,68 @@
-import React, { Children, cloneElement, FC, isValidElement, useRef, useState } from 'react';
+import React, { Children, cloneElement, FC, isValidElement, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 import './styles.scss';
 
 export interface SearchProps {
-  onSearch?: (keyword: string) => void;
-  fullWidth?: boolean;
-  timer: number;
+  onSearch: (keyword: string) => void;
+  debounceTime?: number;
 }
 
 export interface ISearch {
   keyword: string;
-  isFocus: boolean;
+  isOpen: boolean;
 }
 
-export const Search: FC<SearchProps> = ({ children, onSearch, fullWidth, timer = 400 }) => {
+const DEBOUNCE_TIME_DEFAULT = 500;
+
+export const Search: FC<SearchProps> = ({ children, onSearch, debounceTime = DEBOUNCE_TIME_DEFAULT }) => {
   const [state, setState] = useState({
     keyword: '',
-    isFocus: false,
+    isOpen: false,
   });
 
-  const debounceRef = useRef<NodeJS.Timeout>();
+  useEffect(() => {
+    const timer = setTimeout(
+      () => {
+        onSearch(state.keyword);
+      },
+      state.keyword === '' ? 0 : debounceTime
+    );
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.keyword, debounceTime]);
 
   const onChangeSearchInput = (keyword: string) => {
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
-    if (onSearch) {
-      debounceRef.current = setTimeout(() => {
-        onSearch(keyword);
-      }, timer);
-    }
-
     setState(prev => ({
       ...prev,
       keyword: keyword,
     }));
   };
 
-  const onFocusSearChInput = () => {
+  const handleToggleOpen = (isOpen: boolean) => {
     setState(prev => ({
       ...prev,
-      isFocus: true,
-    }));
-  };
-
-  const onBlurSearChInput = () => {
-    setState(prev => ({
-      ...prev,
-      isFocus: false,
+      isOpen,
     }));
   };
 
   return (
-    <div className={classNames('o-search', fullWidth && '-fullWidth')}>
+    <div className={classNames('o-search')}>
       {Children.map(children, child => {
         if (isValidElement(child)) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           if ((child.type as any).name === 'SearchInput') {
             return cloneElement(child, {
               _onChange: onChangeSearchInput,
-              _onFocus: onFocusSearChInput,
-              _onBlur: onBlurSearChInput,
+              _onFocus: () => handleToggleOpen(true),
+              _onBlur: () => handleToggleOpen(false),
             });
           } else {
             return cloneElement(child, {
-              isFocus: state.isFocus,
+              isOpen: state.isOpen,
             });
           }
         }

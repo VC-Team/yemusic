@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Story, Meta } from '@storybook/react';
+import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 
 import Search, { SearchInput, SearchResultList, SearchResultListItem } from '.';
@@ -31,6 +32,15 @@ const SimpleSearch = ({ ...otherProps }) => {
 
   const handleSearch = (keyword: string) => {
     if (keyword) {
+      axios
+        .post('https://yemusic-api.vc-team.com/api/song/s', {
+          search: keyword,
+        })
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .then((data: any) => {
+          console.log(data);
+        });
+
       setState(prev => ({
         ...prev,
         type: 'loading',
@@ -92,7 +102,7 @@ const SimpleSearch = ({ ...otherProps }) => {
   }, []);
 
   return (
-    <Search onSearch={handleSearch} timer={500} {...otherProps}>
+    <Search onSearch={handleSearch} {...otherProps}>
       <SearchInput placeholder="Search..." />
       <SearchResultList type={state.type}>
         {state.listSearchResults?.map(item => (
@@ -117,6 +127,4 @@ const Template: Story<SearchProps> = args => (
 
 export const Preview = Template.bind({});
 
-Preview.args = {
-  fullWidth: true,
-};
+Preview.args = {};

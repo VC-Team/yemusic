@@ -2,11 +2,11 @@ import React, { Children, cloneElement, FC, isValidElement } from 'react';
 
 export interface SearchResultListProps {
   type: 'recent' | 'loading' | 'result';
-  isFocus?: boolean;
+  isOpen?: boolean;
 }
 
-export const SearchResultList: FC<SearchResultListProps> = ({ children, type, isFocus }) => {
-  if (isFocus) {
+export const SearchResultList: FC<SearchResultListProps> = ({ children, type, isOpen }) => {
+  if (isOpen) {
     return (
       <div className="o-search__result-list">
         <p className="o-search__result-list__title">{type}</p>

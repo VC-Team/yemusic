@@ -1,6 +1,7 @@
 import React, { Children, cloneElement, FC, isValidElement, useEffect, useState } from 'react';
 
-import classNames from 'classnames';
+import abemClasses from '@utils/abemClasses';
+import getComponentName from '@utils/getComponentName';
 import './styles.scss';
 
 export interface SearchProps {
@@ -50,17 +51,21 @@ export const Search: FC<SearchProps> = ({ children, onSearch, debounceTime = DEB
   };
 
   return (
-    <div className={classNames('o-search')}>
+    <div className={abemClasses('o-search')}>
       {Children.map(children, child => {
         if (isValidElement(child)) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          if ((child.type as any).name === 'SearchInput') {
+          console.log(child);
+
+          if (getComponentName(child) === 'SearchInput') {
             return cloneElement(child, {
               _onChange: onChangeSearchInput,
               _onFocus: () => handleToggleOpen(true),
               _onBlur: () => handleToggleOpen(false),
             });
-          } else {
+          }
+
+          if (getComponentName(child) === 'SearchResultList') {
             return cloneElement(child, {
               isOpen: state.isOpen,
             });

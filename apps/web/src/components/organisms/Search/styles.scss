@@ -5,10 +5,6 @@
   background: $MODAL-BACKGROUND;
   border-radius: pxtorem(8);
 
-  .-fullWidth {
-    width: 100%;
-  }
-
   &__result-list {
     &__title {
       padding: 0 pxtorem(8);

@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "client-domain": "libs/client-domain",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
     "server": "apps/server",

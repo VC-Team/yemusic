@@ -1,8 +1,8 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
-import React, { FC, useContext } from 'react';
+# client-domain
 
-import { ClientDomain, ClientDomainProvider, Action } from '../../../libs/client-domain/src/core';
+## Usage
 
+```tsx
 interface IDisplay {
   theme: 'light' | 'dark';
 }
@@ -14,7 +14,6 @@ interface IWebDisplay extends IDisplay {
 @ClientDomain()
 class DisplayDomain<IDisplayOverwrite extends IDisplay> extends ClientDomainProvider<IDisplayOverwrite> {
   public DisplayContext = this.context;
-
   public DisplayProvider = this.provider;
 
   @Action()
@@ -70,5 +69,4 @@ export const App: FC = () => {
     </DisplayProvider>
   );
 };
-
-export default App;
+```

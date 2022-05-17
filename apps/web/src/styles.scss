@@ -18,7 +18,7 @@ body {
 }
 
 p {
-  font-size: pxToRem($FONT-SIZE-HTML-VALUE);
+  font-size: pxtorem($FONT-SIZE-HTML-VALUE);
 
   &:last-child {
     margin-bottom: 0;
@@ -57,4 +57,19 @@ ul,
 ol {
   padding: 0;
   margin: 0;
+}
+
+[data-loading='true'] {
+  pointer-events: none;
+  user-select: none;
+
+  [data-loading='inherit'] {
+    background-color: $LOADING-BACKGROUND;
+    border-radius: 4px;
+
+    & > * {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
 }

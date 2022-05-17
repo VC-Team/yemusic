@@ -2,12 +2,14 @@ import * as express from 'express';
 
 import { container } from '@config';
 import * as cookieParser from 'cookie-parser';
+import * as cors from 'cors';
 
 import { validate, logErrors } from '../datasources/middleware';
 import routers from '../routers';
 
 export const createServer = () => {
   const server = express();
+  server.use(cors());
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
   server.use(cookieParser());

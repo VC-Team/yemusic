@@ -1,9 +1,8 @@
 import React, { Children, cloneElement, FC, isValidElement, useCallback, useMemo, useRef } from 'react';
 
 import abemClasses from '@utils/abemClasses';
-import getComponentName from '@utils/getComponentName';
 
-import { SONGCARD_DISPLAY_NAME } from '.';
+import { SongCard } from '.';
 import './style.scss';
 
 export interface SongCardListProps {
@@ -21,8 +20,7 @@ export const SongCardList: FC<SongCardListProps> = ({ children, isLoading, viewM
 
   const songCardListChildren = useMemo(() => {
     return Children.map(children, child => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (isValidElement(child) && getComponentName(child) === SONGCARD_DISPLAY_NAME) {
+      if (isValidElement(child) && child.type === SongCard) {
         return cloneElement(child, {
           direction: viewMode === 'list' ? 'horizontal' : 'vertical',
         });

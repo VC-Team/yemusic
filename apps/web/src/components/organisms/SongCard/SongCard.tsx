@@ -18,8 +18,6 @@ export interface SongCardProps {
   onClickDownload: () => void;
 }
 
-export const SONGCARD_DISPLAY_NAME = 'SongCard';
-
 export const SongCard: FC<SongCardProps> = ({
   author,
   direction,
@@ -32,6 +30,16 @@ export const SongCard: FC<SongCardProps> = ({
   onClickLike,
   onClickDownload,
 }) => {
+  const handleClickLike = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    e.stopPropagation();
+    onClickLike();
+  };
+
+  const handleClickDownload = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    e.stopPropagation();
+    onClickDownload();
+  };
+
   return (
     <div className={abemClasses('o-song-card', direction, isPlaying && 'is-playing')} data-loading={isLoading}>
       <div className="o-song-card__image" data-loading="inherit" role="button" onClick={onClick}>
@@ -50,25 +58,14 @@ export const SongCard: FC<SongCardProps> = ({
         <time>5:08</time>
       </div>
       <div className="o-song-card__actionlist">
-        <span
-          className="o-song-card__actionlist__item"
-          data-loading="inherit"
-          role="button"
-          onClick={e => {
-            e.stopPropagation();
-            onClickLike();
-          }}
-        >
+        <span className="o-song-card__actionlist__item" data-loading="inherit" role="button" onClick={handleClickLike}>
           {isLiked ? <HeartActiveIcon color="primary" /> : <HeartIcon />}
         </span>
         <span
           className="o-song-card__actionlist__item"
           data-loading="inherit"
           role="button"
-          onClick={e => {
-            e.stopPropagation();
-            onClickDownload();
-          }}
+          onClick={handleClickDownload}
         >
           <DownloadIcon />
         </span>
@@ -76,7 +73,5 @@ export const SongCard: FC<SongCardProps> = ({
     </div>
   );
 };
-
-SongCard.displayName = SONGCARD_DISPLAY_NAME;
 
 export default SongCard;

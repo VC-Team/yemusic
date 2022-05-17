@@ -16,13 +16,13 @@ Preview.args = {
   imageSrc: 'https://i.scdn.co/image/ab67616d00001e02afb5dbb4ef5e1d30ff07b248',
   isLoading: false,
   isShuffle: false,
-  mode: 'mini',
   songName: 'The Cassette',
+  viewMode: 'mini',
   onEnded: () => {
     console.log('onEnded');
   },
-  onClickRepeat: () => {
-    console.log('onClickRepeat');
+  onClickRepeat: repeatMode => {
+    console.log('onClickRepeat', repeatMode);
   },
   onClickShuffle: () => {
     console.log('onClickShuffle');

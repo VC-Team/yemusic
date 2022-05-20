@@ -1,0 +1,173 @@
+.o-player-controls {
+  $root: &;
+
+  position: relative;
+  display: flex;
+
+  &.-mini {
+    gap: pxtorem(16);
+    align-items: center;
+    padding: pxtorem(8) pxtorem(8) pxtorem(12);
+
+    #{$root}__header {
+      display: none;
+    }
+
+    #{$root}__image {
+      &__inner {
+        width: 40px;
+      }
+    }
+
+    #{$root}__time {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      &__value {
+        display: none;
+      }
+    }
+
+    #{$root}__actionlist {
+      gap: pxtorem(16);
+
+      &__item {
+        &.-hidden {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.-full {
+    flex-direction: column;
+    gap: pxtorem(32);
+    height: 100%;
+
+    #{$root}__header {
+      display: flex;
+      justify-content: space-between;
+
+      &__title {
+        width: fit-content;
+
+        h2 {
+          @include text(heading);
+
+          margin: 0;
+        }
+      }
+    }
+
+    #{$root}__image {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      padding: pxtorem(32);
+
+      &__inner {
+        width: 100%;
+      }
+    }
+
+    #{$root}__time {
+      display: flex;
+      flex-wrap: wrap;
+      gap: pxtorem(4);
+      justify-content: space-between;
+
+      &__progress-bar {
+        width: 100%;
+      }
+
+      &__value {
+        span {
+          @include text(caption);
+
+          color: $SECONDARY-TEXT;
+        }
+      }
+    }
+
+    #{$root}__actionlist {
+      justify-content: space-between;
+    }
+  }
+
+  &__image {
+    &__inner {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      pointer-events: none;
+      user-select: none;
+      border-radius: 999px !important;
+
+      &.-playing {
+        animation-name: spin;
+        animation-duration: 12000ms;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: pxtorem(4);
+
+    &__name {
+      width: fit-content;
+
+      h3 {
+        @include text(body);
+
+        margin: 0;
+        color: $PRIMARY-TEXT;
+      }
+    }
+
+    &__author {
+      width: fit-content;
+
+      p {
+        @include text(caption);
+
+        margin: 0;
+        color: $SECONDARY-TEXT;
+      }
+    }
+  }
+
+  &__actionlist {
+    display: flex;
+
+    &__item {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      background-color: transparent;
+      border: 0;
+      outline: 0;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

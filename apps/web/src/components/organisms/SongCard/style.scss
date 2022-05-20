@@ -1,0 +1,227 @@
+.o-song-card {
+  $root: &;
+
+  display: flex;
+  padding: pxtorem(8);
+
+  &:hover {
+    background-color: $HOVER_OVERLAY;
+  }
+
+  &.-horizontal {
+    flex-direction: row;
+    gap: pxtorem(16);
+    border-radius: pxtorem(4);
+
+    #{$root}__image {
+      width: 40px;
+      height: 40px;
+      border-radius: pxtorem(4);
+    }
+
+    #{$root}__time {
+      padding: 0 pxtorem(32);
+      margin: auto;
+
+      time {
+        @include text(caption);
+
+        user-select: none;
+      }
+    }
+  }
+
+  &.-vertical {
+    position: relative;
+    flex-direction: column;
+    gap: pxtorem(8);
+    width: fit-content;
+    border-radius: pxtorem(8);
+
+    &:hover {
+      #{$root}__actionlist {
+        visibility: visible;
+      }
+    }
+
+    #{$root}__image {
+      width: 200px;
+      height: 200px;
+      border-radius: pxtorem(8);
+    }
+
+    #{$root}__info {
+      gap: pxtorem(4);
+    }
+
+    #{$root}__time {
+      display: none;
+    }
+
+    #{$root}__actionlist {
+      position: absolute;
+      top: calc(200px - 24px);
+      right: 16px;
+      visibility: hidden;
+    }
+  }
+
+  &.-is-playing {
+    #{$root}__info {
+      &__author {
+        display: flex;
+        gap: pxtorem(8);
+        align-items: center;
+
+        span {
+          position: relative;
+          display: flex;
+          align-items: center;
+          width: 2px;
+          height: 12px;
+          margin: 0 pxtorem(4);
+          background-color: $ACCENT-BACKGROUND;
+          border-radius: 1px;
+          animation: now-playing 1000ms infinite;
+
+          &::before,
+          &::after {
+            position: absolute;
+            display: block;
+            width: 2px;
+            height: 6px;
+            content: '';
+            background-color: $ACCENT-BACKGROUND;
+            border-radius: 1px;
+            animation: now-playing 1000ms infinite;
+            animation-delay: 500ms;
+          }
+
+          &::before {
+            left: -4px;
+          }
+
+          &::after {
+            right: -4px;
+          }
+
+          @keyframes now-playing {
+            0% {
+              height: 6px;
+            }
+
+            50% {
+              height: 12px;
+            }
+
+            100% {
+              height: 6px;
+            }
+          }
+        }
+
+        p {
+          color: $ACCENT-TEXT;
+        }
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $DIVIDER;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      content: '';
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+
+    &__title {
+      width: fit-content;
+      min-width: 25%;
+
+      h4 {
+        @include text(body);
+
+        display: inline-block;
+        margin: 0;
+        color: $PRIMARY-TEXT;
+      }
+    }
+
+    &__author {
+      width: fit-content;
+      min-width: 20%;
+
+      p {
+        @include text(caption);
+
+        margin: 0;
+      }
+    }
+  }
+
+  &__actionlist {
+    display: flex;
+    gap: pxtorem(16);
+    align-items: center;
+
+    &__item {
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+    }
+  }
+}
+
+.o-song-card-list {
+  $root: &;
+
+  display: flex;
+  flex-direction: column;
+  gap: pxtorem(16);
+
+  &__title {
+    display: inline-block;
+    width: fit-content;
+
+    h2 {
+      @include text(heading);
+
+      margin: 0;
+      color: $PRIMARY-TEXT;
+    }
+  }
+
+  &.-grid {
+    #{$root}__content {
+      overflow: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    #{$root}__content__inner {
+      display: flex;
+      width: 100%;
+      user-select: none;
+    }
+  }
+}

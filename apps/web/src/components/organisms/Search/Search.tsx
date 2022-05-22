@@ -55,8 +55,6 @@ export const Search: FC<SearchProps> = ({ children, onSearch, debounceTime = DEB
       {Children.map(children, child => {
         if (isValidElement(child)) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          console.log(child);
-
           if (getComponentName(child) === 'SearchInput') {
             return cloneElement(child, {
               _onChange: onChangeSearchInput,

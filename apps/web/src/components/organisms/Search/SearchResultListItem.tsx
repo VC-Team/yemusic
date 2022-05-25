@@ -1,38 +1,64 @@
 import React, { FC } from 'react';
 
-import { CloseIcon, RecentIcon } from '@components/atoms/Icon';
-import classNames from 'classnames';
+import { ClockIcon, CloseIcon } from '@components/atoms/Icon';
+import abemClasses from '@utils/abemClasses';
 
 export interface SearchResultListItemProps {
-  author?: string;
-  name?: string;
-  songId?: string;
-  thumbnailUrl?: string;
-  type?: 'recent' | 'loading' | 'result';
+  author: string;
+  name: string;
+  id: string;
+  thumbnailUrl: string;
+  type: 'recent' | 'result';
+  onClickRemoveSearchRecent: (id: string | number) => void;
+  onClickSearchResult: (id: string | number) => void;
 }
 
 export const SearchResultListItem: FC<SearchResultListItemProps> = ({
   author,
   name,
-  songId,
+  id,
   thumbnailUrl,
   type,
-  ...otherProps
+  onClickRemoveSearchRecent,
+  onClickSearchResult,
 }) => {
+  const handleClickRemoveSearchRecentSong = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    onClickRemoveSearchRecent(id);
+  };
+
+  const handleClickSearchResult = () => {
+    onClickSearchResult(id);
+  };
+
   return (
-    <div className="o-search__result-list__item" {...otherProps}>
-      <div className={classNames('thumbnail', type && `thumbnail--${type}`)}>
-        {type === 'result' && <img src={thumbnailUrl} alt="thumbnail" className="thumbnail__image" />}
-        {type === 'recent' && <RecentIcon />}
-      </div>
-      <div className={classNames('content', type === 'recent' && `content--${type}`)}>
-        <p className={classNames('content__name', type === 'loading' && `content__name--${type}`)}>{name}</p>
-        <p className={classNames('content__author', type === 'loading' && `content__author--${type}`)}>{author}</p>
+    <div className={abemClasses('o-search__result-list__item', type)} role="button" onClick={handleClickSearchResult}>
+      {type === 'recent' ? (
+        <div className="o-search__result-list__item__icon" data-loading="inherit">
+          <ClockIcon />
+        </div>
+      ) : (
+        <div className="o-search__result-list__item__thumbnail" data-loading="inherit">
+          <img src={thumbnailUrl} alt={name} />
+        </div>
+      )}
+      <div className="o-search__result-list__item__info">
+        <div className="o-search__result-list__item__info__name" data-loading="inherit">
+          <h3>{name}</h3>
+        </div>
+        <div className="o-search__result-list__item__info__author" data-loading="inherit">
+          <p>{author}</p>
+        </div>
       </div>
       {type === 'recent' && (
-        <span className="icon">
+        <div
+          className="o-search__result-list__item__action"
+          role="button"
+          data-loading="inherit"
+          onClick={handleClickRemoveSearchRecentSong}
+        >
           <CloseIcon />
-        </span>
+        </div>
       )}
     </div>
   );

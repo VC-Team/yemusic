@@ -1,23 +1,23 @@
 import React, { Children, cloneElement, FC, isValidElement } from 'react';
 
+import { SearchResultListItem } from '.';
+
 export interface SearchResultListProps {
-  type: 'recent' | 'loading' | 'result';
+  isLoading?: boolean;
   isOpen?: boolean;
 }
 
-export const SearchResultList: FC<SearchResultListProps> = ({ children, type, isOpen }) => {
+export const SearchResultList: FC<SearchResultListProps> = ({ children, isLoading, isOpen }) => {
   if (isOpen) {
     return (
-      <div className="o-search__result-list">
-        <p className="o-search__result-list__title">{type}</p>
-        {Children.map(
-          children,
-          child =>
-            isValidElement(child) &&
-            cloneElement(child, {
-              type: type,
-            })
-        )}
+      <div className="o-search__result-list" data-loading={isLoading}>
+        {Children.map(children, child => {
+          if (isValidElement(child) && child.type === SearchResultListItem) {
+            return cloneElement(child);
+          }
+
+          return null;
+        })}
       </div>
     );
   } else {

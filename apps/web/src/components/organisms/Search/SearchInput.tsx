@@ -1,48 +1,55 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import { ArrowLeftIcon, SearchIcon } from '@components/atoms/Icon';
 import Input, { InputProps } from '@components/atoms/Input';
 
 export interface SearchInputProps extends InputProps {
+  onClose?: () => void;
   _onChange?: (value: string) => void;
   _onBlur?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
   _onFocus?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
 }
 
-export const SearchInput: FC<SearchInputProps> = ({ _onChange, _onBlur, _onFocus, ...otherProps }) => {
+export const SearchInput: FC<SearchInputProps> = ({ onClose, _onChange, _onBlur, _onFocus, ...otherProps }) => {
   const [isFocus, setIsFocus] = useState(false);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (_onChange) {
-      _onChange(e?.target?.value);
-    }
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (_onChange) {
+        _onChange(e.target.value);
+      }
+    },
+    [_onChange]
+  );
 
-  const onFocus = () => {
+  const handleFocus = useCallback(() => {
     setIsFocus(true);
 
     if (_onFocus) {
       _onFocus();
     }
-  };
+  }, [_onFocus]);
 
-  const onBlur = () => {
-    setIsFocus(false);
-
-    if (_onBlur) {
-      _onBlur();
+  const handleClose = useCallback(() => {
+    if (onClose) {
+      onClose();
     }
-  };
+  }, [onClose]);
 
   return (
-    <Input
-      prefix={isFocus ? <ArrowLeftIcon /> : <SearchIcon />}
-      fullWidth
-      shape="round"
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      {...otherProps}
-    />
+    <div className="o-search__input">
+      <Input
+        prefix={
+          <div className="o-search__input__icon" role="button" onClick={handleClose}>
+            {isFocus ? <ArrowLeftIcon /> : <SearchIcon />}
+          </div>
+        }
+        fullWidth
+        shape="round"
+        onChange={handleChange}
+        onFocus={handleFocus}
+        {...otherProps}
+      />
+    </div>
   );
 };

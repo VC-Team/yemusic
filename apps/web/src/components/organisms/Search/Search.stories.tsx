@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
 
-import { Story, Meta } from '@storybook/react';
-import axios from 'axios';
-import { BrowserRouter } from 'react-router-dom';
+import { Meta, Story } from '@storybook/react';
+import Axios from 'axios';
 
 import Search, { SearchInput, SearchResultList, SearchResultListItem } from '.';
 import { SearchProps } from './Search';
@@ -12,106 +12,85 @@ export default {
   title: 'Search',
 } as Meta;
 
-interface listSearchResultsItem {
-  id?: string;
-  name?: string;
-  thumbnailUrl?: string;
-  author?: string;
-}
-
-interface ISimpleSearch {
-  listSearchResults: listSearchResultsItem[];
-  type: 'recent' | 'loading' | 'result';
-}
-
 const SimpleSearch = ({ ...otherProps }) => {
-  const [state, setState] = useState<ISimpleSearch>({
-    listSearchResults: [],
+  const [state, setState] = useState<any>({
+    recentSearchData: [
+      {
+        id: '12345',
+        author: 'OTD',
+        name: 'Bao tiền một mớ bình yên',
+        thumbnailUrl: 'https://i.pinimg.com/564x/bb/15/6b/bb156b463b33b4922fcf0f31ccf1e838.jpg',
+      },
+      {
+        id: '12345',
+        author: 'OTD',
+        name: 'Bao tiền một mớ bình yên',
+        thumbnailUrl: 'https://i.pinimg.com/564x/bb/15/6b/bb156b463b33b4922fcf0f31ccf1e838.jpg',
+      },
+      {
+        id: '12345',
+        author: 'OTD',
+        name: 'Bao tiền một mớ bình yên',
+        thumbnailUrl: 'https://i.pinimg.com/564x/bb/15/6b/bb156b463b33b4922fcf0f31ccf1e838.jpg',
+      },
+    ],
+    resultSearchData: [],
     type: 'recent',
   });
 
   const handleSearch = (keyword: string) => {
-    if (keyword) {
-      axios
-        .post('https://yemusic-api.vc-team.com/api/song/s', {
-          search: keyword,
-        })
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .then((data: any) => {
-          console.log(data);
-        });
+    if (keyword !== '') {
+      Axios.post('https://yemusic-api.vc-team.com/api/song/s', {
+        search: keyword,
+      }).then((data: any) => {
+        const resultSearchData = data.data.data.songs.map((value: any, index: number) => ({
+          id: value.yId,
+          author: value.channel,
+          name: value.title,
+          thumbnailUrl: value.thumbnail.url,
+        }));
 
-      setState(prev => ({
-        ...prev,
-        type: 'loading',
-      }));
-
-      setTimeout(() => {
-        setState(prev => ({
-          ...prev,
-          listSearchResults: [
-            {
-              id: '1',
-              name: 'Bao tiền một mớ bình yên',
-              thumbnailUrl: 'https://i.pinimg.com/564x/bb/15/6b/bb156b463b33b4922fcf0f31ccf1e838.jpg',
-              author: 'OTD',
-            },
-            {
-              id: '2',
-              name: 'Bao tiền một mớ bình yên',
-              thumbnailUrl: 'https://i.pinimg.com/564x/bb/15/6b/bb156b463b33b4922fcf0f31ccf1e838.jpg',
-              author: 'OTD',
-            },
-          ],
+        setState((prevState: any) => ({
+          ...prevState,
+          resultSearchData,
           type: 'result',
         }));
-      }, 300);
+      });
     } else {
-      setState(prev => ({
-        ...prev,
-        listSearchResults: [
-          {
-            id: '1',
-            name: 'Bao tiền một mớ bình yên',
-          },
-          {
-            id: '2',
-            name: 'Bao tiền một mớ bình yên',
-          },
-        ],
+      setState((prevState: any) => ({
+        ...prevState,
         type: 'recent',
       }));
     }
   };
 
-  useEffect(() => {
-    //get recent from locaStorages
-    setState(prev => ({
-      ...prev,
-      listSearchResults: [
-        {
-          id: '1',
-          name: 'Bao tiền một mớ bình yên',
-        },
-        {
-          id: '2',
-          name: 'Bao tiền một mớ bình yên',
-        },
-      ],
-    }));
-  }, []);
+  const searchData = state.type === 'recent' ? state.recentSearchData : state.resultSearchData;
 
   return (
-    <Search onSearch={handleSearch} {...otherProps}>
+    <Search
+      onSearch={handleSearch}
+      isOpen={false}
+      onToggleOpen={isOpen => {
+        console.log(isOpen);
+      }}
+      {...otherProps}
+    >
       <SearchInput placeholder="Search..." />
-      <SearchResultList type={state.type}>
-        {state.listSearchResults?.map(item => (
+      <SearchResultList>
+        {searchData?.map((value: any, index: number) => (
           <SearchResultListItem
-            key={item.id}
-            songId={item.id}
-            author={item.author}
-            name={item.name}
-            thumbnailUrl={item.thumbnailUrl}
+            key={index}
+            author={value.author}
+            name={value.name}
+            id={value.id}
+            thumbnailUrl={value.thumbnailUrl}
+            type={state.type}
+            onClickRemoveSearchRecent={id => {
+              console.log(id);
+            }}
+            onClickSearchResult={id => {
+              console.log(id);
+            }}
           />
         ))}
       </SearchResultList>
@@ -119,11 +98,7 @@ const SimpleSearch = ({ ...otherProps }) => {
   );
 };
 
-const Template: Story<SearchProps> = args => (
-  <BrowserRouter>
-    <SimpleSearch {...args} />
-  </BrowserRouter>
-);
+const Template: Story<SearchProps> = args => <SimpleSearch {...args} />;
 
 export const Preview = Template.bind({});
 

@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 
-export function compareHash(str: string, hashStr: string) {
+export function compareHash(str: string, hashStr = '') {
   const isCompare = bcrypt.compareSync(str, hashStr);
   return isCompare;
 }

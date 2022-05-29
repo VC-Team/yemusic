@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { jwtConfig } from '@config';
 import { TSignUpInput } from '@interface/user';
-import { yeToken, auth, nodemailer } from '@utils/controllers';
+import { auth, nodemailer, yeToken } from '@utils/controllers';
 import { useHttpHandler } from '@utils/useHttpHandler';
 
 import { User } from '../../models';
@@ -119,4 +119,22 @@ export const verifyEmail = useHttpHandler(async (req: Request, res: Response): P
   await User.updateOne({ _id: user._id }, { isValidEmail: true });
 
   return res.status(200).json();
+});
+
+export const signIn = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
+  const { email, password }: { email: string; password: string } = req.body;
+
+  const currentUser = await User.findOne({ email }).lean();
+  const compareHash = auth.compareHash(password, currentUser?.password);
+
+  if (!currentUser || !compareHash)
+    throw {
+      errorCode: 'E-05',
+      message: 'Email or Password is not correct, please try again!',
+    };
+
+  delete currentUser.password;
+  const accessToken = yeToken.generateTokenForUser(req, res, currentUser, true);
+
+  return res.status(200).json({ data: { me: currentUser, accessToken } });
 });

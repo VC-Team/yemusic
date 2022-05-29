@@ -13,7 +13,7 @@ export async function sendEmailVerify(req: Request, user) {
   });
 
   const subject = 'Verify your email to complete sign up Yemusic';
-  const verifyURL = `${req.protocol}://${req.get('host')}/api/auth/verifyEmail/${tokenVerifyEmail}`;
+  const verifyURL = `${req.protocol}://${req.get('host')}/api/user/verifyEmail/${tokenVerifyEmail}`;
   const html = `
   <b>Just one more step to complete the registration 🥳</b>
   <div>

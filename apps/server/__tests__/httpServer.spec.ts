@@ -6,7 +6,11 @@ const originalUrlMap = {
     method: 'get',
   },
   signUp: {
-    url: '/api/auth/signUp',
+    url: '/api/user/signUp',
+    method: 'post',
+  },
+  signIn: {
+    url: '/api/user/signIn',
     method: 'post',
   },
 };

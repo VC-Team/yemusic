@@ -25,7 +25,6 @@ async function createTransport(isUseTestAccount = false) {
       },
     });
   }
-  console.log(nodemailerConfig);
   return nodemailer.createTransport({
     host: nodemailerConfig.host,
     port: nodemailerConfig.port,

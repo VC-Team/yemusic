@@ -42,8 +42,6 @@ export const jwtConfig = {
 
 export const nodemailerConfig = {
   host: process.env.NODEMAILER_HOST,
-  service: process.env.NODEMAILER_SERVICE,
-  url: '',
   port: Number(process.env.NODEMAILER_PORT),
   secure: false, // true for port 465, false for other ports
   username: process.env.NODEMAILER_USERNAME,

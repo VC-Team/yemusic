@@ -25,11 +25,8 @@ async function createTransport(isUseTestAccount = false) {
       },
     });
   }
-
   return nodemailer.createTransport({
     host: nodemailerConfig.host,
-    service: nodemailerConfig.service,
-    url: nodemailerConfig.url,
     port: nodemailerConfig.port,
     secure: nodemailerConfig.secure, // true for 465, false for other ports
     auth: {
@@ -45,20 +42,16 @@ async function createTransport(isUseTestAccount = false) {
  * @returns The messageId and previewURL.
  */
 export async function sendMail({ to, subject, text, html, isUseTestAccount }: TParamsSendMail) {
-  try {
-    const transport = await createTransport(isUseTestAccount);
+  const transport = await createTransport(isUseTestAccount);
 
-    // send mail with defined transport object
-    const info = await transport.sendMail({
-      from: nodemailerConfig.displayName, // sender address
-      to, // list of receivers
-      subject, // Subject line
-      text, // plain text body
-      html, // html body
-    });
+  // send mail with defined transport object
+  const info = await transport.sendMail({
+    from: nodemailerConfig.displayName, // sender address
+    to, // list of receivers
+    subject, // Subject line
+    text, // plain text body
+    html, // html body
+  });
 
-    return { messageId: info?.messageId || '', previewURL: nodemailer.getTestMessageUrl(info) || '' };
-  } catch (error) {
-    console.error;
-  }
+  return { messageId: info?.messageId || '', previewURL: nodemailer.getTestMessageUrl(info) || '' };
 }

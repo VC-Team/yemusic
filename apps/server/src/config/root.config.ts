@@ -26,7 +26,10 @@ export const mongoDB: MongoDB = {
   database_host: process.env.DB_HOST || 'localhost',
   database: process.env.DB_DEFAULT || 'db_yemusic',
   database_url: process.env.YEMUSIC_DB_CONNECTION_STRING,
-  mongoOptions: {},
+  mongoOptions: {
+    user: process.env.DB_USERNAME,
+    pass: process.env.DB_PASSWORD,
+  },
 };
 
 export const refreshTokenExpires: number = Date.now() + 24 * 60 * 60 * 10000;

@@ -29,6 +29,7 @@ export const mongoDB: MongoDB = {
   mongoOptions: {
     user: process.env.DB_USERNAME,
     pass: process.env.DB_PASSWORD,
+    authSource: 'admin',
   },
 };
 

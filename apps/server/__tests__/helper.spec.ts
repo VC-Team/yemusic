@@ -23,7 +23,7 @@ async function startMongoose() {
 }
 
 beforeAll(async () => {
-  const collections = await mongoose.connection.db.collections();
+  const collections = (await mongoose.connection.db?.collections()) || [];
 
   // Drop database
   await Promise.all(collections.map(collection => collection.drop()));
@@ -32,7 +32,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  const collections = await mongoose.connection.db.collections();
+  const collections = (await mongoose.connection.db?.collections()) || [];
 
   // Drop database
   await Promise.all(collections.map(collection => collection.drop()));

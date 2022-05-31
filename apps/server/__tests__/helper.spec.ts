@@ -6,7 +6,7 @@ import '../src/global';
 
 import { createServer } from '../src/provider';
 
-export const httpServer = supertest(createServer());
+export const request = supertest(createServer());
 
 async function startMongoose() {
   return new Promise((resolve, reject) => {
@@ -23,6 +23,11 @@ async function startMongoose() {
 }
 
 beforeAll(async () => {
+  const collections = await mongoose.connection.db.collections();
+
+  // Drop database
+  await Promise.all(collections.map(collection => collection.drop()));
+
   await startMongoose();
 });
 

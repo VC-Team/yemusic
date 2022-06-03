@@ -44,7 +44,7 @@ export const signUp = useHttpHandler(async (req: Request, res: Response): Promis
 
   res.status(200).json({ data: { me: userResponse, accessToken } });
 
-  nodemailer.sendEmailVerify(req, userResponse);
+  await nodemailer.sendEmailVerify(req, userResponse);
 
   return;
 });

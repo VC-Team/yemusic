@@ -9,31 +9,37 @@
     align-items: center;
     padding: pxtorem(8) pxtorem(8) pxtorem(12);
 
-    #{$root}__header {
+    #{$root}_header {
       display: none;
     }
 
-    #{$root}__image {
-      &__inner {
-        width: 40px;
+    #{$root}_image {
+      &_inner {
+        $player-controls-mini-image-width: 40px;
+
+        width: $player-controls-mini-image-width;
       }
     }
 
-    #{$root}__time {
+    #{$root}_time {
       position: absolute;
       right: 0;
       bottom: 0;
       left: 0;
 
-      &__value {
+      &_value {
         display: none;
       }
     }
 
-    #{$root}__actionlist {
+    #{$root}_info {
+      flex-grow: 1;
+    }
+
+    #{$root}_actionlist {
       gap: pxtorem(16);
 
-      &__item {
+      &_item {
         &.-hidden {
           display: none;
         }
@@ -46,11 +52,11 @@
     gap: pxtorem(32);
     height: 100%;
 
-    #{$root}__header {
+    #{$root}_header {
       display: flex;
       justify-content: space-between;
 
-      &__title {
+      &_title {
         width: fit-content;
 
         h2 {
@@ -61,29 +67,29 @@
       }
     }
 
-    #{$root}__image {
+    #{$root}_image {
       display: flex;
       flex-grow: 1;
       align-items: center;
       justify-content: center;
       padding: pxtorem(32);
 
-      &__inner {
+      &_inner {
         width: 100%;
       }
     }
 
-    #{$root}__time {
+    #{$root}_time {
       display: flex;
       flex-wrap: wrap;
       gap: pxtorem(4);
       justify-content: space-between;
 
-      &__progress-bar {
+      &_progress-bar {
         width: 100%;
       }
 
-      &__value {
+      &_value {
         span {
           @include text(caption);
 
@@ -92,13 +98,19 @@
       }
     }
 
-    #{$root}__actionlist {
+    #{$root}_actionlist {
       justify-content: space-between;
     }
   }
 
-  &__image {
-    &__inner {
+  &_image {
+    &_inner {
+      $player-controls-image-max-width: 450px;
+      $player-controls-image-max-height: 450px;
+      $player-controls-image-spin-animation-duration: 12000ms;
+
+      max-width: $player-controls-image-max-width;
+      max-height: $player-controls-image-max-height;
       aspect-ratio: 1 / 1;
       overflow: hidden;
       pointer-events: none;
@@ -107,7 +119,7 @@
 
       &.-playing {
         animation-name: spin;
-        animation-duration: 12000ms;
+        animation-duration: $player-controls-image-spin-animation-duration;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
@@ -119,13 +131,12 @@
     }
   }
 
-  &__info {
+  &_info {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     gap: pxtorem(4);
 
-    &__name {
+    &_name {
       width: fit-content;
 
       h3 {
@@ -136,7 +147,7 @@
       }
     }
 
-    &__author {
+    &_author {
       width: fit-content;
 
       p {
@@ -148,12 +159,15 @@
     }
   }
 
-  &__actionlist {
+  &_actionlist {
     display: flex;
 
-    &__item {
-      width: 24px;
-      height: 24px;
+    &_item {
+      $player-controls-actionlist-item-width: 24px;
+      $player-controls-actionlist-item-height: 24px;
+
+      width: $player-controls-actionlist-item-width;
+      height: $player-controls-actionlist-item-height;
       padding: 0;
       background-color: transparent;
       border: 0;

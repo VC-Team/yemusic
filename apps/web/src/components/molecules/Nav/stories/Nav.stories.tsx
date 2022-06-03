@@ -1,12 +1,12 @@
-import { HomeActiveIcon, HomeIcon } from '@components/atoms/Icon';
+import { CircleIcon, CircleActiveIcon } from '@components/atoms/Icon';
 import { Story, Meta } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Nav, { NavItem, NavDivider, NavProps } from '.';
+import Nav, { NavItem, NavDivider, NavProps } from '..';
 
 export default {
   component: Nav,
-  title: 'Nav',
+  title: 'Molecules/Nav',
 } as Meta;
 
 const Template: Story<NavProps> = args => (
@@ -14,21 +14,21 @@ const Template: Story<NavProps> = args => (
     <Nav {...args}>
       <NavItem
         to="/nav-item-1"
-        icon={<HomeIcon color="inherit" />}
-        iconActive={<HomeActiveIcon color="primary" />}
+        icon={<CircleIcon color="inherit" />}
+        iconActive={<CircleActiveIcon color="primary" />}
         name="NavItem 1"
       />
       <NavItem
         to="/nav-item-2"
-        icon={<HomeIcon color="inherit" />}
-        iconActive={<HomeActiveIcon color="primary" />}
+        icon={<CircleIcon color="inherit" />}
+        iconActive={<CircleActiveIcon color="primary" />}
         name="NavItem 2"
       />
       <NavDivider />
       <NavItem
         to="/nav-item-3"
-        icon={<HomeIcon color="inherit" />}
-        iconActive={<HomeActiveIcon color="primary" />}
+        icon={<CircleIcon color="inherit" />}
+        iconActive={<CircleActiveIcon color="primary" />}
         name="NavItem 3"
         onClick={next => {
           alert('Run action before redirecting');
@@ -37,16 +37,16 @@ const Template: Story<NavProps> = args => (
       />
       <NavItem
         to="/nav-item-4"
-        icon={<HomeIcon color="inherit" />}
-        iconActive={<HomeActiveIcon color="primary" />}
+        icon={<CircleIcon color="inherit" />}
+        iconActive={<CircleActiveIcon color="primary" />}
         name="NavItem 4"
       />
     </Nav>
   </BrowserRouter>
 );
 
-export const Preview = Template.bind({});
+export const Example = Template.bind({});
 
-Preview.args = {
+Example.args = {
   mode: 'horizontal',
 };

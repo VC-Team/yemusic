@@ -13,13 +13,16 @@
     gap: pxtorem(16);
     border-radius: pxtorem(4);
 
-    #{$root}__image {
-      width: 40px;
-      height: 40px;
+    #{$root}_image {
+      $song-card-horizontal-image-width: 40px;
+      $song-card-horizontal-image-height: 40px;
+
+      width: $song-card-horizontal-image-width;
+      height: $song-card-horizontal-image-height;
       border-radius: pxtorem(4);
     }
 
-    #{$root}__time {
+    #{$root}_time {
       padding: 0 pxtorem(32);
       margin: auto;
 
@@ -39,36 +42,41 @@
     border-radius: pxtorem(8);
 
     &:hover {
-      #{$root}__actionlist {
+      #{$root}_actionlist {
         visibility: visible;
       }
     }
 
-    #{$root}__image {
-      width: 200px;
-      height: 200px;
+    #{$root}_image {
+      $song-card-vertical-image-width: 200px;
+      $song-card-vertical-image-height: 200px;
+
+      width: $song-card-vertical-image-width;
+      height: $song-card-vertical-image-height;
       border-radius: pxtorem(8);
     }
 
-    #{$root}__info {
+    #{$root}_info {
       gap: pxtorem(4);
     }
 
-    #{$root}__time {
+    #{$root}_time {
       display: none;
     }
 
-    #{$root}__actionlist {
+    #{$root}_actionlist {
+      $song-card-actionlist-top: calc(200px - 24px);
+
       position: absolute;
-      top: calc(200px - 24px);
+      top: $song-card-actionlist-top;
       right: 16px;
       visibility: hidden;
     }
   }
 
   &.-is-playing {
-    #{$root}__info {
-      &__author {
+    #{$root}_info {
+      &_author {
         display: flex;
         gap: pxtorem(8);
         align-items: center;
@@ -81,7 +89,7 @@
           height: 12px;
           margin: 0 pxtorem(4);
           background-color: $ACCENT-BACKGROUND;
-          border-radius: 1px;
+          border-radius: pxtorem(1);
           animation: now-playing 1000ms infinite;
 
           &::before,
@@ -127,7 +135,7 @@
     }
   }
 
-  &__image {
+  &_image {
     position: relative;
     overflow: hidden;
     border: 1px solid $DIVIDER;
@@ -144,13 +152,13 @@
     }
   }
 
-  &__info {
+  &_info {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     justify-content: space-between;
 
-    &__title {
+    &_title {
       width: fit-content;
       min-width: 25%;
 
@@ -163,7 +171,7 @@
       }
     }
 
-    &__author {
+    &_author {
       width: fit-content;
       min-width: 20%;
 
@@ -175,12 +183,12 @@
     }
   }
 
-  &__actionlist {
+  &_actionlist {
     display: flex;
     gap: pxtorem(16);
     align-items: center;
 
-    &__item {
+    &_item {
       width: 24px;
       height: 24px;
       overflow: hidden;
@@ -195,9 +203,10 @@
   flex-direction: column;
   gap: pxtorem(16);
 
-  &__title {
+  &_title {
     display: inline-block;
     width: fit-content;
+    padding: 0 pxtorem(8);
 
     h2 {
       @include text(heading);
@@ -208,7 +217,7 @@
   }
 
   &.-grid {
-    #{$root}__content {
+    #{$root}_content {
       overflow: scroll;
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -218,7 +227,7 @@
       }
     }
 
-    #{$root}__content__inner {
+    #{$root}_content_inner {
       display: flex;
       width: 100%;
       user-select: none;

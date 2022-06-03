@@ -3,5 +3,5 @@
     @error "Missing argument $pixel";
   }
 
-  @return calc($pixel/$FONT-SIZE-HTML-VALUE) + rem;
+  @return calc($pixel / $FONT-SIZE-HTML-VALUE) + rem;
 }

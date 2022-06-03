@@ -1,27 +1,32 @@
-$root: m-progress-bar;
+.m-progress-bar {
+  $root: &;
 
-.#{$root} {
   &.-is-interactive {
     padding: pxtorem(4) 0;
 
     &:hover,
     &.-is-draging {
-      .#{$root}__value {
+      #{$root}_value {
         &::before {
-          background-color: $ACCENT-BACKGROUND;
+          background-color: $ACCENT-BACKGROUND !important;
         }
       }
     }
 
-    .#{$root}__value {
-      height: 8px;
+    #{$root}_value {
+      $progress-bar-value-interactive-height: 8px;
+
+      height: $progress-bar-value-interactive-height;
       border-radius: 999px;
     }
   }
 
-  &__value {
+  &_value {
+    $progress-bar-value-height: 2px;
+    $progress-bar-current-value-translate-x: calc(-100% + var(--progress-bar-transform, 0%));
+
     position: relative;
-    height: 4px;
+    height: $progress-bar-value-height;
     overflow: hidden;
     background-color: $INTERACTIVE-BACKGROUND;
 
@@ -32,7 +37,7 @@ $root: m-progress-bar;
       content: '';
       background-color: $CONTRAST-BACKGROUND;
       border-radius: inherit;
-      transform: translateX(calc(-100% + var(--progress-bar-transform, 0%)));
+      transform: translateX($progress-bar-current-value-translate-x);
     }
   }
 }

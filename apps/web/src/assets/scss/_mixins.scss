@@ -20,21 +20,26 @@
   @if $type == heading {
     font-size: pxtorem(24);
     font-weight: 700;
+    line-height: 1;
   }
   @if $type == title {
     font-size: pxtorem(16);
     font-weight: 600;
+    line-height: 1;
   }
   @if $type == body {
     font-size: pxtorem(14);
     font-weight: 500;
+    line-height: 1;
   }
   @if $type == caption {
     font-size: pxtorem(12);
     font-weight: 400;
+    line-height: 1;
   }
   @if $type == button {
     font-size: pxtorem(14);
     font-weight: 600;
+    line-height: 1;
   }
 }

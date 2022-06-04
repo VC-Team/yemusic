@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 
-import classNames from 'classnames';
+import abemClasses from '@utils/abemClasses';
 
 import './style.scss';
 
@@ -16,7 +16,7 @@ export interface NavItemProps {
 }
 
 export const NavItem: FC<NavItemProps> = ({ icon, iconActive, mode = 'mini', name, onClick, _isActive, _onClick }) => {
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (_onClick) {
       if (onClick) {
         onClick(_onClick);
@@ -24,12 +24,12 @@ export const NavItem: FC<NavItemProps> = ({ icon, iconActive, mode = 'mini', nam
         _onClick();
       }
     }
-  };
+  }, [onClick, _onClick]);
 
   return (
-    <li className={classNames('m-nav__item', `-${mode}`, _isActive && '-active')} role="button" onClick={handleClick}>
-      <span className="m-nav__item__icon">{_isActive ? iconActive : icon}</span>
-      <p className="m-nav__item__name">{name}</p>
+    <li className={abemClasses('m-nav_item', mode, _isActive && 'active')} role="button" onClick={handleClick}>
+      <span className="m-nav_item_icon">{_isActive ? iconActive : icon}</span>
+      <p className="m-nav_item_name">{name}</p>
     </li>
   );
 };

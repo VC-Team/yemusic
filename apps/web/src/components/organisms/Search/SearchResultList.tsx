@@ -1,16 +1,17 @@
 import React, { Children, cloneElement, FC, isValidElement } from 'react';
 
 import { SearchResultListItem } from '.';
+import './style.scss';
 
 export interface SearchResultListProps {
   isLoading?: boolean;
-  isOpen?: boolean;
+  isVisible?: boolean;
 }
 
-export const SearchResultList: FC<SearchResultListProps> = ({ children, isLoading, isOpen }) => {
-  if (isOpen) {
+export const SearchResultList: FC<SearchResultListProps> = ({ children, isLoading, isVisible }) => {
+  if (isVisible) {
     return (
-      <div className="o-search__result-list" data-loading={isLoading}>
+      <div className="o-search_resultlist" data-loading={isLoading}>
         {Children.map(children, child => {
           if (isValidElement(child) && child.type === SearchResultListItem) {
             return cloneElement(child);

@@ -49,8 +49,10 @@ select {
 }
 
 [role='button'],
-button {
+button,
+a {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ul,

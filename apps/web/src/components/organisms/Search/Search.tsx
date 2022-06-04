@@ -3,43 +3,36 @@ import React, { Children, cloneElement, FC, isValidElement, useCallback, useEffe
 import abemClasses from '@utils/abemClasses';
 
 import { SearchInput, SearchResultList } from '.';
-import './styles.scss';
+import './style.scss';
 
 export interface SearchProps {
+  canSearch: boolean;
   debounceTime?: number;
-  isOpen: boolean;
   onSearch: (keyword: string) => void;
-  onToggleOpen: (isOpen: boolean) => void;
 }
 
 type ISearchState = {
   keyword: string;
   isLoading: boolean;
-  isOpen: boolean;
+  canSearch: boolean;
 };
 
 const DEBOUNCE_TIME_DEFAULT = 1000;
 const LOADING_TIME = 750;
 
-export const Search: FC<SearchProps> = ({
-  children,
-  debounceTime = DEBOUNCE_TIME_DEFAULT,
-  isOpen,
-  onSearch,
-  onToggleOpen,
-}) => {
+export const Search: FC<SearchProps> = ({ canSearch, children, debounceTime = DEBOUNCE_TIME_DEFAULT, onSearch }) => {
   const [state, setState] = useState<ISearchState>({
     keyword: '',
     isLoading: true,
-    isOpen: isOpen,
+    canSearch,
   });
 
   useEffect(() => {
     setState(prevState => ({
       ...prevState,
-      isOpen,
+      canSearch,
     }));
-  }, [isOpen]);
+  }, [canSearch]);
 
   useEffect(
     function handleSearch() {
@@ -83,17 +76,12 @@ export const Search: FC<SearchProps> = ({
     }));
   }, []);
 
-  const handleToggleOpen = useCallback(
-    (isOpen: boolean) => {
-      onToggleOpen(isOpen);
-
-      setState(prev => ({
-        ...prev,
-        isOpen,
-      }));
-    },
-    [onToggleOpen]
-  );
+  const handleToggleOpenSearchBox = useCallback((canSearch: boolean) => {
+    setState(prev => ({
+      ...prev,
+      canSearch,
+    }));
+  }, []);
 
   const searchChildren = useMemo(() => {
     let searchInput;
@@ -103,16 +91,17 @@ export const Search: FC<SearchProps> = ({
       if (isValidElement(child)) {
         if (child.type === SearchInput) {
           searchInput = cloneElement(child, {
-            onClose: () => handleToggleOpen(false),
-            _onChange: onChangeSearchInput,
-            _onFocus: () => handleToggleOpen(true),
+            canSearch: state.canSearch,
+            onClose: () => handleToggleOpenSearchBox(false),
+            onChangeInject: onChangeSearchInput,
+            onFocusInject: () => handleToggleOpenSearchBox(true),
           });
         }
 
         if (child.type === SearchResultList) {
           searchResultList = cloneElement(child, {
             isLoading: state.isLoading,
-            isOpen: state.isOpen,
+            isVisible: state.canSearch,
           });
         }
       }
@@ -123,13 +112,13 @@ export const Search: FC<SearchProps> = ({
       searchResultList,
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [children, state.isLoading, state.isOpen]);
+  }, [children, state.isLoading, state.canSearch]);
 
   return (
     <div className={abemClasses('o-search')}>
       {searchChildren.searchInput}
-      {state.isOpen && (
-        <div className="o-search__title">
+      {state.canSearch && (
+        <div className="o-search_title">
           {state.keyword === '' ? (
             <p>Recent search</p>
           ) : (

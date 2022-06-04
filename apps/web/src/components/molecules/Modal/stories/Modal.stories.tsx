@@ -1,10 +1,10 @@
 import { Story, Meta } from '@storybook/react';
 
-import Modal, { ModalProps } from '.';
+import Modal, { ModalProps } from '..';
 
 export default {
   component: Modal,
-  title: 'Modal',
+  title: 'Molecules/Modal',
 } as Meta;
 
 const Template: Story<ModalProps> = args => (
@@ -19,9 +19,9 @@ const Template: Story<ModalProps> = args => (
   </div>
 );
 
-export const Preview = Template.bind({});
+export const Example = Template.bind({});
 
-Preview.args = {
+Example.args = {
   children: <div style={{ width: '20rem', height: '18rem', background: 'white', textAlign: 'center' }} />,
   open: true,
   onClose: () => {

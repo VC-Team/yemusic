@@ -8,7 +8,7 @@ import './style.scss';
 export interface SongCardListProps {
   isLoading: boolean;
   viewMode: 'list' | 'grid';
-  title: string;
+  title?: string;
 }
 
 export const SongCardList: FC<SongCardListProps> = ({ children, isLoading, viewMode, title }) => {
@@ -88,18 +88,20 @@ export const SongCardList: FC<SongCardListProps> = ({ children, isLoading, viewM
 
   return (
     <div className={abemClasses('o-song-card-list', viewMode)} data-loading={isLoading}>
-      <div className="o-song-card-list__title" data-loading="inherit">
-        <h2>{title}</h2>
-      </div>
+      {title && (
+        <div className="o-song-card-list_title" data-loading="inherit">
+          <h2>{title}</h2>
+        </div>
+      )}
       <div
-        className="o-song-card-list__content"
+        className="o-song-card-list_content"
         onMouseDownCapture={handleMouseDownCapture}
         onMouseUpCapture={handleMouseUpCaptureAndLeave}
         onMouseMoveCapture={handleMouseMoveCapture}
         onMouseLeave={handleMouseUpCaptureAndLeave}
         onClickCapture={handleClickCapture}
       >
-        <div className="o-song-card-list__content__inner" ref={songCardListContentInnerRef}>
+        <div className="o-song-card-list_content_inner" ref={songCardListContentInnerRef}>
           {songCardListChildren}
         </div>
       </div>

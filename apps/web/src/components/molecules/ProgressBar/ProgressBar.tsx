@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
-import classNames from 'classnames';
+import abemClasses from '@utils/abemClasses';
 
 import './style.scss';
 
@@ -98,11 +98,11 @@ export const ProgressBar: FC<ProgressBarProps> = ({ isInteractive, max, value, o
 
   return (
     <div
-      className={classNames('m-progress-bar', isInteractive && '-is-interactive')}
+      className={abemClasses('m-progress-bar', isInteractive && 'is-interactive')}
       onMouseDown={handlePressDown}
       ref={progressBarRef}
     >
-      <div className="m-progress-bar__value" />
+      <div className="m-progress-bar_value" />
     </div>
   );
 };

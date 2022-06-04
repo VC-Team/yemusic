@@ -1,6 +1,9 @@
 .a-icon {
-  width: 24px;
-  height: 24px;
+  $icon-width: 24px;
+  $icon-height: 24px;
+
+  width: $icon-width;
+  height: $icon-height;
   fill: currentcolor;
   stroke: currentcolor;
 

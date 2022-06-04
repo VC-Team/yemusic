@@ -1,17 +1,17 @@
 import { HomeIcon } from '@components/atoms/Icon';
 import { Story, Meta } from '@storybook/react';
 
-import Button, { ButtonProps } from '.';
+import Button, { ButtonProps } from '..';
 
 export default {
   component: Button,
-  title: 'Button',
+  title: 'Atoms/Button',
 } as Meta;
 
 const Template: Story<ButtonProps> = args => <Button {...args} />;
 
-export const Preview = Template.bind({});
-Preview.args = {
+export const Example = Template.bind({});
+Example.args = {
   children: 'Button',
   disabled: false,
   fullWidth: false,
@@ -20,8 +20,8 @@ Preview.args = {
   suffix: <HomeIcon color="inherit" />,
 };
 
-export const Prefix = Template.bind({});
-Prefix.args = {
+export const WithPrefix = Template.bind({});
+WithPrefix.args = {
   children: 'Button',
   disabled: false,
   fullWidth: false,
@@ -29,8 +29,8 @@ Prefix.args = {
   shape: 'default',
 };
 
-export const Suffix = Template.bind({});
-Suffix.args = {
+export const WithSuffix = Template.bind({});
+WithSuffix.args = {
   children: 'Button',
   disabled: false,
   fullWidth: false,

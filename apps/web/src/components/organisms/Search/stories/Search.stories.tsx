@@ -67,7 +67,7 @@ const SimpleSearch = ({ ...otherProps }) => {
   const searchData = state.type === 'recent' ? state.recentSearchData : state.resultSearchData;
 
   return (
-    <Search onSearch={handleSearch} canSearch={false} {...otherProps}>
+    <Search onSearch={handleSearch} isOpenSearchBox={false} {...otherProps}>
       <SearchInput placeholder="Search..." />
       <SearchResultList>
         {searchData?.map((value: any, index: number) => (

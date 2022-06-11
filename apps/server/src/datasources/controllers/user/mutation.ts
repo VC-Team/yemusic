@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 
 import { jwtConfig } from '@config';
-import { TSignUpInput } from '@interface/user';
+import { TSignUpInput, TPlayList } from '@interface/index';
 import { yeToken, auth, nodemailer } from '@utils/controllers';
 import { useHttpHandler } from '@utils/useHttpHandler';
 
-import { User } from '../../models';
+import { User, PlayList } from '../../models';
 
 /*
 TODO: set user info into the Redis
@@ -44,7 +44,12 @@ export const signUp = useHttpHandler(async (req: Request, res: Response): Promis
 
   res.status(200).json({ data: { me: userResponse, accessToken } });
 
-  await nodemailer.sendEmailVerify(req, userResponse);
+  const likedTrack: TPlayList = {
+    name: 'Liked tracks',
+    isLikedTrack: true,
+    owner: userResponse._id,
+  };
+  await Promise.all([nodemailer.sendEmailVerify(req, userResponse), PlayList.create(likedTrack)]);
 
   return;
 });

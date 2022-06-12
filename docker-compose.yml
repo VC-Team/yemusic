@@ -49,11 +49,10 @@ services:
       - /var/vcteam/yemusic/db/redis:/data/redis
       - /var/vcteam/yemusic/db/redis/redis.conf:/data/redis.conf
     environment:
-      - REDIS_HOST=yemusic
-      - REDIS_PORT=6379
-      - REDIS_UERNAME=yemusic
-      - REDIS_PASSWORD=vcteam6379
-      - REDIS_DB=0
+      - REDIS_PORT=${YEMUSIC_API_SERVER_REDIS_PORT:-6379}
+      - REDIS_UERNAME=${YEMUSIC_API_SERVER_REDIS_UERNAME:-redis}
+      - REDIS_PASSWORD=${YEMUSIC_API_SERVER_REDIS_PASSWORD:-vcteam6379}
+      - REDIS_DB=${YEMUSIC_API_SERVER_REDIS_DB:-0}
   server-api:
     container_name: yemusic-server-api
     image: vc-yemusic:server-api
@@ -70,7 +69,7 @@ services:
       - NODEMAILER_PASSWORD=${YEMUSIC_API_SERVER_NODEMAILER_PASSWORD:-demo1212}
       - DB_USERNAME=${YEMUSIC_API_SERVER_DB_USERNAME:-vcteam}
       - DB_PASSWORD=${YEMUSIC_API_SERVER_DB_PASSWORD:-vcteam1122}
-      - REDIS_HOST=${YEMUSIC_API_SERVER_REDIS_HOST:-yemusic}
+      - REDIS_HOST=redis
       - REDIS_PORT=${YEMUSIC_API_SERVER_REDIS_PORT:-6379}
       - REDIS_UERNAME=${YEMUSIC_API_SERVER_REDIS_UERNAME:-redis}
       - REDIS_PASSWORD=${YEMUSIC_API_SERVER_REDIS_PASSWORD:-vcteam6379}

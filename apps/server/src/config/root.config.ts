@@ -29,9 +29,9 @@ export const mongoDB: MongoDB = {
   database: process.env.DB_DEFAULT || 'db_yemusic',
   database_url: process.env.YEMUSIC_DB_CONNECTION_STRING,
   mongoOptions: {
-    // user: process.env.DB_USERNAME,
-    // pass: process.env.DB_PASSWORD,
-    // authSource: 'admin',
+    user: process.env.DB_USERNAME,
+    pass: process.env.DB_PASSWORD,
+    authSource: 'admin',
   },
 };
 

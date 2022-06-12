@@ -1,6 +1,8 @@
+import { RedisOptions } from 'ioredis';
 import * as ms from 'ms';
 
 import { HttpServerConfig, Youtube, MongoDB } from './type.config';
+
 export const container: HttpServerConfig = {
   hostName: process.env.API_HOSTNAME || 'http://localhost',
   port: Number(process.env.API_PORT || 3000),
@@ -51,4 +53,12 @@ export const nodemailerConfig = {
   username: process.env.NODEMAILER_USERNAME,
   password: process.env.NODEMAILER_PASSWORD,
   displayName: '"Yemusic" <yemusic-vcteam>',
+};
+
+export const redisConfig: RedisOptions = {
+  host: process.env.REDIS_HOST || '127.0.0.1',
+  port: Number(process.env.REDIS_PORT || 6390),
+  username: process.env.REDIS_UERNAME || 'default',
+  password: process.env.REDIS_PASSWORD || 'vcteam6379',
+  db: Number(process.env.REDIS_DB || 0),
 };

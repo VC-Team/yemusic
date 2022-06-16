@@ -11,9 +11,12 @@ interface IWebDisplay extends IDisplay {
   device: 'desktop' | 'tablet' | 'mobile';
 }
 
+const deviceSchema = enumType(['desktop', 'tablet', 'mobile']).default('mobile');
+
 @ClientDomain()
 class DisplayDomain<IDisplayOverwrite extends IDisplay> extends ClientDomainProvider<IDisplayOverwrite> {
   public DisplayContext = this.context;
+
   public DisplayProvider = this.provider;
 
   @Action()
@@ -30,7 +33,7 @@ class DisplayDomain<IDisplayOverwrite extends IDisplay> extends ClientDomainProv
 @ClientDomain()
 class WebDisplayDomain extends DisplayDomain<IWebDisplay> {
   @Action()
-  public actionSetDevice(device: IWebDisplay['device']) {
+  public actionSetDevice(@ValidateParam(deviceSchema) device: any) {
     const { updateState } = this;
 
     updateState(prevState => ({
@@ -38,9 +41,14 @@ class WebDisplayDomain extends DisplayDomain<IWebDisplay> {
       device,
     }));
   }
+
+  @Action()
+  async actionGetPoke(@ValidateParam(string()) path: any) {
+    return axios.get(path);
+  }
 }
 
-const { DisplayProvider, DisplayContext, actionToggleTheme, actionSetDevice } = new WebDisplayDomain({
+const { DisplayProvider, DisplayContext, actionToggleTheme, actionSetDevice, actionGetPoke } = new WebDisplayDomain({
   theme: 'light',
   device: 'desktop',
 });
@@ -48,25 +56,28 @@ const { DisplayProvider, DisplayContext, actionToggleTheme, actionSetDevice } = 
 const Demo: FC = () => {
   const { device, theme } = useContext(DisplayContext);
 
+  const handleToggleTheme = () => {
+    actionToggleTheme();
+  };
+
+  const handleGetPoke = async () => {
+    const result = await actionGetPoke('https://pokeapi.co/api/v2/pokemon/ditto');
+    console.log(result);
+  };
+
   return (
     <div>
       <p>Theme: {theme}</p>
       <p>Device: {device}</p>
 
-      <button onClick={actionToggleTheme}>{theme === 'light' ? 'Dark' : 'Light'}</button>
+      <button onClick={handleToggleTheme}>{theme === 'light' ? 'Dark' : 'Light'}</button>
       <br />
       <button onClick={() => actionSetDevice('desktop')}>Desktop</button>
       <button onClick={() => actionSetDevice('tablet')}>Tablet</button>
       <button onClick={() => actionSetDevice('mobile')}>Mobile</button>
+      <br />
+      <button onClick={handleGetPoke}>GetPoke</button>
     </div>
-  );
-};
-
-export const App: FC = () => {
-  return (
-    <DisplayProvider>
-      <Demo />
-    </DisplayProvider>
   );
 };
 ```

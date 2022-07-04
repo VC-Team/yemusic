@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 const { ObjectId } = mongoose.Types;
+
 const playListSchema = new Schema(
   {
     name: String,
@@ -11,11 +12,18 @@ const playListSchema = new Schema(
       type: ObjectId,
       ref: 'user',
     },
-    songs: {
-      type: String,
-    },
+    songs: [
+      {
+        type: ObjectId,
+        ref: 'song',
+      },
+    ],
 
     isLikedTrack: {
+      type: Boolean,
+      default: false,
+    },
+    isDeleted: {
       type: Boolean,
       default: false,
     },

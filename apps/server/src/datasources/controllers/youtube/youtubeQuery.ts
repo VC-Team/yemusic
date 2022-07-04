@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { ytb } from '@utils/controllers';
-import { useHttpHandler } from '@utils/useHttpHandler';
+import { useHttpHandler } from '@utils/helper/useHttpHandler';
 
 export const listSong = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
   const { search, token, apiKey } = req.body;

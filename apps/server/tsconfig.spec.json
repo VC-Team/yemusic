@@ -6,6 +6,7 @@
     "types": ["jest", "node"],
     "baseUrl": ".",
     "paths": {
+      "@datasources/*": ["src/datasources/*"],
       "@controllers/*": ["src/datasources/controllers/*"],
       "@interface/*": ["src/datasources/interface/*"],
       "@model/*": ["src/datasources/models/*"],

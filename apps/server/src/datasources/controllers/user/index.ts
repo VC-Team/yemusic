@@ -1,5 +1,5 @@
-import * as userMutation from './mutation';
+import * as userCommand from './userCommand';
 
 export default {
-  ...userMutation,
+  ...userCommand,
 };

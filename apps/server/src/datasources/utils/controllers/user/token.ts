@@ -4,7 +4,7 @@ import { jwtConfig } from '@config';
 import { TParamsCreateToken, TParamsVerifyToken } from '@utils/interface';
 import * as jwt from 'jsonwebtoken';
 
-import { setCookie } from '../cookie';
+import { setCookie } from '../../cookie';
 
 export function createToken({ expiration, secretKey, payload }: TParamsCreateToken) {
   const token = jwt.sign(payload, secretKey, { expiresIn: expiration });

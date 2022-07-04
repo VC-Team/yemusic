@@ -1,4 +1,4 @@
-import * as youtubeQuery from './query';
+import * as youtubeQuery from './youtubeQuery';
 
 export default {
   ...youtubeQuery,

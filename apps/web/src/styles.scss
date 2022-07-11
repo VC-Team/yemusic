@@ -4,6 +4,19 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: pxtorem(8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: $DIVIDER;
+  border-radius: pxtorem(4);
+}
+
+::-webkit-scrollbar-track:hover {
+  background: $HOVER-OVERLAY;
+}
+
 html {
   font-size: $FONT-SIZE-HTML;
   word-break: break-word;

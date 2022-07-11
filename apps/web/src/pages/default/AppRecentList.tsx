@@ -1,5 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-export const AppRecentList = () => {
+export const AppRecentList: FC = () => {
   return <div>AppRecentList</div>;
 };

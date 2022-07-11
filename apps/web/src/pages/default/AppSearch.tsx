@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 
 import Search, { SearchInput, SearchResultList, SearchResultListItem } from '@components/organisms/Search';
 import abemClasses from '@utils/abemClasses';
@@ -25,12 +25,31 @@ type IAppSearch = {
 };
 
 export const AppSearch: FC = () => {
+  const appDefaultSearchInnerRef = useRef<HTMLDivElement>(null);
+
   const [state, setState] = useState<IAppSearch>({
     isOpenSearchBox: false,
     recentSearchData: [],
     resultSearchData: [],
     type: 'recent',
   });
+
+  useEffect(() => {
+    const listener = (event: any) => {
+      if (!appDefaultSearchInnerRef.current || appDefaultSearchInnerRef.current.contains(event.target)) {
+        return;
+      }
+      handleToggleOpenSearchBox(false);
+    };
+
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+
+    return () => {
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+    };
+  }, []);
 
   const handleToggleOpenSearchBox = (isOpen: boolean) => {
     setState(prevState => ({
@@ -69,7 +88,10 @@ export const AppSearch: FC = () => {
 
   return (
     <div className="c-app-default-search">
-      <div className={abemClasses('c-app-default-search_inner', state.isOpenSearchBox && 'open')}>
+      <div
+        className={abemClasses('c-app-default-search_inner', state.isOpenSearchBox && 'open')}
+        ref={appDefaultSearchInnerRef}
+      >
         <Search
           isOpenSearchBox={state.isOpenSearchBox}
           onSearch={handleSearch}

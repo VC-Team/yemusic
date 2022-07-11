@@ -1,15 +1,7 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
-import {
-  CircleActiveIcon,
-  CircleIcon,
-  HeartActiveIcon,
-  HeartIcon,
-  HomeActiveIcon,
-  HomeIcon,
-  SearchIcon,
-} from '@components/atoms/Icon';
-import Nav, { NavDivider, NavItem } from '@components/molecules/Nav';
+import { HeartActiveIcon, HeartIcon, HomeActiveIcon, HomeIcon, SearchIcon } from '@components/atoms/Icon';
+import Nav, { NavItem } from '@components/molecules/Nav';
 
 import './style.scss';
 
@@ -42,7 +34,7 @@ export const MobileAppNavigation: FC = () => {
 
 export const DesktopAppNavigation: FC = () => {
   return (
-    <div className="c-app-default_navigation -mobile">
+    <div className="c-app-default_navigation -desktop">
       <Nav mode="vertical">
         <NavItem
           icon={<HomeIcon color="inherit" />}
@@ -55,25 +47,6 @@ export const DesktopAppNavigation: FC = () => {
           iconActive={<HeartActiveIcon color="primary" />}
           name="Liked Tracks"
           to="/liked-tracks"
-        />
-        <NavDivider />
-        <NavItem
-          icon={<CircleIcon color="inherit" />}
-          iconActive={<CircleActiveIcon color="primary" />}
-          name="Playlist 1"
-          to="/play-list-1"
-        />
-        <NavItem
-          icon={<CircleIcon color="inherit" />}
-          iconActive={<CircleActiveIcon color="primary" />}
-          name="Playlist 2"
-          to="/play-list-2"
-        />
-        <NavItem
-          icon={<CircleIcon color="inherit" />}
-          iconActive={<CircleActiveIcon color="primary" />}
-          name="Playlist 3"
-          to="/play-list-3"
         />
       </Nav>
     </div>

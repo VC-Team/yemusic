@@ -1,9 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import MainLayout from '@components/templates/MainLayout';
 import { useMediaQuery } from 'react-responsive';
 
-import { MobileAppHeader, DesktopAppHeader, MobileAppNavigation, DesktopAppNavigation, AppSearch } from '.';
+import {
+  AppSearch,
+  DesktopAppHeader,
+  DesktopAppNavigation,
+  MobileAppHeader,
+  MobileAppNavigation,
+  AppPlayerControls,
+} from '.';
 
 type IDefaultPageState = {
   device: 'mobile' | 'desktop';
@@ -29,14 +36,17 @@ export const DefaultPage: FC = () => {
     <MainLayout
       device={state.device}
       render={{
-        mobile: {
-          header: <MobileAppHeader />,
-          navigation: <MobileAppNavigation />,
+        common: {
+          playerControls: <AppPlayerControls device={state.device} />,
         },
         desktop: {
           header: <DesktopAppHeader />,
           navigation: <DesktopAppNavigation />,
           search: <AppSearch />,
+        },
+        mobile: {
+          header: <MobileAppHeader />,
+          navigation: <MobileAppNavigation />,
         },
       }}
     />

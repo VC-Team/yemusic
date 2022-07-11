@@ -5,18 +5,16 @@
   flex-direction: column;
   gap: pxtorem(4);
   padding: pxtorem(8);
+  overflow: hidden;
   border-radius: 4px;
 
   &_input {
-    $search-input-icon-width: 32px;
-    $search-input-icon-height: 32px;
-
     &_icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: $search-input-icon-width;
-      height: $search-input-icon-height;
+      width: 32px;
+      height: 32px;
     }
   }
 
@@ -46,15 +44,9 @@
     display: flex;
     flex-direction: column;
     gap: pxtorem(4);
+    overflow-y: auto;
 
     &_item {
-      $search-resultlist-item-icon-width: 36px;
-      $search-resultlist-item-icon-height: 36px;
-      $search-resultlist-item-thumbnail-width: 64px;
-      $search-resultlist-item-thumbnail-height: 36px;
-      $search-resultlist-item-action-width: 32px;
-      $search-resultlist-item-action-height: 32px;
-
       display: flex;
       gap: pxtorem(8);
       align-items: center;
@@ -68,16 +60,16 @@
       &.-recent {
         #{$root}_resultlist_item {
           &_info {
-            width: calc(100% - 8px * 2 - $search-resultlist-item-icon-width - $search-resultlist-item-action-width);
+            width: calc(100% - 8px * 2 - 36px - 32px);
           }
 
           &_action {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: $search-resultlist-item-action-width;
-            min-width: $search-resultlist-item-action-width;
-            height: $search-resultlist-item-action-height;
+            width: 32px;
+            min-width: 32px;
+            height: 32px;
             border-radius: pxtorem(4);
 
             &:hover {
@@ -90,7 +82,7 @@
       &.-result {
         #{$root}_resultlist_item {
           &_info {
-            width: calc(100% - 8px - $search-resultlist-item-thumbnail-width);
+            width: calc(100% - 8px - 64px);
           }
         }
       }
@@ -99,9 +91,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: $search-resultlist-item-icon-width;
-        min-width: $search-resultlist-item-icon-width;
-        height: $search-resultlist-item-icon-height;
+        width: 36px;
+        min-width: 36px;
+        height: 36px;
         background-color: rgb(98 89 89);
         border-radius: pxtorem(4);
 
@@ -112,9 +104,9 @@
       }
 
       &_thumbnail {
-        width: $search-resultlist-item-thumbnail-width;
-        min-width: $search-resultlist-item-thumbnail-width;
-        height: $search-resultlist-item-thumbnail-height;
+        width: 64px;
+        min-width: 64px;
+        height: 36px;
 
         img {
           width: 100%;

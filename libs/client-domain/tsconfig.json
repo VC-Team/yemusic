@@ -1,38 +1,30 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "types": ["reflect-metadata"],
+    "module": "commonjs",
     "jsx": "react-jsx",
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitThis": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "@assets/*": ["apps/web/src/assets/*"],
-      "@components/*": ["apps/web/src/components/*"],
-      "@constants/*": ["apps/web/src/constants/*"],
-      "@helpers/*": ["apps/web/src/helpers/*"],
-      "@hooks/*": ["apps/web/src/hooks/*"],
-      "@pages/*": ["apps/web/src/pages/*"],
-      "@utils/*": ["apps/web/src/utils/*"],
-      "@yemusic/client-domain": ["libs/client-domain/src/index.ts"]
-    }
   },
   "files": [],
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.lib.json"
     },
     {
       "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./.storybook/tsconfig.json"
     }
   ]
 }

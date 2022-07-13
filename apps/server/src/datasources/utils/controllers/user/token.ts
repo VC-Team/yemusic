@@ -20,7 +20,7 @@ export function verifyToken({ token, secretKey, options }: TParamsVerifyToken): 
 export function generateTokenForUser(req: Request, res: Response, userId, isRefresh = false): string {
   const payload = { userId, allowedAt: new Date() };
   const accessToken = createToken({
-    expiration: jwtConfig.acessTokenExpiration,
+    expiration: jwtConfig.accessTokenExpiration,
     secretKey: jwtConfig.secretAccessToken,
     payload,
   });

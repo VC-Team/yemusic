@@ -85,4 +85,4 @@ jobs:
             export YEMUSIC_API_SERVER_PORT=${{ secrets.YEMUSIC_API_SERVER_PORT }}
             export DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
             docker-compose -f docker-compose.prod.yml pull
-            docker-compose -f docker-compose.prod.yml up -d --no-deps
+            docker-compose -f docker-compose.prod.yml --env-file .env up -d --no-deps

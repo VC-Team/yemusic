@@ -33,11 +33,11 @@ import {
   SettingIcon,
   ClockIcon,
   DownloadIcon,
-} from '.';
+} from '..';
 
 export default {
   component: CircleIcon,
-  title: 'Icon',
+  title: 'Atoms/Icon',
 } as Meta;
 
 const CircleIconTemplate: Story<IconProps> = args => <CircleIcon {...args} />;

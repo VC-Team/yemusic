@@ -26,7 +26,11 @@ export const mongoDB: MongoDB = {
   database_host: process.env.DB_HOST || 'localhost',
   database: process.env.DB_DEFAULT || 'db_yemusic',
   database_url: process.env.YEMUSIC_DB_CONNECTION_STRING,
-  mongoOptions: {},
+  mongoOptions: {
+    user: process.env.DB_USERNAME,
+    pass: process.env.DB_PASSWORD,
+    authSource: 'admin',
+  },
 };
 
 export const refreshTokenExpires: number = Date.now() + 24 * 60 * 60 * 10000;
@@ -35,7 +39,16 @@ export const jwtConfig = {
   secretAccessToken: process.env.SECRET_ACCESS_TOKEN || 'VC-Access-Team',
   secretRefreshToken: process.env.SECRET_REFRESH_TOKEN || 'VC-Refresh-Team',
 
-  acessTokenExpiration: Number(ms('1 days') / 1000),
+  accessTokenExpiration: Number(ms('1 days') / 1000),
   refreshTokenExpiration: Number(ms('90 days') / 1000),
   emailValidateExpiration: Number(ms('15 minute') / 1000),
+};
+
+export const nodemailerConfig = {
+  host: process.env.NODEMAILER_HOST,
+  port: Number(process.env.NODEMAILER_PORT),
+  secure: false, // true for port 465, false for other ports
+  username: process.env.NODEMAILER_USERNAME,
+  password: process.env.NODEMAILER_PASSWORD,
+  displayName: '"Yemusic" <yemusic-vcteam>',
 };

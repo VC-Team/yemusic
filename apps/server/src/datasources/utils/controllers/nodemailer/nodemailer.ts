@@ -1,5 +1,6 @@
 import { TParamsSendMail } from '@utils/interface';
 import * as nodemailer from 'nodemailer';
+import { nodemailerConfig } from 'src/config';
 
 /**
  * Create a reusable transporter object using the default SMTP transport
@@ -24,14 +25,13 @@ async function createTransport(isUseTestAccount = false) {
       },
     });
   }
-
   return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    host: nodemailerConfig.host,
+    port: nodemailerConfig.port,
+    secure: nodemailerConfig.secure, // true for 465, false for other ports
     auth: {
-      user: 'tunganhtest1@gmail.com', // get from ENV later
-      pass: 'TungAnh252!', // get from ENV later
+      user: nodemailerConfig.username,
+      pass: nodemailerConfig.password,
     },
   });
 }
@@ -42,20 +42,16 @@ async function createTransport(isUseTestAccount = false) {
  * @returns The messageId and previewURL.
  */
 export async function sendMail({ to, subject, text, html, isUseTestAccount }: TParamsSendMail) {
-  try {
-    const transport = await createTransport(isUseTestAccount);
+  const transport = await createTransport(isUseTestAccount);
 
-    // send mail with defined transport object
-    const info = await transport.sendMail({
-      from: '"Yemusic" <yemusic@vcteam.com>', // sender address
-      to, // list of receivers
-      subject, // Subject line
-      text, // plain text body
-      html, // html body
-    });
+  // send mail with defined transport object
+  const info = await transport.sendMail({
+    from: nodemailerConfig.displayName, // sender address
+    to, // list of receivers
+    subject, // Subject line
+    text, // plain text body
+    html, // html body
+  });
 
-    return { messageId: info.messageId, previewURL: nodemailer.getTestMessageUrl(info) };
-  } catch (error) {
-    console.error;
-  }
+  return { messageId: info?.messageId || '', previewURL: nodemailer.getTestMessageUrl(info) || '' };
 }

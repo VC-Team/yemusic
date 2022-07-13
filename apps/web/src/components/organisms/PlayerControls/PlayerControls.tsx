@@ -15,9 +15,9 @@ import abemClasses from '@utils/abemClasses';
 
 import './style.scss';
 
-export type IViewMode = 'full' | 'mini';
+export type IPlayerControlViewMode = 'full' | 'mini';
 
-export type IRepeatMode = 'none' | 'one' | 'all';
+export type IPlayerControlRepeatMode = 'none' | 'one' | 'all';
 
 export interface PlayerControlsProps {
   audioSrc: string;
@@ -25,22 +25,23 @@ export interface PlayerControlsProps {
   imageSrc: string;
   isLoading: boolean;
   isShuffle: boolean;
-  repeatMode: IRepeatMode;
+  repeatMode: IPlayerControlRepeatMode;
   songName: string;
-  viewMode: IViewMode;
+  viewMode: IPlayerControlViewMode;
   onEnded: () => void;
-  onClickRepeat: (repeatMode: IRepeatMode) => void;
+  onClickRepeat: (repeatMode: IPlayerControlRepeatMode) => void;
   onClickShuffle: () => void;
   onClickSkipNext: () => void;
   onClickSkipPrevious: () => void;
+  onToggleViewMode: (newViewMode: IPlayerControlViewMode) => void;
 }
 
 type IPlayerControls = {
   currentTime: number;
   duration: number;
   isPlaying: boolean;
-  repeatMode: IRepeatMode;
-  viewMode: IViewMode;
+  repeatMode: IPlayerControlRepeatMode;
+  viewMode: IPlayerControlViewMode;
 };
 
 function toHHMMSS(secs: number) {
@@ -69,6 +70,7 @@ export const PlayerControls: FC<PlayerControlsProps> = ({
   onClickShuffle,
   onClickSkipNext,
   onClickSkipPrevious,
+  onToggleViewMode,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -128,15 +130,17 @@ export const PlayerControls: FC<PlayerControlsProps> = ({
   }, [state.repeatMode, onEnded]);
 
   const handleToggleMode = useCallback(
-    (newMode: IViewMode) => {
+    (newMode: IPlayerControlViewMode) => {
       if (newMode !== state.viewMode) {
+        onToggleViewMode(newMode);
+
         setState(prevState => ({
           ...prevState,
           viewMode: newMode,
         }));
       }
     },
-    [state.viewMode]
+    [state.viewMode, onToggleViewMode]
   );
 
   const handleControlPlay = useCallback(() => {
@@ -186,47 +190,49 @@ export const PlayerControls: FC<PlayerControlsProps> = ({
       onClick={() => handleToggleMode('full')}
     >
       <audio
-        className="o-player-controls__audio"
+        className="o-player-controls_audio"
         src={audioSrc}
         ref={audioRef}
+        onPlay={handleControlPlay}
+        onPause={handleControlPause}
         onEnded={handleEnded}
         onLoadedMetadata={handleLoadMetadata}
         onTimeUpdate={handleUpdateTime}
       />
 
       <div
-        className="o-player-controls__header"
+        className="o-player-controls_header"
         role={state.viewMode === 'full' ? 'button' : 'none'}
         onClick={() => handleToggleMode('mini')}
       >
-        <div className="o-player-controls__header__title" data-loading="inherit">
+        <div className="o-player-controls_header_title" data-loading="inherit">
           <h2>Now Playing</h2>
         </div>
-        <div className="o-player-controls__header__action">
+        <div className="o-player-controls_header_action">
           <MoreIcon />
         </div>
       </div>
 
-      <div className="o-player-controls__image">
+      <div className="o-player-controls_image">
         <div
-          className={abemClasses('o-player-controls__image__inner', state.isPlaying && 'playing')}
+          className={abemClasses('o-player-controls_image_inner', state.isPlaying && 'playing')}
           data-loading="inherit"
         >
           <img src={imageSrc} alt={songName} />
         </div>
       </div>
 
-      <div className="o-player-controls__info">
-        <div className="o-player-controls__info__name" data-loading="inherit">
+      <div className="o-player-controls_info">
+        <div className="o-player-controls_info_name" data-loading="inherit">
           <h3>{songName}</h3>
         </div>
-        <div className="o-player-controls__info__author" data-loading="inherit">
+        <div className="o-player-controls_info_author" data-loading="inherit">
           <p>{author}</p>
         </div>
       </div>
 
-      <div className="o-player-controls__time">
-        <div className="o-player-controls__time__progress-bar" data-loading="inherit">
+      <div className="o-player-controls_time">
+        <div className="o-player-controls_time_progress-bar" data-loading="inherit">
           <ProgressBar
             isInteractive={state.viewMode === 'full'}
             max={state.duration}
@@ -234,35 +240,35 @@ export const PlayerControls: FC<PlayerControlsProps> = ({
             onChangeValue={handleChangeCurrentTime}
           />
         </div>
-        <div className="o-player-controls__time__value" data-loading="inherit">
+        <div className="o-player-controls_time_value" data-loading="inherit">
           <span>{toHHMMSS(state.currentTime)}</span>
         </div>
-        <div className="o-player-controls__time__value" data-loading="inherit">
+        <div className="o-player-controls_time_value" data-loading="inherit">
           <span>{toHHMMSS(state.duration)}</span>
         </div>
       </div>
 
-      <div className="o-player-controls__actionlist" onClick={e => e.stopPropagation()}>
-        <button className="o-player-controls__actionlist__item -hidden" data-loading="inherit" onClick={onClickShuffle}>
+      <div className="o-player-controls_actionlist" onClick={e => e.stopPropagation()}>
+        <button className="o-player-controls_actionlist_item -hidden" data-loading="inherit" onClick={onClickShuffle}>
           {isShuffle ? <ShuffleIcon color="primary" /> : <ShuffleIcon />}
         </button>
-        <button className="o-player-controls__actionlist__item" data-loading="inherit" onClick={onClickSkipPrevious}>
+        <button className="o-player-controls_actionlist_item" data-loading="inherit" onClick={onClickSkipPrevious}>
           <SkipPreviousActiveIcon />
         </button>
         {state.isPlaying ? (
-          <button className="o-player-controls__actionlist__item" data-loading="inherit" onClick={handleControlPause}>
+          <button className="o-player-controls_actionlist_item" data-loading="inherit" onClick={handleControlPause}>
             <PauseActiveIcon />
           </button>
         ) : (
-          <button className="o-player-controls__actionlist__item" data-loading="inherit" onClick={handleControlPlay}>
+          <button className="o-player-controls_actionlist_item" data-loading="inherit" onClick={handleControlPlay}>
             <PlayActiveIcon />
           </button>
         )}
-        <button className="o-player-controls__actionlist__item" data-loading="inherit" onClick={onClickSkipNext}>
+        <button className="o-player-controls_actionlist_item" data-loading="inherit" onClick={onClickSkipNext}>
           <SkipNextActiveIcon />
         </button>
         <button
-          className="o-player-controls__actionlist__item -hidden"
+          className="o-player-controls_actionlist_item -hidden"
           data-loading="inherit"
           onClick={handleControlToggleRepeatMode}
         >

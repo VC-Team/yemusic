@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 
-import classNames from 'classnames';
-import './styles.scss';
+import abemClasses from '@utils/abemClasses';
+
+import './style.scss';
 
 export interface ButtonProps
   extends Omit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, 'prefix'> {
@@ -23,16 +24,12 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={classNames('a-button', `-${shape}`, {
-        '-full-width': fullWidth,
-        '-disabled': disabled,
-        className,
-      })}
+      className={abemClasses('a-button', shape, fullWidth && 'full-width', disabled && 'disabled')}
       {...otherProps}
     >
-      {prefix && <span className="a-button__addon">{prefix}</span>}
-      {children && <span className="a-button__text">{children}</span>}
-      {suffix && <span className="a-button__addon">{suffix}</span>}
+      {prefix && <span className="a-button_addon">{prefix}</span>}
+      {children && <span className="a-button_text">{children}</span>}
+      {suffix && <span className="a-button_addon">{suffix}</span>}
     </button>
   );
 };

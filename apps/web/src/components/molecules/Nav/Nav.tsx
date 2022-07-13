@@ -1,9 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { Children, cloneElement, FC, isValidElement, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  Children,
+  cloneElement,
+  FC,
+  isValidElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-import classNames from 'classnames';
+import abemClasses from '@utils/abemClasses';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { NavItem } from '.';
 import './style.scss';
 
 export interface NavProps {
@@ -29,10 +39,10 @@ const handleUpdateNavItemActive = (navRef: React.RefObject<HTMLUListElement>, na
 };
 
 export const Nav: FC<NavProps> = ({ children, mode = 'horizontal' }) => {
+  const navRef = useRef<HTMLUListElement>(null);
+
   const navigate = useNavigate();
   const location = useLocation();
-
-  const navRef = useRef<HTMLUListElement>(null);
 
   const [state, setState] = useState<INavState>({
     navItemSelect: 0,
@@ -73,24 +83,29 @@ export const Nav: FC<NavProps> = ({ children, mode = 'horizontal' }) => {
   useEffect(() => {
     window.addEventListener('resize', () => handleUpdateNavItemActive(navRef, state.navItemSelect));
 
-    return () => window.removeEventListener('resize', () => handleUpdateNavItemActive(navRef, state.navItemSelect));
+    return () => {
+      window.removeEventListener('resize', () => handleUpdateNavItemActive(navRef, state.navItemSelect));
+    };
   }, [state.navItemSelect]);
 
-  const handleChangeNavItemActive = (navItemSelect: number) => {
-    setState(prevState => ({
-      ...prevState,
-      navItemSelect,
-    }));
+  const handleChangeNavItemActive = useCallback(
+    (navItemSelect: number) => {
+      setState(prevState => ({
+        ...prevState,
+        navItemSelect,
+      }));
 
-    if (routes) {
-      navigate(routes[navItemSelect].to);
-    }
-  };
+      if (routes) {
+        navigate(routes[navItemSelect].to);
+      }
+    },
+    [navigate, routes]
+  );
 
   return (
-    <ul className={classNames('m-nav', `-${mode}`)} ref={navRef}>
+    <ul className={abemClasses('m-nav', mode)} ref={navRef}>
       {Children.map(children, (child, childIndex) => {
-        if (isValidElement(child) && (child.type as any).name === 'NavItem') {
+        if (isValidElement(child) && child.type === NavItem) {
           return cloneElement(child, {
             mode: mode === 'horizontal' ? 'mini' : 'full',
             _isActive: childIndex === state.navItemSelect,

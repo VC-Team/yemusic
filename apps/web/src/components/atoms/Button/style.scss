@@ -1,6 +1,9 @@
-$root: a-button;
+.a-button {
+  $root: &;
+  $button-transition-duration: 0.1s;
+  $button-disabled-opacity: 0.32;
+  $button-active-scale: 0.99;
 
-.#{$root} {
   position: relative;
   display: inline-flex;
   gap: pxtorem(8);
@@ -9,16 +12,15 @@ $root: a-button;
   width: fit-content;
   padding: pxtorem(8) pxtorem(16);
   color: $PRIMARY-TEXT;
-  cursor: pointer;
   user-select: none;
   background-color: $INTERACTIVE-BACKGROUND;
-  border: 0;
+  border: none;
   border-radius: pxtorem(4);
-  outline: 0;
-  transition: all 0.1s;
+  outline: none;
+  transition: all $button-transition-duration;
 
   &:active {
-    transform: scale(0.99);
+    transform: scale($button-active-scale);
   }
 
   &:hover {
@@ -37,19 +39,21 @@ $root: a-button;
 
   &.-disabled {
     pointer-events: none;
-    opacity: 0.32;
+    opacity: $button-disabled-opacity;
   }
 
-  &__addon {
-    width: 24px;
-    height: 24px;
+  &_addon {
+    $button-addon-width: 24px;
+    $button-addon-height: 24px;
+
+    width: $button-addon-width;
+    height: $button-addon-height;
     overflow: hidden;
   }
 
-  &__text {
-    font-size: pxtorem(16);
-    font-weight: 600;
-    line-height: 1;
+  &_text {
+    @include text(button);
+
     text-transform: uppercase;
   }
 

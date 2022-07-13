@@ -1,21 +1,22 @@
 import React, { FC } from 'react';
 
-import classNames from 'classnames';
+import abemClasses from '@utils/abemClasses';
 
 import './style.scss';
 
-export interface IconProps {
+export interface IconProps extends React.SVGProps<SVGSVGElement> {
   color?: 'inherit' | 'secondary' | 'primary';
 }
 
-export const CircleIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const CircleIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       d="M12 20.0017C16.4183 20.0017 20 16.42 20 12.0017C20 7.58343 16.4183 4.00171 12 4.00171C7.58172 4.00171 4 7.58343 4 12.0017C4 16.42 7.58172 20.0017 12 20.0017Z"
@@ -28,27 +29,29 @@ export const CircleIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const CircleActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const CircleActiveIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path d="M12 21.0017C16.9706 21.0017 21 16.9723 21 12.0017C21 7.03115 16.9706 3.00171 12 3.00171C7.02944 3.00171 3 7.03115 3 12.0017C3 16.9723 7.02944 21.0017 12 21.0017Z" />
   </svg>
 );
 
-export const HomeIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const HomeIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -58,27 +61,29 @@ export const HomeIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const HomeActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const HomeActiveIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path d="M20.8617 8.37473L13.9317 2.83473C12.8617 1.97473 11.1317 1.97473 10.0717 2.82473L3.14173 8.37473C2.36173 8.99473 1.86173 10.3047 2.03173 11.2847L3.36173 19.2447C3.60173 20.6647 4.96173 21.8147 6.40173 21.8147H17.6017C19.0317 21.8147 20.4017 20.6547 20.6417 19.2447L21.9717 11.2847C22.1317 10.3047 21.6317 8.99473 20.8617 8.37473ZM12.0017 15.5047C10.6217 15.5047 9.50173 14.3847 9.50173 13.0047C9.50173 11.6247 10.6217 10.5047 12.0017 10.5047C13.3817 10.5047 14.5017 11.6247 14.5017 13.0047C14.5017 14.3847 13.3817 15.5047 12.0017 15.5047Z" />
   </svg>
 );
 
-export const HeartIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const HeartIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       d="M12.62 20.8118C12.28 20.9318 11.72 20.9318 11.38 20.8118C8.48 19.8218 2 15.6918 2 8.69181C2 5.60181 4.49 3.10181 7.56 3.10181C9.38 3.10181 10.99 3.98181 12 5.34181C13.01 3.98181 14.63 3.10181 16.44 3.10181C19.51 3.10181 22 5.60181 22 8.69181C22 15.6918 15.52 19.8218 12.62 20.8118Z"
@@ -90,54 +95,58 @@ export const HeartIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const HeartActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const HeartActiveIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path d="M16.44 3.10327C14.63 3.10327 13.01 3.98327 12 5.33327C10.99 3.98327 9.37 3.10327 7.56 3.10327C4.49 3.10327 2 5.60327 2 8.69327C2 9.88327 2.19 10.9833 2.52 12.0033C4.1 17.0033 8.97 19.9933 11.38 20.8133C11.72 20.9333 12.28 20.9333 12.62 20.8133C15.03 19.9933 19.9 17.0033 21.48 12.0033C21.81 10.9833 22 9.88327 22 8.69327C22 5.60327 19.51 3.10327 16.44 3.10327Z" />
   </svg>
 );
 
-export const PlayIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const PlayIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path d="M7.86512 21.2768C7.07512 21.2768 6.32512 21.0868 5.66512 20.7068C4.10512 19.8068 3.24512 17.9768 3.24512 15.5668V8.43681C3.24512 6.01681 4.10512 4.19682 5.66512 3.29682C7.22512 2.39682 9.23512 2.56682 11.3351 3.77682L17.5051 7.33682C19.5951 8.54682 20.7551 10.2068 20.7551 12.0068C20.7551 13.8068 19.6051 15.4668 17.5051 16.6768L11.3351 20.2368C10.1251 20.9268 8.94512 21.2768 7.86512 21.2768ZM7.86512 4.21681C7.32512 4.21681 6.84512 4.33682 6.41512 4.58682C5.33512 5.20682 4.74512 6.57681 4.74512 8.43681V15.5568C4.74512 17.4168 5.33512 18.7768 6.41512 19.4068C7.49512 20.0368 8.97512 19.8568 10.5851 18.9268L16.7551 15.3668C18.3651 14.4368 19.2551 13.2468 19.2551 11.9968C19.2551 10.7468 18.3651 9.55682 16.7551 8.62682L10.5851 5.06682C9.60512 4.50682 8.68512 4.21681 7.86512 4.21681Z" />
   </svg>
 );
 
-export const PlayActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const PlayActiveIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path d="M7.86512 21.278C7.07512 21.278 6.32512 21.088 5.66512 20.708C4.10512 19.808 3.24512 17.978 3.24512 15.568V8.43804C3.24512 6.01804 4.10512 4.19804 5.66512 3.29804C7.22512 2.39804 9.23512 2.56804 11.3351 3.77804L17.5051 7.33804C19.5951 8.54804 20.7551 10.208 20.7551 12.008C20.7551 13.808 19.6051 15.468 17.5051 16.678L11.3351 20.238C10.1251 20.928 8.94512 21.278 7.86512 21.278ZM7.86512 4.21804C7.32512 4.21804 6.84512 4.33804 6.41512 4.58804C5.33512 5.20804 4.74512 6.57804 4.74512 8.43804V15.558C4.74512 17.418 5.33512 18.778 6.41512 19.408C7.49512 20.038 8.97512 19.858 10.5851 18.928L16.7551 15.368C18.3651 14.438 19.2551 13.248 19.2551 11.998C19.2551 10.748 18.3651 9.55804 16.7551 8.62804L10.5851 5.06804C9.60512 4.50804 8.68512 4.21804 7.86512 4.21804Z" />
     <path d="M7.86512 4.21804C7.32512 4.21804 6.84512 4.33804 6.41512 4.58804C5.33512 5.20804 4.74512 6.57804 4.74512 8.43804V15.558C4.74512 17.418 5.33512 18.778 6.41512 19.408C7.49512 20.038 8.97512 19.858 10.5851 18.928L16.7551 15.368C18.3651 14.438 19.2551 13.248 19.2551 11.998C19.2551 10.748 18.3651 9.55804 16.7551 8.62804L10.5851 5.06804C9.60512 4.50804 8.68512 4.21804 7.86512 4.21804Z" />
   </svg>
 );
 
-export const PauseIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const PauseIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -147,14 +156,15 @@ export const PauseIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const PauseActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const PauseActiveIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fill-rule="evenodd"
@@ -164,14 +174,15 @@ export const PauseActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const SkipNextIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const SkipNextIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -181,14 +192,15 @@ export const SkipNextIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const SkipNextActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const SkipNextActiveIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -198,14 +210,15 @@ export const SkipNextActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const SkipPreviousIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const SkipPreviousIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -215,14 +228,15 @@ export const SkipPreviousIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const SkipPreviousActiveIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const SkipPreviousActiveIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -232,14 +246,15 @@ export const SkipPreviousActiveIcon: FC<IconProps> = ({ color = 'secondary' }) =
   </svg>
 );
 
-export const SearchIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const SearchIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -249,14 +264,15 @@ export const SearchIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const CloseIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const CloseIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       d="M4 3.99805L20 20.0018M20 3.99805L4 20.0018"
@@ -267,14 +283,15 @@ export const CloseIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const VolumehightIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const VolumehightIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -284,14 +301,15 @@ export const VolumehightIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const VolumeLowIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const VolumeLowIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -301,14 +319,15 @@ export const VolumeLowIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const VolumeOffIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const VolumeOffIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       d="M5.5 10.0027V14.0027C5.5 16.0027 6.5 17.0027 8.5 17.0027H9.93C10.3 17.0027 10.67 17.1127 10.99 17.3027L13.91 19.1327C16.43 20.7127 18.5 19.5627 18.5 16.5927V7.41272C18.5 4.43272 16.43 3.29272 13.91 4.87272L10.99 6.70272C10.67 6.89272 10.3 7.00272 9.93 7.00272H8.5C6.5 7.00272 5.5 8.00272 5.5 10.0027Z"
@@ -317,14 +336,15 @@ export const VolumeOffIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const VolumeSlashIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const VolumeSlashIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -334,14 +354,15 @@ export const VolumeSlashIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const RepeatIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const RepeatIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -351,14 +372,15 @@ export const RepeatIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const RepeatOneIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const RepeatOneIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -368,14 +390,15 @@ export const RepeatOneIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const ShuffleIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const ShuffleIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -385,14 +408,15 @@ export const ShuffleIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const ArrowLeftIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const ArrowLeftIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -402,14 +426,15 @@ export const ArrowLeftIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const MoreIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const MoreIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -419,14 +444,15 @@ export const MoreIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const ArrowCircleLeftIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const ArrowCircleLeftIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -436,14 +462,15 @@ export const ArrowCircleLeftIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const ArrowCircleRightIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const ArrowCircleRightIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -453,14 +480,15 @@ export const ArrowCircleRightIcon: FC<IconProps> = ({ color = 'secondary' }) => 
   </svg>
 );
 
-export const UserIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const UserIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -470,14 +498,15 @@ export const UserIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const SettingIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const SettingIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
     <path
       fillRule="evenodd"
@@ -487,8 +516,8 @@ export const SettingIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const ClockIcon: FC<IconProps> = ({ color = 'secondary' }) => (
-  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const ClockIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
+  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...otherProps}>
     <g clip-path="url(#clip0_83_168)">
       <path
         d="M22 12.0015C22 17.5215 17.52 22.0015 12 22.0015C6.48 22.0015 2 17.5215 2 12.0015C2 6.48146 6.48 2.00146 12 2.00146C17.52 2.00146 22 6.48146 22 12.0015Z"
@@ -513,41 +542,16 @@ export const ClockIcon: FC<IconProps> = ({ color = 'secondary' }) => (
   </svg>
 );
 
-export const DownloadIcon: FC<IconProps> = ({ color = 'secondary' }) => (
+export const DownloadIcon: FC<IconProps> = ({ color = 'secondary', ...otherProps }) => (
   <svg
-    className={classNames('a-icon', `-${color}`)}
+    className={abemClasses('a-icon', color)}
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...otherProps}
   >
-    <path d="M3.75 15.0027C3.74998 14.5885 3.41418 14.2527 2.99997 14.2528C2.58576 14.2528 2.24998 14.5886 2.25 15.0028L3.75 15.0027ZM21.7502 15.0028C21.7502 14.5885 21.4144 14.2528 21.0002 14.2528C20.586 14.2528 20.2502 14.5885 20.2502 15.0028H21.7502ZM12 16.9997L11.4698 17.5301C11.7626 17.8229 12.2374 17.8229 12.5302 17.5301L12 16.9997ZM12.75 3.00146C12.75 2.58725 12.4142 2.25146 12 2.25146C11.5858 2.25146 11.25 2.58725 11.25 3.00146H12.75ZM17.5302 12.5319C17.8232 12.239 17.8233 11.7642 17.5304 11.4712C17.2376 11.1783 16.7627 11.1782 16.4698 11.471L17.5302 12.5319ZM7.53024 11.471C7.23729 11.1782 6.76242 11.1783 6.46958 11.4712C6.17673 11.7642 6.17682 12.239 6.46976 12.5319L7.53024 11.471ZM2.25 15.0028L2.25016 19.0016L3.75016 19.0015L3.75 15.0027L2.25 15.0028ZM5.00016 21.7515H19.0002V20.2515H5.00016V21.7515ZM21.7502 19.0015V15.0028H20.2502V19.0015H21.7502ZM12.75 16.9997V3.00146H11.25V16.9997H12.75ZM12.5302 17.5301L17.5302 12.5319L16.4698 11.471L11.4698 16.4693L12.5302 17.5301ZM12.5302 16.4693L7.53024 11.471L6.46976 12.5319L11.4698 17.5301L12.5302 16.4693ZM19.0002 21.7515C20.519 21.7515 21.7502 20.5203 21.7502 19.0015H20.2502C20.2502 19.6918 19.6906 20.2515 19.0002 20.2515V21.7515ZM2.25016 19.0016C2.25021 20.5203 3.48141 21.7515 5.00016 21.7515V20.2515C4.30982 20.2515 3.75018 19.6919 3.75016 19.0015L2.25016 19.0016Z" />
-  </svg>
-);
-
-export const RecentIcon: FC<IconProps> = ({ color = 'secondary' }) => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_794_3621)">
-      <path
-        d="M18.3334 9.99984C18.3334 14.5998 14.6 18.3332 10 18.3332C5.40002 18.3332 1.66669 14.5998 1.66669 9.99984C1.66669 5.39984 5.40002 1.6665 10 1.6665C14.6 1.6665 18.3334 5.39984 18.3334 9.99984Z"
-        stroke="#B0B0B0"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M13.0917 12.65L10.5083 11.1083C10.0583 10.8416 9.69165 10.2 9.69165 9.67497V6.2583"
-        stroke="#B0B0B0"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </g>
-    <defs>
-      <clipPath id="clip0_794_3621">
-        <rect width="20" height="20" fill="white" />
-      </clipPath>
-    </defs>
+    <path d="M3.5 15.0027C3.49999 14.7266 3.27612 14.5028 2.99998 14.5028C2.72384 14.5028 2.49999 14.7266 2.5 15.0028L3.5 15.0027ZM21.5002 15.0028C21.5002 14.7266 21.2764 14.5028 21.0002 14.5028C20.7241 14.5028 20.5002 14.7266 20.5002 15.0028H21.5002ZM12 16.0015L11.6464 16.355C11.8417 16.5503 12.1583 16.5503 12.3536 16.355L12 16.0015ZM12.5 3.00146C12.5 2.72532 12.2761 2.50146 12 2.50146C11.7239 2.50146 11.5 2.72532 11.5 3.00146H12.5ZM17.3536 11.355C17.5488 11.1598 17.5488 10.8432 17.3536 10.6479C17.1583 10.4526 16.8417 10.4526 16.6464 10.6479L17.3536 11.355ZM7.35355 10.6479C7.15829 10.4526 6.84171 10.4526 6.64645 10.6479C6.45118 10.8432 6.45118 11.1598 6.64645 11.355L7.35355 10.6479ZM2.5 15.0028L2.50016 19.0016L3.50016 19.0015L3.5 15.0027L2.5 15.0028ZM5.00016 21.5015H19.0002V20.5015H5.00016V21.5015ZM21.5002 19.0015V15.0028H20.5002V19.0015H21.5002ZM12.5 16.0015V3.00146H11.5V16.0015H12.5ZM12.3536 16.355L17.3536 11.355L16.6464 10.6479L11.6464 15.6479L12.3536 16.355ZM12.3536 15.6479L7.35355 10.6479L6.64645 11.355L11.6464 16.355L12.3536 15.6479ZM19.0002 21.5015C20.3809 21.5015 21.5002 20.3822 21.5002 19.0015H20.5002C20.5002 19.8299 19.8287 20.5015 19.0002 20.5015V21.5015ZM2.50016 19.0016C2.50021 20.3823 3.61948 21.5015 5.00016 21.5015V20.5015C4.17175 20.5015 3.50019 19.8299 3.50016 19.0015L2.50016 19.0016Z" />
   </svg>
 );

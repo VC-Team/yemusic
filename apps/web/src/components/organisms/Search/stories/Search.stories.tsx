@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 import Axios from 'axios';
 
-import Search, { SearchInput, SearchResultList, SearchResultListItem } from '.';
-import { SearchProps } from './Search';
+import Search, { SearchInput, SearchResultList, SearchResultListItem } from '..';
+import { SearchProps } from '../Search';
 
 export default {
   component: Search,
-  title: 'Search',
+  title: 'Organisms/Search',
 } as Meta;
 
 const SimpleSearch = ({ ...otherProps }) => {
@@ -43,7 +43,7 @@ const SimpleSearch = ({ ...otherProps }) => {
       Axios.post('https://yemusic-api.vc-team.com/api/song/s', {
         search: keyword,
       }).then((data: any) => {
-        const resultSearchData = data.data.data.songs.map((value: any, index: number) => ({
+        const resultSearchData = data.data.data.songs.map((value: any, _index: number) => ({
           id: value.yId,
           author: value.channel,
           name: value.title,
@@ -67,14 +67,7 @@ const SimpleSearch = ({ ...otherProps }) => {
   const searchData = state.type === 'recent' ? state.recentSearchData : state.resultSearchData;
 
   return (
-    <Search
-      onSearch={handleSearch}
-      isOpen={false}
-      onToggleOpen={isOpen => {
-        console.log(isOpen);
-      }}
-      {...otherProps}
-    >
+    <Search onSearch={handleSearch} canSearch={false} {...otherProps}>
       <SearchInput placeholder="Search..." />
       <SearchResultList>
         {searchData?.map((value: any, index: number) => (
@@ -100,6 +93,6 @@ const SimpleSearch = ({ ...otherProps }) => {
 
 const Template: Story<SearchProps> = args => <SimpleSearch {...args} />;
 
-export const Preview = Template.bind({});
+export const Example = Template.bind({});
 
-Preview.args = {};
+Example.args = {};

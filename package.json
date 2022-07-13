@@ -104,6 +104,7 @@
     "vc-cz-emoji": "^0.0.2"
   },
   "dependencies": {
+    "autobind-decorator": "^2.4.0",
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
     "classnames": "^2.3.1",
@@ -122,6 +123,7 @@
     "react-is": "^18.1.0",
     "react-native": "0.67.3",
     "react-router-dom": "^6.2.2",
+    "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "tslib": "^2.0.0",
     "vcc-schema": "^0.2.0",

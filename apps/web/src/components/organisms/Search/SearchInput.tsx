@@ -1,34 +1,38 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback } from 'react';
 
 import { ArrowLeftIcon, SearchIcon } from '@components/atoms/Icon';
 import Input, { InputProps } from '@components/atoms/Input';
 
+import './style.scss';
+
 export interface SearchInputProps extends InputProps {
+  canSearch?: boolean;
   onClose?: () => void;
-  _onChange?: (value: string) => void;
-  _onBlur?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
-  _onFocus?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
+  onChangeInject?: (value: string) => void;
+  onFocusInject?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
 }
 
-export const SearchInput: FC<SearchInputProps> = ({ onClose, _onChange, _onBlur, _onFocus, ...otherProps }) => {
-  const [isFocus, setIsFocus] = useState(false);
-
+export const SearchInput: FC<SearchInputProps> = ({
+  canSearch = false,
+  onClose,
+  onChangeInject,
+  onFocusInject,
+  ...otherProps
+}) => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (_onChange) {
-        _onChange(e.target.value);
+      if (onChangeInject) {
+        onChangeInject(e.target.value);
       }
     },
-    [_onChange]
+    [onChangeInject]
   );
 
   const handleFocus = useCallback(() => {
-    setIsFocus(true);
-
-    if (_onFocus) {
-      _onFocus();
+    if (onFocusInject) {
+      onFocusInject();
     }
-  }, [_onFocus]);
+  }, [onFocusInject]);
 
   const handleClose = useCallback(() => {
     if (onClose) {
@@ -37,11 +41,11 @@ export const SearchInput: FC<SearchInputProps> = ({ onClose, _onChange, _onBlur,
   }, [onClose]);
 
   return (
-    <div className="o-search__input">
+    <div className="o-search_input">
       <Input
         prefix={
-          <div className="o-search__input__icon" role="button" onClick={handleClose}>
-            {isFocus ? <ArrowLeftIcon /> : <SearchIcon />}
+          <div className="o-search_input_icon" role="button" onClick={handleClose}>
+            {canSearch ? <ArrowLeftIcon /> : <SearchIcon />}
           </div>
         }
         fullWidth

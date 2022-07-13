@@ -1,20 +1,33 @@
-$root: m-nav;
+.m-nav {
+  $root: &;
+  $nav-slider-horizontal-top: calc(50% + 16px);
+  $nav-slider-horizontal-left: calc(var(--nav-item-active-left) + var(--nav-item-active-width) / 2 - 12px);
+  $nav-slider-horizontal-width: 24px;
+  $nav-slider-horizontal-height: 3px;
+  $nav-slider-vertical-top: var(--nav-item-active-top);
+  $nav-slider-vertical-right: 0;
+  $nav-slider-vertical-width: 3px;
+  $nav-slider-vertical-height: 40px;
 
-.#{$root} {
   position: relative;
   display: flex;
   list-style: none;
 
   &::before {
     position: absolute;
-    top: calc(50% + 16px);
-    left: calc(var(--nav-item-active-left) + var(--nav-item-active-width) / 2 - 12px);
-    width: 24px;
-    height: 3px;
     content: '';
     background-color: $ACCENT-BACKGROUND;
     border-radius: 999px;
     transition: 300ms;
+  }
+
+  &.-horizontal {
+    &::before {
+      top: $nav-slider-horizontal-top;
+      left: $nav-slider-horizontal-left;
+      width: $nav-slider-horizontal-width;
+      height: $nav-slider-horizontal-height;
+    }
   }
 
   &.-vertical {
@@ -22,36 +35,42 @@ $root: m-nav;
     gap: pxtorem(8);
 
     &::before {
-      top: var(--nav-item-active-top);
-      right: 0;
-      left: initial;
-      width: 3px;
-      height: 40px;
+      top: $nav-slider-vertical-top;
+      right: $nav-slider-vertical-right;
+      width: $nav-slider-vertical-width;
+      height: $nav-slider-vertical-height;
     }
 
-    .#{$root}__divider {
+    #{$root}_divider {
+      $nav-divider-height: 1px;
+
       width: 100%;
       padding: pxtorem(8) pxtorem(16);
 
       span {
         display: block;
         width: 100%;
-        height: 1px;
+        height: $nav-divider-height;
         background-color: $DIVIDER;
       }
     }
   }
 
-  &__item {
+  &_item {
+    $nav-item-full-height: 40px;
+
     display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    padding: pxtorem(16);
+
+    &.-mini {
+      flex-grow: 1;
+      justify-content: center;
+      padding: pxtorem(16);
+    }
 
     &.-full {
       align-items: center;
       justify-content: initial;
-      height: 40px;
+      height: $nav-item-full-height;
       padding: 0 0 0 pxtorem(16);
       color: $SECONDARY-TEXT;
 
@@ -59,7 +78,7 @@ $root: m-nav;
         color: $PRIMARY-TEXT;
       }
 
-      .#{$root}__item__name {
+      #{$root}_item_name {
         display: initial;
         margin: 0 0 0 pxtorem(8);
         font-size: pxtorem(14);
@@ -67,22 +86,27 @@ $root: m-nav;
     }
 
     &.-active {
-      .#{$root}__item__name {
+      #{$root}_item_name {
         color: $ACCENT-TEXT;
       }
     }
 
-    &__icon {
-      width: 24px;
-      height: 24px;
+    &_icon {
+      $nav-item-icon-width: 24px;
+      $nav-item-icon-height: 24px;
+
+      width: $nav-item-icon-width;
+      height: $nav-item-icon-height;
       overflow: hidden;
     }
 
-    &__name {
+    &_name {
+      @include text(body);
+
       display: none;
     }
 
-    &__divider {
+    &_divider {
       display: none;
     }
   }

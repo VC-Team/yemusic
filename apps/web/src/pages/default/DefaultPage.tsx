@@ -1,6 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 
 import MainLayout from '@components/templates/MainLayout';
+import { actionSetThemeColor, DisplayContext, DisplayProvider } from '@domains/display';
+import { SearchProvider } from '@domains/search';
+import { withProviders } from '@hocs/withProviders';
 import { useMediaQuery } from 'react-responsive';
 
 import {
@@ -21,6 +24,8 @@ export const DefaultPage: FC = () => {
     device: 'desktop',
   });
 
+  const { theme } = useContext(DisplayContext);
+
   const isMobile = useMediaQuery({ query: '(max-width: 1224px)' });
 
   useEffect(() => {
@@ -31,6 +36,10 @@ export const DefaultPage: FC = () => {
       device,
     }));
   }, [isMobile]);
+
+  useEffect(() => {
+    actionSetThemeColor(theme);
+  }, [theme]);
 
   return (
     <MainLayout
@@ -53,4 +62,4 @@ export const DefaultPage: FC = () => {
   );
 };
 
-export default DefaultPage;
+export default withProviders(DisplayProvider, SearchProvider)(DefaultPage);

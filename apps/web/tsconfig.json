@@ -15,11 +15,13 @@
       "@assets/*": ["apps/web/src/assets/*"],
       "@components/*": ["apps/web/src/components/*"],
       "@constants/*": ["apps/web/src/constants/*"],
+      "@domains/*": ["apps/web/src/domains/*"],
       "@helpers/*": ["apps/web/src/helpers/*"],
+      "@hocs/*": ["apps/web/src/hocs/*"],
       "@hooks/*": ["apps/web/src/hooks/*"],
       "@pages/*": ["apps/web/src/pages/*"],
       "@utils/*": ["apps/web/src/utils/*"],
-      "@yemusic/client-domain": ["libs/client-domain/src/index.ts"]
+      "@yemusic/client-domain/*": ["libs/client-domain/src/*"]
     }
   },
   "files": [],

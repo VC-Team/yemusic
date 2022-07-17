@@ -16,9 +16,9 @@ const SignInInput = mixed({
 });
 
 const inputMap = {
-  '/api/user/signUp': SignUpInput,
+  '/api/user/signup': SignUpInput,
   '/api/user/sendEmailVerify': SendEmailVerifyInput,
-  '/api/user/signIn': SignInInput,
+  '/api/user/signin': SignInInput,
 };
 
 export const validate = (req, res, next) => {
@@ -32,7 +32,7 @@ export const validate = (req, res, next) => {
 
   return error
     ? res.status(500).json({
-        message: error.message,
+        message: error.format(),
         errorCode: 'E-01',
       })
     : next();

@@ -35,7 +35,7 @@ export function generateTokenForUser(req: Request, res: Response, userId, isRefr
     setCookie(req, res, {
       key: 'refreshToken',
       value: refreshToken,
-      path: 'auth/refreshToken',
+      path: 'user/refreshToken',
     });
   }
 

@@ -10,9 +10,15 @@ const SendEmailVerifyInput = mixed({
   email: string().email(),
 });
 
+const SignInInput = mixed({
+  account: string(),
+  password: string().min(6),
+});
+
 const inputMap = {
-  '/api/auth/signUp': SignUpInput,
-  '/api/auth/sendEmailVerify': SendEmailVerifyInput,
+  '/api/user/signUp': SignUpInput,
+  '/api/user/sendEmailVerify': SendEmailVerifyInput,
+  '/api/user/signIn': SignInInput,
 };
 
 export const validate = (req, res, next) => {

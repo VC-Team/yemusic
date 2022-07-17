@@ -11,7 +11,7 @@ const SendEmailVerifyInput = mixed({
 });
 
 const SignInInput = mixed({
-  email: string().email(),
+  account: string(),
   password: string().min(6),
 });
 

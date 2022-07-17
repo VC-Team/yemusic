@@ -1,4 +1,4 @@
-import * as userMutation from './mutation';
+import * as userMutation from './userCommand';
 
 export default {
   ...userMutation,

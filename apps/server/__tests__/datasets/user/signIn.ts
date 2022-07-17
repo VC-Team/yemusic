@@ -10,13 +10,13 @@ export const user2 = {
   password: '12313',
 };
 
-export const userToSignUp = {
+export const userSignUp = {
   email: 'vcteam@gmail.com',
   password: '123456',
   displayName: faker.name.findName(),
 };
 
-export const userReal = {
-  email: 'vcteam@gmail.com',
-  password: '123456',
+export const userSignIn = {
+  account: userSignUp.email,
+  password: userSignUp.password,
 };

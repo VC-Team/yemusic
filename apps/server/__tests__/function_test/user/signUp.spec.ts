@@ -6,7 +6,7 @@ import { request } from '../../helper.spec';
 describe('Testing SignUp API', () => {
   test('Signup user successfully', done => {
     request
-      .post('/api/auth/signUp')
+      .post('/api/user/signUp')
       .send(user1)
       .expect(200)
       .then(response => {
@@ -17,7 +17,7 @@ describe('Testing SignUp API', () => {
 
   test('[E-04] Email already exists', done => {
     request
-      .post('/api/auth/signUp')
+      .post('/api/user/signUp')
       .send(user1)
       .expect(500)
       .then(response => {

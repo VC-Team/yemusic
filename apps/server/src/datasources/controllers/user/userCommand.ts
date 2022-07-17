@@ -127,19 +127,21 @@ export const verifyEmail = useHttpHandler(async (req: Request, res: Response): P
 });
 
 export const signIn = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
-  const { email, password }: { email: string; password: string } = req.body;
+  const { account, password }: { account: string; password: string } = req.body;
 
-  const currentUser = await User.findOne({ email }).lean();
-  const compareHash = auth.compareHash(password, currentUser?.password);
+  const user = await User.findOne({
+    $or: [{ email: account }, { username: account }, { phone: account }],
+  }).lean();
+  const compareHash = auth.compareHash(password, user?.password);
 
-  if (!currentUser || !compareHash)
+  if (!user || !compareHash)
     throw {
       errorCode: 'E-05',
       message: 'Email or Password is not correct, please try again!',
     };
 
-  delete currentUser.password;
-  const accessToken = yeToken.generateTokenForUser(req, res, currentUser, true);
+  delete user.password;
+  const accessToken = yeToken.generateTokenForUser(req, res, user, true);
 
-  return res.status(200).json({ data: { me: currentUser, accessToken } });
+  return res.status(200).json({ data: { me: user, accessToken } });
 });

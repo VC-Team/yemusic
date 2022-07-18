@@ -1,0 +1,82 @@
+.c-app-default_header {
+  $root: &;
+
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  &.-mobile {
+    justify-content: space-between;
+    padding: pxtorem(8);
+
+    #{$root}_logo {
+      gap: pxtorem(8);
+    }
+  }
+
+  &.-desktop {
+    padding: pxtorem(16);
+
+    #{$root}_logo {
+      gap: pxtorem(16);
+    }
+  }
+
+  &_logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 36px;
+      height: 40px;
+    }
+
+    h1 {
+      @include text(heading);
+
+      margin: 0;
+      color: $ACCENT-TEXT;
+    }
+  }
+}
+
+.c-app-default-search {
+  position: relative;
+  height: 100%;
+
+  .c-app-default-search_inner {
+    position: absolute;
+    top: pxtorem(8);
+    left: pxtorem(8);
+    width: 100%;
+    max-width: 480px;
+    border-radius: pxtorem(8);
+
+    &.-open {
+      max-height: 480px;
+      background-color: $MODAL-BACKGROUND;
+      box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+
+      .o-search {
+        max-height: 480px;
+      }
+    }
+  }
+}
+
+.c-app-default_player-controls {
+  &.-mobile {
+    background-color: $PLAYER-CONTROLS-BACKGROUND;
+
+    &.-full {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      padding: pxtorem(16);
+    }
+  }
+
+  &.-desktop {
+    padding: pxtorem(16);
+  }
+}

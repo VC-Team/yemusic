@@ -4,6 +4,38 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: pxtorem(8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: $DIVIDER;
+  border-radius: pxtorem(4);
+}
+
+::-webkit-scrollbar-track:hover {
+  background: $HOVER-OVERLAY;
+}
+
+[data-theme='light'] {
+  --primary-text: 31 41 55;
+  --secondary-text: 55 65 81;
+  --accent-text: 33 96 88;
+  --contrast-text: 0 0 0;
+  --body-background: 255 255 255;
+  --sidebar-background: 251 251 251;
+  --interactive-background: 235 235 235;
+  --accent-background: 33 96 88;
+  --loading-background: 235 235 235;
+  --modal-background: 240 239 239;
+  --player-controls-background: 245 245 245;
+  --navigation-background: 245 245 245;
+  --contrast-background: 0 0 0;
+  --hover-overlay: 0 0 0;
+  --modal-overlay: 0 0 0;
+  --divider-overlay: 209 213 219;
+}
+
 html {
   font-size: $FONT-SIZE-HTML;
   word-break: break-word;

@@ -18,13 +18,15 @@ $CONTRAST-TEXT: rgba(var(--contrast-text, 32 32 32) / 100%);
 
 $BODY-BACKGROUND: rgba(var(--body-background, 18 18 18) / 100%);
 $SIDEBAR-BACKGROUND: rgba(var(--sidebar-background, 16 16 16) / 100%);
-$INTERACTIVE-BACKGROUND: rgba(var(--interactive-background, 24 24 24) / 100%);
+$INTERACTIVE-BACKGROUND: rgba(var(--interactive-background, 30 30 30) / 100%);
 $ACCENT-BACKGROUND: rgba(var(--accent-background, 37 192 174) / 100%);
 $LOADING-BACKGROUND: rgba(var(--loading-background, 34 34 34) / 100%);
-$MODAL-BACKGROUND: rgba(var(--modal-background, 20 20 20) / 100%);
+$MODAL-BACKGROUND: rgba(var(--modal-background, 24 24 24) / 100%);
+$PLAYER-CONTROLS-BACKGROUND: rgba(var(--player-controls-background, 0 0 0) / 100%);
+$NAVIGATION-BACKGROUND: rgba(var(--navigation-background, 0 0 0) / 100%);
 $CONTRAST-BACKGROUND: rgba(var(--contrast-background, 255 255 255) / 100%);
 
 $HOVER-OVERLAY: rgba(var(--hover-overlay, 255 255 255) / 4%);
 $MODAL-OVERLAY: rgba(var(--modal-overlay, 255 255 255) / 6%);
 
-$DIVIDER: rgba(var(--primary-text, 29 29 29) / 100%);
+$DIVIDER: rgba(var(--divider, 29 29 29) / 100%);

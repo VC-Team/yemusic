@@ -1,9 +1,0 @@
-/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/deps/libfutures_macro-b4913a2f260984b4.dylib: /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/lib.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/executor.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/join.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/select.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/stream_select.rs
-
-/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/deps/futures_macro-b4913a2f260984b4.d: /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/lib.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/executor.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/join.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/select.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/stream_select.rs
-
-/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/lib.rs:
-/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/executor.rs:
-/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/join.rs:
-/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/select.rs:
-/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-macro-0.3.21/src/stream_select.rs:

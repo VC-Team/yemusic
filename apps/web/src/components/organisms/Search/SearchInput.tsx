@@ -9,7 +9,7 @@ export interface SearchInputProps extends InputProps {
   canSearch?: boolean;
   onClose?: () => void;
   onChangeInject?: (value: string) => void;
-  onFocusInject?: (e?: React.FocusEvent<HTMLInputElement, Element> | undefined) => void;
+  onFocusInject?: (e?: React.FocusEvent<HTMLInputElement> | undefined) => void;
 }
 
 export const SearchInput: FC<SearchInputProps> = ({

@@ -1,0 +1,128 @@
+TARGET = Some("aarch64-apple-darwin")
+OPT_LEVEL = Some("0")
+HOST = Some("aarch64-apple-darwin")
+CC_aarch64-apple-darwin = None
+CC_aarch64_apple_darwin = None
+HOST_CC = None
+CC = None
+CFLAGS_aarch64-apple-darwin = None
+CFLAGS_aarch64_apple_darwin = None
+HOST_CFLAGS = None
+CFLAGS = None
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some("true")
+CARGO_CFG_TARGET_FEATURE = None
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-arch" "arm64" "-fmodules" "-o" "/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/mac-notification-sys-4293ac76633078f2/out/objc/notify.o" "-c" "objc/notify.m"
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:42:33: warning: 'NSUserNotificationCenter' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=- (void)userNotificationCenter:(NSUserNotificationCenter*)center didDeliverNotification:(NSUserNotification*)notification
+cargo:warning=                                ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:118:12: note: 'NSUserNotificationCenter' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotificationCenter : NSObject {
+cargo:warning=           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:42:90: warning: 'NSUserNotification' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=- (void)userNotificationCenter:(NSUserNotificationCenter*)center didDeliverNotification:(NSUserNotification*)notification
+cargo:warning=                                                                                         ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:24:12: note: 'NSUserNotification' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotification : NSObject <NSCopying> {
+cargo:warning=           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:52:33: warning: 'NSUserNotificationCenter' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=- (void)userNotificationCenter:(NSUserNotificationCenter*)center didActivateNotification:(NSUserNotification*)notification
+cargo:warning=                                ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:118:12: note: 'NSUserNotificationCenter' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotificationCenter : NSObject {
+cargo:warning=           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:52:91: warning: 'NSUserNotification' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=- (void)userNotificationCenter:(NSUserNotificationCenter*)center didActivateNotification:(NSUserNotification*)notification
+cargo:warning=                                                                                          ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:24:12: note: 'NSUserNotification' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotification : NSObject <NSCopying> {
+cargo:warning=           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:106:33: warning: 'NSUserNotificationCenter' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=- (void)userNotificationCenter:(NSUserNotificationCenter*)center didDismissAlert:(NSUserNotification*)notification
+cargo:warning=                                ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:118:12: note: 'NSUserNotificationCenter' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotificationCenter : NSObject {
+cargo:warning=           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:106:83: warning: 'NSUserNotification' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=- (void)userNotificationCenter:(NSUserNotificationCenter*)center didDismissAlert:(NSUserNotification*)notification
+cargo:warning=                                                                                  ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:24:12: note: 'NSUserNotification' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotification : NSObject <NSCopying> {
+cargo:warning=           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:61:14: warning: 'NSUserNotificationActivationTypeActionButtonClicked' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        case NSUserNotificationActivationTypeActionButtonClicked:
+cargo:warning=             ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:15:28: note: 'NSUserNotificationActivationType' has been explicitly marked deprecated here
+cargo:warning=typedef NS_ENUM(NSInteger, NSUserNotificationActivationType) {
+cargo:warning=                           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:62:14: warning: 'NSUserNotificationActivationTypeAdditionalActionClicked' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        case NSUserNotificationActivationTypeAdditionalActionClicked:
+cargo:warning=             ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:15:28: note: 'NSUserNotificationActivationType' has been explicitly marked deprecated here
+cargo:warning=typedef NS_ENUM(NSInteger, NSUserNotificationActivationType) {
+cargo:warning=                           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:79:14: warning: 'NSUserNotificationActivationTypeContentsClicked' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        case NSUserNotificationActivationTypeContentsClicked:
+cargo:warning=             ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:15:28: note: 'NSUserNotificationActivationType' has been explicitly marked deprecated here
+cargo:warning=typedef NS_ENUM(NSInteger, NSUserNotificationActivationType) {
+cargo:warning=                           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:85:14: warning: 'NSUserNotificationActivationTypeReplied' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        case NSUserNotificationActivationTypeReplied:
+cargo:warning=             ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:15:28: note: 'NSUserNotificationActivationType' has been explicitly marked deprecated here
+cargo:warning=typedef NS_ENUM(NSInteger, NSUserNotificationActivationType) {
+cargo:warning=                           ^
+cargo:warning=In file included from objc/notify.m:1:
+cargo:warning=objc/notify.h:90:14: warning: 'NSUserNotificationActivationTypeNone' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        case NSUserNotificationActivationTypeNone:
+cargo:warning=             ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:15:28: note: 'NSUserNotificationActivationType' has been explicitly marked deprecated here
+cargo:warning=typedef NS_ENUM(NSInteger, NSUserNotificationActivationType) {
+cargo:warning=                           ^
+cargo:warning=objc/notify.m:41:9: warning: 'NSUserNotificationCenter' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        NSUserNotificationCenter* notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+cargo:warning=        ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:118:12: note: 'NSUserNotificationCenter' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotificationCenter : NSObject {
+cargo:warning=           ^
+cargo:warning=objc/notify.m:41:82: warning: 'NSUserNotificationCenter' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        NSUserNotificationCenter* notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+cargo:warning=                                                                                 ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:118:12: note: 'NSUserNotificationCenter' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotificationCenter : NSObject {
+cargo:warning=           ^
+cargo:warning=objc/notify.m:49:9: warning: 'NSUserNotification' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        NSUserNotification* userNotification = [[NSUserNotification alloc] init];
+cargo:warning=        ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:24:12: note: 'NSUserNotification' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotification : NSObject <NSCopying> {
+cargo:warning=           ^
+cargo:warning=objc/notify.m:49:69: warning: 'NSUserNotification' is deprecated: first deprecated in macOS 11.0 - All NSUserNotifications API should be replaced with UserNotifications.frameworks API [-Wdeprecated-declarations]
+cargo:warning=        NSUserNotification* userNotification = [[NSUserNotification alloc] init];
+cargo:warning=                                                                    ^
+cargo:warning=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSUserNotification.h:24:12: note: 'NSUserNotification' has been explicitly marked deprecated here
+cargo:warning=@interface NSUserNotification : NSObject <NSCopying> {
+cargo:warning=           ^
+cargo:warning=15 warnings generated.
+exit status: 0
+AR_aarch64-apple-darwin = None
+AR_aarch64_apple_darwin = None
+HOST_AR = None
+AR = None
+running: "ar" "cq" "/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/mac-notification-sys-4293ac76633078f2/out/libnotify.a" "/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/mac-notification-sys-4293ac76633078f2/out/objc/notify.o"
+exit status: 0
+running: "ar" "s" "/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/mac-notification-sys-4293ac76633078f2/out/libnotify.a"
+exit status: 0
+cargo:rustc-link-lib=static=notify
+cargo:rustc-link-search=native=/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/mac-notification-sys-4293ac76633078f2/out

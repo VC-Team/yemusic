@@ -1,0 +1,11 @@
+/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/deps/phf-ceac5a3c4c5b52ad.rmeta: /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/lib.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/map.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/ordered_map.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/ordered_set.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/set.rs
+
+/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/deps/libphf-ceac5a3c4c5b52ad.rlib: /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/lib.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/map.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/ordered_map.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/ordered_set.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/set.rs
+
+/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/deps/phf-ceac5a3c4c5b52ad.d: /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/lib.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/map.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/ordered_map.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/ordered_set.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/set.rs
+
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/lib.rs:
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/map.rs:
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/ordered_map.rs:
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/ordered_set.rs:
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/phf-0.10.1/src/set.rs:

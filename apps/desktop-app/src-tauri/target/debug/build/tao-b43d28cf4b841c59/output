@@ -1,0 +1,27 @@
+cargo:rustc-link-lib=framework=Carbon
+TARGET = Some("aarch64-apple-darwin")
+OPT_LEVEL = Some("0")
+HOST = Some("aarch64-apple-darwin")
+CC_aarch64-apple-darwin = None
+CC_aarch64_apple_darwin = None
+HOST_CC = None
+CC = None
+CFLAGS_aarch64-apple-darwin = None
+CFLAGS_aarch64_apple_darwin = None
+HOST_CFLAGS = None
+CFLAGS = None
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some("true")
+CARGO_CFG_TARGET_FEATURE = None
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-arch" "arm64" "-Wall" "-Wextra" "-o" "/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/tao-b43d28cf4b841c59/out/src/platform_impl/macos/carbon_hotkey/carbon_hotkey_binding.o" "-c" "src/platform_impl/macos/carbon_hotkey/carbon_hotkey_binding.c"
+exit status: 0
+AR_aarch64-apple-darwin = None
+AR_aarch64_apple_darwin = None
+HOST_AR = None
+AR = None
+running: "ar" "cq" "/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/tao-b43d28cf4b841c59/out/libcarbon_hotkey_binding.a.a" "/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/tao-b43d28cf4b841c59/out/src/platform_impl/macos/carbon_hotkey/carbon_hotkey_binding.o"
+exit status: 0
+running: "ar" "s" "/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/tao-b43d28cf4b841c59/out/libcarbon_hotkey_binding.a.a"
+exit status: 0
+cargo:rustc-link-lib=static=carbon_hotkey_binding.a
+cargo:rustc-link-search=native=/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/build/tao-b43d28cf4b841c59/out

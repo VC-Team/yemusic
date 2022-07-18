@@ -1,0 +1,9 @@
+/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/deps/libproc_macro_hack-7fe7385deac8afe3.dylib: /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/lib.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/quote.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/error.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/iter.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/parse.rs
+
+/Users/gialynguyen/Documents/vc-team/yemusic/apps/desktop-app/src-tauri/target/debug/deps/proc_macro_hack-7fe7385deac8afe3.d: /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/lib.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/quote.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/error.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/iter.rs /Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/parse.rs
+
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/lib.rs:
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/quote.rs:
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/error.rs:
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/iter.rs:
+/Users/gialynguyen/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-hack-0.5.19/src/parse.rs:

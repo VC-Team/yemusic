@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { jwtConfig } from '@config';
-import { TParamsCreateToken, TParamsVerifyToken } from '@utils/interface';
+import { jwtConfig } from '@config/index';
+import { TParamsCreateToken, TParamsVerifyToken, TPayloadAccessToken } from '@interface/index';
 import * as jwt from 'jsonwebtoken';
 
 import { setCookie } from '../cookie';
@@ -11,14 +11,20 @@ export function createToken({ expiration, secretKey, payload }: TParamsCreateTok
   return token;
 }
 
-export function verifyToken({ token, secretKey, options }: TParamsVerifyToken): string | jwt.JwtPayload {
-  const decoded = jwt.verify(token, secretKey, options);
-
-  return decoded;
+export function verifyToken<T = unknown>({ token, secretKey, options }: TParamsVerifyToken): jwt.JwtPayload & T {
+  try {
+    return jwt.verify(token, secretKey, options) as jwt.JwtPayload & T;
+  } catch (error) {
+    throw { errorCode: 'E-04', message: 'Token invalid!' };
+  }
 }
 
-export function generateTokenForUser(req: Request, res: Response, userId, isRefresh = false): string {
-  const payload = { userId, allowedAt: new Date() };
+export function generateTokenForUser(req: Request, res: Response, user, isRefresh = false): string {
+  const payload: TPayloadAccessToken = {
+    user: { _id: user._id },
+    allowedAt: new Date(),
+  };
+
   const accessToken = createToken({
     expiration: jwtConfig.accessTokenExpiration,
     secretKey: jwtConfig.secretAccessToken,
@@ -35,7 +41,7 @@ export function generateTokenForUser(req: Request, res: Response, userId, isRefr
     setCookie(req, res, {
       key: 'refreshToken',
       value: refreshToken,
-      path: 'user/refreshToken',
+      path: 'user/refresh-token',
     });
   }
 

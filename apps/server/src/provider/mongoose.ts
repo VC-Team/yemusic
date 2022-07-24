@@ -1,4 +1,4 @@
-import { mongoDB } from '@config';
+import { mongoDB } from '@config/index';
 import * as mongoose from 'mongoose';
 
 export const loadMongo = async () => {

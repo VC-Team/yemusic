@@ -5,12 +5,13 @@
     "module": "commonjs",
     "types": ["jest", "node"],
     "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
-      "@controllers/*": ["src/datasources/controllers/*"],
-      "@interface/*": ["src/datasources/interface/*"],
-      "@model/*": ["src/datasources/models/*"],
-      "@utils/*": ["src/datasources/utils/*"],
-      "@config": ["src/config/index.ts"],
+      "@controllers/*": ["./src/datasources/controllers/*"],
+      "@interface/*": ["./src/datasources/interface/*"],
+      "@model/*": ["./src/datasources/models/*"],
+      "@utils/*": ["./src/datasources/utils/*"],
+      "@config/*": ["./src/config/*"],
     },
   },
   "include": ["**/*.test.ts", "**/*.spec.ts", "**/*.d.ts"]

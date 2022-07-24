@@ -1,4 +1,4 @@
-import { TParamsSendMail } from '@utils/interface';
+import { TParamsSendMail } from '@interface/index';
 import * as nodemailer from 'nodemailer';
 import { nodemailerConfig } from 'src/config';
 
@@ -14,21 +14,20 @@ async function createTransport(isUseTestAccount = false) {
     // Only needed if you don't have a real mail account for testing
     const accountTest = await nodemailer.createTestAccount();
 
-    // create reusable transporter object using the default SMTP transport
     return nodemailer.createTransport({
       host: 'smtp.ethereal.email',
       port: 587,
-      secure: false, // true for 465, false for other ports
+      secure: false,
       auth: {
-        user: accountTest.user, // generated ethereal user
-        pass: accountTest.pass, // generated ethereal password
+        user: accountTest.user,
+        pass: accountTest.pass,
       },
     });
   }
   return nodemailer.createTransport({
     host: nodemailerConfig.host,
     port: nodemailerConfig.port,
-    secure: nodemailerConfig.secure, // true for 465, false for other ports
+    secure: nodemailerConfig.secure,
     auth: {
       user: nodemailerConfig.username,
       pass: nodemailerConfig.password,
@@ -44,13 +43,12 @@ async function createTransport(isUseTestAccount = false) {
 export async function sendMail({ to, subject, text, html, isUseTestAccount }: TParamsSendMail) {
   const transport = await createTransport(isUseTestAccount);
 
-  // send mail with defined transport object
   const info = await transport.sendMail({
-    from: nodemailerConfig.displayName, // sender address
-    to, // list of receivers
-    subject, // Subject line
-    text, // plain text body
-    html, // html body
+    from: nodemailerConfig.displayName,
+    to,
+    subject,
+    text,
+    html,
   });
 
   return { messageId: info?.messageId || '', previewURL: nodemailer.getTestMessageUrl(info) || '' };

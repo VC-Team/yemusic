@@ -1,4 +1,4 @@
-import { TVideo, TDataVideo, TResVideo } from '@utils/interface';
+import { TVideo, TDataVideo, TResVideo } from '@interface/index';
 
 import { getDateFromText, getVideoDate } from '../helpers';
 

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { TPayload } from '@utils/interface';
+import { TPayload } from '@interface/index';
 
 export function setCookie(req: Request, res: Response, payload: TPayload) {
   const { key, value, path } = payload;

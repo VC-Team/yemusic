@@ -1,39 +1,14 @@
-import { mixed, string } from 'vcc-schema';
+import { Request, Response, NextFunction } from 'express';
 
-const SignUpInput = mixed({
-  email: string().email(),
-  password: string().min(6),
-  displayName: string().min(1),
-});
+import { routerConfig } from '@config/index';
 
-const SendEmailVerifyInput = mixed({
-  email: string().email(),
-});
+export const validate = (req: Request, res: Response, next: NextFunction) => {
+  const validateInput = routerConfig[req.route.path]?.validateSchema;
 
-const SignInInput = mixed({
-  account: string(),
-  password: string().min(6),
-});
-
-const inputMap = {
-  '/api/user/signup': SignUpInput,
-  '/api/user/sendEmailVerify': SendEmailVerifyInput,
-  '/api/user/signin': SignInInput,
-};
-
-export const validate = (req, res, next) => {
-  const validateInput = inputMap[req.originalUrl];
-
-  if (!validateInput) {
-    return next();
-  }
+  if (!validateInput) return;
 
   const { error } = validateInput.validate(req.body);
+  if (!error) return;
 
-  return error
-    ? res.status(500).json({
-        message: error.format(),
-        errorCode: 'E-01',
-      })
-    : next();
+  throw { message: error.format(), errorCode: 'E-01' };
 };

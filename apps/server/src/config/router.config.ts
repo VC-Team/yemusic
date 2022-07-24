@@ -31,4 +31,13 @@ export const routerConfig: Record<string, TRouterConfig> = {
     }),
     private: true,
   },
+  '/song/s': {
+    private: false,
+  },
+  '/song/:yId': {
+    private: false,
+  },
+  '/song/trending': {
+    private: false,
+  },
 } as const;

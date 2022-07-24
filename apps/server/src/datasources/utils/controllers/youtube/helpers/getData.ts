@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-escape */
-import { youtube } from '@config';
-import { TParamsData } from '@utils/interface';
+import { youtube } from '@config/index';
+import { TParamsData } from '@interface/index';
 import axios from 'axios';
 
 import decodeHex from './decodeHex';

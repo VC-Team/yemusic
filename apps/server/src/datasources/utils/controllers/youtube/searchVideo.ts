@@ -1,4 +1,4 @@
-import { TSong, TSearchResult, TVideo } from '@utils/interface';
+import { TSong, TSearchResult, TVideo } from '@interface/index';
 
 import { getData, findVal, formatVideo } from './helpers';
 

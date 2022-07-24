@@ -1,3 +1,5 @@
+import { CoreType } from 'vcc-schema';
+
 type Logger = {
   level: string;
 };
@@ -25,4 +27,9 @@ export type MongoDB = {
   database_host: string;
   database: string;
   mongoOptions: object;
+};
+
+export type TRouterConfig = {
+  validateSchema?: CoreType<unknown>;
+  private?: boolean;
 };

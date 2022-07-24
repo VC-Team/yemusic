@@ -1,6 +1,6 @@
 import { Request } from 'express';
 
-import { jwtConfig } from '@config';
+import { jwtConfig } from '@config/index';
 import { yeToken } from '@utils/controllers';
 
 import { sendMail } from './nodemailer';

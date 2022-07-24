@@ -6,7 +6,7 @@ APIs Yemusic...
 
 ### SignIn
 
-- Route: `api/user/signin`
+- Route: `api/user/sign-in`
 - Method: `POST`
 - Input
   - `Body`
@@ -44,7 +44,7 @@ APIs Yemusic...
 
 ### SignUp
 
-- Route: `api/user/signup`
+- Route: `api/user/sign-up`
 - Method: `POST`
 - Input
   - `Body`
@@ -78,6 +78,55 @@ APIs Yemusic...
   ```
 
 - Issues: #21
+
+### Refresh Token
+
+- Route: `api/user/refresh-token`
+- Method: `POST`
+- Input
+  - `req.cookies`
+
+  ```ts
+  {
+    refreshToken: string,
+  }
+    ```
+
+- Responses
+
+  ```ts
+  {
+    data: {
+      accessToken: String
+    }
+  }
+  ```
+
+## Send Email Verify
+
+- Route: `api/user/send-email-verify`
+- Method: `POST`
+- Input
+  - `Body`
+
+  ```ts
+  {
+    email: string,
+  }
+  ```
+
+## Verify Email
+
+- Route: `api/user/verify-email/:tokenVerifyEmail`
+- Method: `GET`
+- Input
+  - `Params`
+
+  ```ts
+  {
+    tokenVerifyEmail: string,
+  }
+  ```
 
 ## Youtube API
 

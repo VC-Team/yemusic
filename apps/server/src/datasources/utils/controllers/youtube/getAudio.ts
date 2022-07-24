@@ -1,4 +1,4 @@
-import { TAudioResponse } from '@utils/interface';
+import { TAudioResponse } from '@interface/index';
 import * as ytdl from 'ytdl-core';
 
 const mimeType = /audio\/mp4;/;

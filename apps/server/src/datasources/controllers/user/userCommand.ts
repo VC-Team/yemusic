@@ -1,20 +1,17 @@
 import { Request, Response } from 'express';
 
-import { jwtConfig } from '@config';
+import { jwtConfig } from '@config/index';
 import { TSignUpInput, TPlayList } from '@interface/index';
-import { yeToken, auth, nodemailer } from '@utils/controllers';
+import { yeToken, auth, nodemailer, user } from '@utils/controllers';
 import { useHttpHandler } from '@utils/useHttpHandler';
 
 import { User, PlayList } from '../../models';
-
-/*
-TODO: set user info into the Redis
- */
 
 export const signUp = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
   const { email, password, displayName }: TSignUpInput = req.body;
 
   const emailExists = await User.exists({ email });
+
   if (emailExists) {
     throw {
       errorCode: 'E-04',
@@ -22,12 +19,7 @@ export const signUp = useHttpHandler(async (req: Request, res: Response): Promis
     };
   }
 
-  const hashPassword = auth.generateHash(password, 10);
-  const newUser = await User.create({
-    email,
-    'info.displayName': displayName,
-    password: hashPassword,
-  });
+  const newUser = await user.createUser({ email, password, displayName });
 
   if (!newUser) {
     throw {
@@ -36,20 +28,17 @@ export const signUp = useHttpHandler(async (req: Request, res: Response): Promis
     };
   }
 
-  const userResponse = newUser.toObject();
-  delete userResponse.password;
-
   // generate Token
-  const accessToken = yeToken.generateTokenForUser(req, res, userResponse, true);
+  const accessToken = yeToken.generateTokenForUser(req, res, newUser, true);
 
-  res.status(200).json({ data: { me: userResponse, accessToken } });
+  res.status(200).json({ data: { me: newUser, accessToken } });
 
   const likedTrack: TPlayList = {
     name: 'Liked tracks',
     isLikedTrack: true,
-    owner: userResponse._id,
+    owner: newUser._id,
   };
-  await Promise.all([nodemailer.sendEmailVerify(req, userResponse), PlayList.create(likedTrack)]);
+  await Promise.all([nodemailer.sendEmailVerify(req, newUser), PlayList.create(likedTrack)]);
 
   return;
 });
@@ -57,15 +46,15 @@ export const signUp = useHttpHandler(async (req: Request, res: Response): Promis
 export const refreshToken = useHttpHandler(async (req: Request, res: Response): Promise<Response> => {
   const { refreshToken } = req.cookies;
 
-  const user = yeToken.verifyToken({ token: refreshToken, secretKey: jwtConfig.secretRefreshToken });
-
   if (!refreshToken) {
     throw {
       errorCode: 'E-02',
       message: 'Refresh token invalid!',
     };
   }
-  const accessToken = yeToken.generateTokenForUser(req, res, user['userId']);
+
+  const { user } = yeToken.verifyToken({ token: refreshToken, secretKey: jwtConfig.secretRefreshToken });
+  const accessToken = yeToken.generateTokenForUser(req, res, user);
 
   return res.status(200).json({ data: { accessToken } });
 });

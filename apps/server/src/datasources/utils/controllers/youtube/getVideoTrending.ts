@@ -1,4 +1,4 @@
-import { TSong } from '@utils/interface';
+import { TSong } from '@interface/index';
 
 import { findValByKey, formatVideo, getData } from './helpers';
 
